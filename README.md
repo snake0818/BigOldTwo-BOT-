@@ -1,7 +1,7 @@
 # Project name : BigOldTwo-BOT-
 
 ### Member : 
-- 江至揚 (Leader)
-- 黃云佐
-- 戴鴻翔
-- 黃昱維
+- B0222963 江至揚 (Leader)
+- B0247940 黃云佐
+- B0247826 戴鴻翔
+- B0247982 黃昱維
