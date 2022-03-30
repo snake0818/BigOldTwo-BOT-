@@ -1,8 +1,14 @@
+#ifndef GAME_H
+#define GAME_H
+
 class Game
 {
 private:
     double repository[52];
-    void putCard_ToRpt();
+    void setRpt();
 public:
-    void gameSatrt();
+    Game();
+    double getRpt(int);
 };
+
+#endif
