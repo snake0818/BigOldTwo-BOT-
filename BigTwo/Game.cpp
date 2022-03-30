@@ -3,7 +3,7 @@ using namespace std;
 
 #include "Game.h"
 
-void Game::putCard_ToRpt()
+void Game::setRpt()
 {
     int index = 0;
     for(int i = 1; i <= 13; i++)
@@ -16,7 +16,12 @@ void Game::putCard_ToRpt()
     }
 }
 
-void Game::gameSatrt()
+double Game::getRpt(int index)
 {
-    this->putCard_ToRpt();
+    return repository[index];
+}
+
+Game::Game()
+{
+    this->setRpt();
 }
