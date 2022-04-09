@@ -10,7 +10,8 @@ private:
 public:
     Game();
     double getRpt(int);
-    void setCardsOnField();
+    void setCardsOnField(double,double,double,double,double);
+    void gameStart();
 };
 
 #endif
