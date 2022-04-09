@@ -39,3 +39,4 @@ bool Check::numberInTriples(const double card_1,const double card_2,const double
         return false;
     }
 }
+
