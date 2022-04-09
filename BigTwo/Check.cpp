@@ -30,7 +30,7 @@ bool Check::numberInPairs(const double card_1, const double card_2) const
 }
 bool Check::numberInTriples(const double card_1,const double card_2,const double card_3) const
 {
-    if(int(card_1)==int(card_2) and int(card_2)=int(card_3))
+    if(int(card_1)==int(card_2) and int(card_2)==int(card_3))
     {
         return true;
     }
