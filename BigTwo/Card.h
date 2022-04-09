@@ -1,5 +1,8 @@
 #ifndef CARD_H
 #define CARD_H
+#include <iostream>
+#include "Check.h"
+using namespace std;
 
 class Card
 {
@@ -14,6 +17,7 @@ private:
     double fullHouse_arr[5];
     double tiki_arr[5];
     double straightFlush_arr[5];
+    Check check;
 
 public:
     void setNumber(double);
