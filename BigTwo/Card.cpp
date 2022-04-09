@@ -28,7 +28,7 @@ void Card::setSingle(double card)
 void Card::setPairs(double card1, double card2) {
     double card[2] = { card1,card2 };
     
-    if (check.numberInPairs(card1, card2)) {
+    if (int(card1) == int(card2)) {
         for (int i = 0; i < 2; i++) {
             this->pairs_arr[i] = card[i];
         }
@@ -38,10 +38,11 @@ void Card::setPairs(double card1, double card2) {
         }
     }
 }
+
 void Card::setTriples(double card1, double card2, double card3) {
     double card[3] = { card1,card2,card3 };
 
-    if (check.numberInTriples(card1, card2,card3)) {
+    if (int(card1) == int(card2) == int(card3)) {
         for (int i = 0; i < 3; i++) {
             this->triples_arr[i] = card[i];
         }
