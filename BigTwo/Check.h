@@ -7,7 +7,7 @@ class Check
 {
 public:
     bool numberAndFlower(const double) const;
-    bool numberInPairs(const double) const;
+    bool numberInPairs(const double,const double) const;
     bool numberInTriples(const double,const double,const double) const;
 };
 
