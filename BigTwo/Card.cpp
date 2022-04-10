@@ -53,6 +53,26 @@ void Card::setTriples(double card1, double card2, double card3) {
         }
     }
 }
+void Card::setFlush(double card1, double card2, double card3, double card4, double card5) {
+    double card[5] = { card1,  card2,  card3,  card4,  card5 };
+    int Decide = 0;
+
+    for (int i = 1; i < 5; i++) {
+        if (int(card[0] * 10) % 10 == int(card[i] * 10) % 10) {
+            Decide++;
+        }
+    }
+    if (Decide == 4) {
+        for (int i = 0; i < 5; i++) {
+            this->flush_arr[i] = card[i];
+        }
+    }
+    else {
+        for (int i = 0; i < 5; i++) {
+            this->flush_arr[i] = 0;
+        }
+    }
+}
 
 int Card::getNumber() const
 {
