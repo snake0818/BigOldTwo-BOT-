@@ -56,6 +56,7 @@ void Card::setTriples(double card1, double card2, double card3) {
 void Card::setFlush(double card1, double card2, double card3, double card4, double card5) {
     double card[5] = { card1,  card2,  card3,  card4,  card5 };
     int Decide = 0;
+    arrange(card, 5);
 
     for (int i = 1; i < 5; i++) {
         if (int(card[0] * 10) % 10 == int(card[i] * 10) % 10) {
@@ -73,6 +74,27 @@ void Card::setFlush(double card1, double card2, double card3, double card4, doub
         }
     }
 }
+void Card::setTiki(double card1, double card2, double card3, double card4, double card5) {
+    double card[5] = { card1,  card2,  card3,  card4,  card5 };
+    arrange(card, 5);
+    int Decide = 0;
+
+    for (int i = 0; i < 5; i++) {
+        if (int(card[3]) == int(card[i])) {
+            Decide++;
+        }
+    }
+    if (Decide == 4) {
+        for (int i = 0; i < 5; i++) {
+            this->tiki_arr[i] = card[i];
+        }
+    }
+    else {
+        for (int i = 0; i < 5; i++) {
+            this->tiki_arr[i] = 0;
+        }
+    }
+}
 
 int Card::getNumber() const
 {
@@ -82,6 +104,18 @@ int Card::getNumber() const
 int Card::getFlower() const
 {
     return flower;
+}
+void Card::arrange(double *card, int size) {
+    double temp;
+    for (int i = 1; i < size; i++) {
+        for (int j = 0; j < i; j++) {
+            if (card[j] > card[i]) {
+                temp = card[j];
+                card[j] = card[i];
+                card[i] = temp;
+            }
+        }
+    }
 }
 
 // Test
