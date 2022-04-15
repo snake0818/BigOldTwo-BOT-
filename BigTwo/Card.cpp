@@ -55,34 +55,45 @@ void Card::setPairs(double card_1, double card_2)
     }
 }
 
-// void Card::setTriples(double card_1, double card_2, double card_3)
-// {
-//     double cards[3] = {card_1, card_2, card_3};
+void Card::setTriples(double card_1, double card_2, double card_3)
+{
+    double cards[3] = {card_1, card_2, card_3};
 
-//     bool check = true;
-//     for (int i = 0; i < 3; i++)
-//     {
-//         if (Check().isNumberInRpt(cards[i]) == false)
-//         {
-//             check = false;
-//             cout << "fals\n";
-//             break;
-//         }
-//     }
+    bool isInRpt = true;
+    for (int i = 0; i < 3; i++)
+    {
+        if (Check().isNumberInRpt(cards[i]) == false)
+        {
+            isInRpt = false;
+            break;
+        }
+    }
 
-//     if (int(card_1) == int(card_2) == int(card_3) && check)
-//     {
-//         for (int i = 0; i < 3; i++)
-//         {
-//             this->triples_arr[i] = cards[i];
-//         }
-//     }
-//     else
-//     {
-//         cout << "agin\n";
-//         // 重新出牌
-//     }
-// }
+    bool isSame = true;
+    for(int i = 0; i < 2; i++)
+    {
+        for(int j = i+1; j < 3; j++)
+        {
+            if (cards[i] == cards[j])
+            {
+                isSame = false;
+                break;
+            }
+        }
+    }
+    
+    if ((int(card_1) == int(card_2) && int(card_1) == int(card_3)) && isInRpt && isSame)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            this->triples_arr[i] = cards[i];
+        }
+    }
+    else
+    {
+        // 重新出牌
+    }
+}
 
 // void Card::setFlush(double card1, double card2, double card3, double card4, double card5) {
 //     double card[5] = { card1,  card2,  card3,  card4,  card5 };
@@ -152,7 +163,7 @@ void Card::setPairs(double card_1, double card_2)
 // Test
 void Card::print() const
 {
-    for (auto i : pairs_arr)
+    for (auto i : triples_arr)
         cout << i << " ";
     cout << endl;
 }
