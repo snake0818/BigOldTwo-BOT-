@@ -34,4 +34,7 @@ void Game::setCardsOnField(double card_1,double card_2,double card_3,double card
     }
     
 }
-
+double Game::getCardsOnField(int number) 
+{
+    return cardsOnField[number];
+}
