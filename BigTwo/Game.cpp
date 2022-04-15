@@ -6,35 +6,36 @@ using namespace std;
 void Game::setRpt()
 {
     int index = 0;
-    for(int i = 1; i <= 13; i++)
+    for (int i = 1; i <= 13; i++)
     {
-        for(double j = 0.1; j <= 0.4; j += 0.1)
+        for (double j = 0.1; j <= 0.4; j += 0.1)
         {
-            repository[index] = i+j;
+            repository[index] = i + j;
             index++;
         }
     }
-}
-
-double Game::getRpt(int index)
-{
-    return repository[index];
 }
 
 Game::Game()
 {
     this->setRpt();
 }
-void Game::setCardsOnField(double card_1,double card_2,double card_3,double card_4,double card_5)
+
+void Game::setCardsOnField(double card_1, double card_2, double card_3, double card_4, double card_5)
 {
-    double card[5]={card_1,card_2,card_3,card_4,card_5};
-    for(int i=0;i<5;i++)
+    double card[5] = {card_1, card_2, card_3, card_4, card_5};
+    for (int index = 0; index < 5; index++)
     {
-        cardsOnField[i]=card[i];
+        cardsOnField[index] = card[index];
     }
-    
 }
-double Game::getCardsOnField(int number) 
+
+double Game::get1CardOnField(int index) const
 {
-    return cardsOnField[number];
+    return cardsOnField[index];
+}
+
+double *Game::getCardsOnField() const
+{
+    return cardsOnField;
 }
