@@ -12,6 +12,7 @@ public:
     double getRpt(int);
     void setCardsOnField(double,double,double,double,double);
     void gameStart();
+    void getCardsOnField(int);
 };
 
 #endif
