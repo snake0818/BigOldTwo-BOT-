@@ -1,7 +1,5 @@
 #ifndef CARD_H
 #define CARD_H
-#include <iostream>
-using namespace std;
 
 class Card
 {
@@ -38,8 +36,8 @@ public:
     double *getFullHouse() const;
     double *getTiki() const;
     double *getStraightFlush() const;
-    
-    void arrange(double*, int);
+
+    void arrange(double *, int);
 
     // Test
     void print() const;
