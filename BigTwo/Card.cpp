@@ -40,9 +40,9 @@ void Card::setPairs(double card_1, double card_2)
         }
     }
 
-    bool notSame = (cards[0] == cards[1])? false : true;
+    bool isSame = (cards[0] == cards[1])? false : true;
 
-    if ((int(card_1) == int(card_2)) && isInRpt && notSame)
+    if ((int(card_1) == int(card_2)) && isInRpt && isSame)
     {
         for (int i = 0; i < 2; i++)
         {
