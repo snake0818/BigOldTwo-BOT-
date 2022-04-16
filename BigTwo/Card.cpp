@@ -31,9 +31,9 @@ void Card::setPairs(double card_1, double card_2)
     double cards[2] = {card_1, card_2};
 
     bool isInRpt = true;
-    for (int i = 0; i < 2; i++)
+    for (int index = 0; index < 2; index++)
     {
-        if (Check().isNumberInRpt(cards[i]) == false)
+        if (Check().isNumberInRpt(cards[index]) == false)
         {
             isInRpt = false;
             break;
@@ -44,9 +44,9 @@ void Card::setPairs(double card_1, double card_2)
 
     if ((int(card_1) == int(card_2)) && isInRpt && isSame)
     {
-        for (int i = 0; i < 2; i++)
+        for (int index = 0; index < 2; index++)
         {
-            this->pairs_arr[i] = cards[i];
+            this->pairs_arr[index] = cards[index];
         }
     }
     else
@@ -60,9 +60,9 @@ void Card::setTriples(double card_1, double card_2, double card_3)
     double cards[3] = {card_1, card_2, card_3};
 
     bool isInRpt = true;
-    for (int i = 0; i < 3; i++)
+    for (int index = 0; index < 3; index++)
     {
-        if (Check().isNumberInRpt(cards[i]) == false)
+        if (Check().isNumberInRpt(cards[index]) == false)
         {
             isInRpt = false;
             break;
@@ -84,9 +84,9 @@ void Card::setTriples(double card_1, double card_2, double card_3)
     
     if ((int(card_1) == int(card_2) && int(card_1) == int(card_3)) && isInRpt && isSame)
     {
-        for (int i = 0; i < 3; i++)
+        for (int index = 0; index < 3; index++)
         {
-            this->triples_arr[i] = cards[i];
+            this->triples_arr[index] = cards[index];
         }
     }
     else
@@ -100,9 +100,9 @@ void Card::setFlush(double card1, double card2, double card3, double card4, doub
     double cards[5] = {card1, card2, card3, card4, card5};
 
     bool isInRpt = true;
-    for (int i = 0; i < 5; i++)
+    for (int index = 0; index < 5; index++)
     {
-        if (Check().isNumberInRpt(cards[i]) == false)
+        if (Check().isNumberInRpt(cards[index]) == false)
         {
             isInRpt = false;
             break;
@@ -130,9 +130,9 @@ void Card::setFlush(double card1, double card2, double card3, double card4, doub
     setFlower(cards[0]);
     *firstFlower = getFlower();
 
-    for (int i = 1; i < 5; i++)
+    for (int index = 1; index < 5; index++)
     {
-        setFlower(cards[i]);
+        setFlower(cards[index]);
         *secondFlower = getFlower();
 
         if (*firstFlower == *secondFlower)
@@ -146,9 +146,9 @@ void Card::setFlush(double card1, double card2, double card3, double card4, doub
 
     if (Decide == 4 && isInRpt && isSame)
     {
-        for (int i = 0; i < 5; i++)
+        for (int index = 0; index < 5; index++)
         {
-            this->flush_arr[i] = cards[i];
+            this->flush_arr[index] = cards[index];
         }
     }
     else
