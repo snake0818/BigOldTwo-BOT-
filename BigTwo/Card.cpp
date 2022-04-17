@@ -157,6 +157,20 @@ void Card::setFlush(double card1, double card2, double card3, double card4, doub
     }
 }
 
+void Card::setFullHouse(double card1, double card2, double card3, double card4, double card5) {
+    double cards[5] = { card1, card2, card3, card4, card5 };
+    arrange(card, size);
+    if (int(card[0]) == int(card[1] && (int(card[2]) == int(card[3]) && int(card[2]) == int(card[4])) ||
+        int(card[3]) == int(card[4]) && (int(card[0]) == int(card[1]) && int(card[0]) == int(card[2]))) {
+        for (int index = 0; index < 5; index++) {
+            this->fullHouse_arr[index] = cards[index];
+        }
+    }
+    else {
+        // 重新出牌（還未開發此功能）
+    }
+}
+
 // void Card::setTiki(double card1, double card2, double card3, double card4, double card5) {
 //     double card[5] = { card1,  card2,  card3,  card4,  card5 };
 //     arrange(card, 5);
