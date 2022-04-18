@@ -171,6 +171,25 @@ void Card::setFullHouse(double card1, double card2, double card3, double card4, 
     }
 }
 
+void Card::setStraight(double card1, double card2, double card3, double card4, double card5) {
+    double cards[5] = { card1, card2, card3, card4, card5 };
+    arrange(card, size);
+    int Decide = 0;
+    for (int i = 1; i < 5; i++) {
+        if (int(card[0] + i == int(card[i]))) Decide++;
+        else Decide = 0;
+    }
+    if (int(card[0]) == 1 && int(card[1]) == 10 && int(card[2]) == 11 && int(card[3]) == 12 && int(card[4]) == 13) Decide = 4;
+    if (Decide == 4) {
+        for (int index = 0; index < 5; index++) {
+            this->straight_arr[index] = cards[index];
+        }
+    }
+    else {
+        // 重新出牌（還未開發此功能）
+    }
+}
+
 // void Card::setTiki(double card1, double card2, double card3, double card4, double card5) {
 //     double card[5] = { card1,  card2,  card3,  card4,  card5 };
 //     arrange(card, 5);
