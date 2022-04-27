@@ -91,13 +91,13 @@ void Card::setTriples(double card_1, double card_2, double card_3)
     }
     else
     {
-        // 重新出牌
+        // 重新出牌（還未開發此功能）
     }
 }
 
-void Card::setFlush(double card1, double card2, double card3, double card4, double card5)
+void Card::setFlush(double card_1, double card_2, double card_3, double card_4, double card_5)
 {
-    double cards[5] = {card1, card2, card3, card4, card5};
+    double cards[5] = {card_1, card_2, card_3, card_4, card_5};
 
     bool isInRpt = true;
     for (int index = 0; index < 5; index++)
@@ -153,60 +153,122 @@ void Card::setFlush(double card1, double card2, double card3, double card4, doub
     }
     else
     {
-        // 重新出牌
-    }
-}
-
-void Card::setFullHouse(double card1, double card2, double card3, double card4, double card5) {
-    double cards[5] = { card1, card2, card3, card4, card5 };
-    arrange(cards, 5);
-    if (int(cards[0]) == int(cards[1]) && (int(cards[2]) == int(cards[3]) && int(cards[2]) == int(cards[4])) || 
-    int(cards[3]) == int(cards[4]) && (int(cards[0]) == int(cards[1]) && int(cards[0]) == int(cards[2]))) {
-        for (int index = 0; index < 5; index++) {
-            this->fullHouse_arr[index] = cards[index];
-        }
-    }
-    else {
         // 重新出牌（還未開發此功能）
     }
 }
 
-void Card::setStraight(double card1, double card2, double card3, double card4, double card5) {
-    double cards[5] = { card1, card2, card3, card4, card5 };
+void Card::setFullHouse(double card_1, double card_2, double card_3, double card_4, double card_5)
+{
+    double cards[5] = {card_1, card_2, card_3, card_4, card_5};
     arrange(cards, 5);
-    int Decide = 0;
-    for (int i = 1; i < 5; i++) {
-        if (int(cards[0] + i == int(cards[i]))) Decide++;
-        else Decide = 0;
-    }
-    if (int(cards[0]) == 1 && int(cards[1]) == 10 && int(cards[2]) == 11 && int(cards[3]) == 12 && int(cards[4]) == 13) Decide = 4;
-    if (Decide == 4) {
-        for (int index = 0; index < 5; index++) {
-            this->straight_arr[index] = cards[index];
+
+    double *pairs = new double[2];
+    double *triples = new double[3];
+    int *pairsIndex = new int;
+    int *triplesIndex = new int;
+    *pairsIndex = *triplesIndex = 0;
+
+    Card *indexNumber = new Card;
+    Card *targetNumber = new Card;
+    targetNumber->setNumber(cards[2]);
+    for(int index = 0; index < 5; index++)
+    {
+        indexNumber->setNumber(cards[index]);
+        if(indexNumber->getNumber() == targetNumber->getNumber())
+        {
+            triples[*triplesIndex] = cards[index];
+            (*triplesIndex)++;
+        }
+        else
+        {
+            pairs[*pairsIndex] = cards[index];
+            (*pairsIndex)++;
         }
     }
-    else {
-        // 重新出牌（還未開發此功能）
+
+    delete indexNumber;
+    delete targetNumber;
+    delete pairsIndex;
+    delete triplesIndex;
+
+    setPairs(pairs[0], pairs[1]);
+    delete pairs;
+
+    setTriples(triples[0], triples[1], triples[2]);
+    delete triples;
+
+    for(int index = 0; index < 5; index++)
+    {
+        if(index < 3)
+        {
+            this->fullHouse_arr[index] = triples_arr[index];
+        }
+        else
+        {
+            this->fullHouse_arr[index] = pairs_arr[index-3];
+        }
     }
 }
 
-// void Card::setTiki(double card1, double card2, double card3, double card4, double card5) {
-//     double card[5] = { card1,  card2,  card3,  card4,  card5 };
+// void Card::setStraight(double card_1, double card_2, double card_3, double card_4, double card_5)
+// {
+//     double cards[5] = {card_1, card_2, card_3, card_4, card_5};
+//     arrange(cards, 5);
+//     int Decide = 0;
+//     for (int i = 1; i < 5; i++)
+//     {
+//         if (int(cards[0] + i == int(cards[i])))
+//         {
+//             Decide++;
+//         }
+//         else
+//         {
+//             Decide = 0;
+//         }
+//     }
+
+//     if (int(cards[0]) == 1 && int(cards[1]) == 10 && int(cards[2]) == 11 && int(cards[3]) == 12 && int(cards[4]) == 13)
+//     {
+//         Decide = 4;
+//     }
+
+//     if (Decide == 4)
+//     {
+//         for (int index = 0; index < 5; index++)
+//         {
+//             this->straight_arr[index] = cards[index];
+//         }
+//     }
+//     else
+//     {
+//         // 重新出牌（還未開發此功能）
+//     }
+// }
+
+// void Card::setTiki(double card1, double card2, double card3, double card4, double card5)
+// {
+//     double card[5] = {card1, card2, card3, card4, card5};
 //     arrange(card, 5);
 //     int Decide = 0;
 
-//     for (int i = 0; i < 5; i++) {
-//         if (int(card[3]) == int(card[i])) {
+//     for (int i = 0; i < 5; i++)
+//     {
+//         if (int(card[3]) == int(card[i]))
+//         {
 //             Decide++;
 //         }
 //     }
-//     if (Decide == 4) {
-//         for (int i = 0; i < 5; i++) {
+//     if (Decide == 4)
+//     {
+//         for (int i = 0; i < 5; i++)
+//         {
 //             this->tiki_arr[i] = card[i];
 //         }
 //     }
-//     else {
-//         for (int i = 0; i < 5; i++) {
+//     else
+//     {
+//         for (int i = 0; i < 5; i++)
+//         {
 //             this->tiki_arr[i] = 0;
 //         }
 //     }
@@ -242,7 +304,7 @@ void Card::arrange(double *card, int size)
 // Test
 void Card::print() const
 {
-    for (auto i : flush_arr)
+    for (auto i : fullHouse_arr)
         cout << i << " ";
     cout << endl;
 }
