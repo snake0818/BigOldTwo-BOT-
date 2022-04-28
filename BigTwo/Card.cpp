@@ -6,12 +6,12 @@ using namespace std;
 
 void Card::setNumber(double number)
 {
-    this->number = int(number);
+    number = int(number);
 }
 
 void Card::setFlower(double number)
 {
-    this->flower = int(number * 10) % 10;
+    flower = int(number * 10) % 10;
 }
 
 int Card::returnNumber(double number)
@@ -28,7 +28,7 @@ void Card::setSingle(double card)
 {
     if (Check().isNumberInRpt(card))
     {
-        this->single_arr[0] = card;
+        single_arr[0] = card;
     }
     else
     {
@@ -41,22 +41,17 @@ void Card::setPairs(double card_1, double card_2)
     double cards[2] = {card_1, card_2};
 
     bool isInRpt = true;
-    for (int index = 0; index < 2; index++)
-    {
-        if (Check().isNumberInRpt(cards[index]) == false)
-        {
-            isInRpt = false;
-            break;
-        }
-    }
+    Check().checkInRpt(cards, isInRpt);
 
     bool isSame = (cards[0] == cards[1])? false : true;
 
-    if ((int(card_1) == int(card_2)) && isInRpt && isSame)
+    bool isPairs = returnNumber(card_1) == returnNumber(card_2)? true : false;
+
+    if (isPairs && isInRpt && isSame)
     {
         for (int index = 0; index < 2; index++)
         {
-            this->pairs_arr[index] = cards[index];
+            pairs_arr[index] = cards[index];
         }
     }
     else
@@ -70,31 +65,19 @@ void Card::setTriples(double card_1, double card_2, double card_3)
     double cards[3] = {card_1, card_2, card_3};
 
     bool isInRpt = true;
-    for (int index = 0; index < 3; index++)
-    {
-        if (Check().isNumberInRpt(cards[index]) == false)
-        {
-            isInRpt = false;
-            break;
-        }
-    }
+    Check().checkInRpt(cards, isInRpt);
 
     bool isSame = true;
-    for(int i = 0; i < 2; i++)
+    Check().checkSame(cards, isSame);
+
+    bool isTriples = true;
+    if(returnNumber(card_1) != returnNumber(card_2) ||
+        returnNumber(card_1) != returnNumber(card_3))
     {
-        for(int j = i+1; j < 3; j++)
-        {
-            if (cards[i] == cards[j])
-            {
-                isSame = false;
-                break;
-            }
-        }
+        isTriples = false;
     }
-    
-    if ((returnNumber(card_1) == returnNumber(card_2) &&
-        returnNumber(card_1) == returnNumber(card_3)) &&
-        isInRpt && isSame)
+
+    if (isTriples && isInRpt && isSame)
     {
         for (int index = 0; index < 3; index++)
         {
@@ -112,38 +95,15 @@ void Card::setFlush(double card_1, double card_2, double card_3, double card_4, 
     double cards[5] = {card_1, card_2, card_3, card_4, card_5};
 
     bool isInRpt = true;
-    for (int index = 0; index < 5; index++)
-    {
-        if (Check().isNumberInRpt(cards[index]) == false)
-        {
-            isInRpt = false;
-            break;
-        }
-    }
+    Check().checkInRpt(cards, isInRpt);
 
     bool isSame = true;
-    for(int i = 0; i < 4; i++)
-    {
-        for(int j = i+1; j < 5; j++)
-        {
-            if (cards[i] == cards[j])
-            {
-                isSame = false;
-                break;
-            }
-        }
-    }
+    Check().checkSame(cards, isSame);
 
     arrange(cards, 5);
 
     bool isFlush = true;
-    for(int i = 1; i < 5; i++)
-    {
-        if(returnFlower(cards[0]) != returnFlower(cards[i]))
-        {
-            isFlush = false;
-        }
-    }
+    Check().checkFlush(cards, isFlush);
 
     if (isFlush && isInRpt && isSame)
     {
@@ -162,6 +122,12 @@ void Card::setFullHouse(double card_1, double card_2, double card_3, double card
 {
     double cards[5] = {card_1, card_2, card_3, card_4, card_5};
     arrange(cards, 5);
+
+    bool isInRpt = true;
+    Check().checkInRpt(cards, isInRpt);
+
+    bool isSame = true;
+    Check().checkSame(cards, isSame);
 
     double *pairs = new double[2];
     double *triples = new double[3];
@@ -192,23 +158,29 @@ void Card::setFullHouse(double card_1, double card_2, double card_3, double card
     delete pairsIndex;
     delete triplesIndex;
 
-    setPairs(pairs[0], pairs[1]);
-    delete [] pairs;
+    bool isPairs = returnNumber(pairs[0]) == returnNumber(pairs[1])? true : false;
 
-    setTriples(triples[0], triples[1], triples[2]);
-    delete [] triples;
+    bool isTriples = true;
+    if(returnNumber(triples[0]) != returnNumber(triples[1]) ||
+        returnNumber(triples[0]) != returnNumber(triples[2]))
+    {
+        isTriples = false;
+    }
 
     for(int index = 0; index < 5; index++)
     {
         if(index < 3)
         {
-            this->fullHouse_arr[index] = triples_arr[index];
+            this->fullHouse_arr[index] = triples[index];
         }
         else
         {
-            this->fullHouse_arr[index] = pairs_arr[index-3];
+            this->fullHouse_arr[index] = pairs[index-3];
         }
     }
+
+    delete [] pairs;
+    delete [] triples;
 }
 
 void Card::setStraight(double card_1, double card_2, double card_3, double card_4, double card_5)
@@ -217,47 +189,17 @@ void Card::setStraight(double card_1, double card_2, double card_3, double card_
     arrange(cards, 5);
 
     bool isInRpt = true;
-    for (int index = 0; index < 5; index++)
-    {
-        if (Check().isNumberInRpt(cards[index]) == false)
-        {
-            isInRpt = false;
-            break;
-        }
-    }
+    Check().checkInRpt(cards, isInRpt);
 
     bool isSame = true;
-    for(int i = 0; i < 4; i++)
-    {
-        for(int j = i+1; j < 5; j++)
-        {
-            if (cards[i] == cards[j])
-            {
-                isSame = false;
-                break;
-            }
-        }
-    }
+    Check().checkSame(cards, isSame);
 
-    bool Decide = true;
-    for (int i = 1; i < 5; i++)
-    {
-        if (returnNumber(cards[0]) + i != returnNumber(cards[i]))
-        {
-            Decide = false;
-        }
-    }
+    bool isStraight = true;
+    Check().checkStraight(cards, isStraight);
 
-    if (returnNumber(cards[0]) ==  1 &&
-        returnNumber(cards[1]) == 10 && 
-        returnNumber(cards[2]) == 11 && 
-        returnNumber(cards[3]) == 12 && 
-        returnNumber(cards[4]) == 13)
-    {
-        Decide = true;
-    }
+    Check().checkSpecialStraight(cards, isStraight);
 
-    if (Decide && isInRpt && isSame)
+    if (isStraight && isInRpt && isSame)
     {
         for (int index = 0; index < 5; index++)
         {
@@ -276,27 +218,10 @@ void Card::setTiki(double card_1, double card_2, double card_3, double card_4, d
     arrange(cards, 5);
 
     bool isInRpt = true;
-    for (int index = 0; index < 5; index++)
-    {
-        if (Check().isNumberInRpt(cards[index]) == false)
-        {
-            isInRpt = false;
-            break;
-        }
-    }
+    Check().checkInRpt(cards, isInRpt);
 
     bool isSame = true;
-    for(int i = 0; i < 4; i++)
-    {
-        for(int j = i+1; j < 5; j++)
-        {
-            if (cards[i] == cards[j])
-            {
-                isSame = false;
-                break;
-            }
-        }
-    }
+    Check().checkSame(cards, isSame);
     
     bool is_C1_C2_Same = true;
     if(returnNumber(cards[0]) != returnNumber(cards[1]))
@@ -352,54 +277,18 @@ void Card::setStraightFlush(double card_1, double card_2, double card_3, double 
     arrange(cards, 5);
     
     bool isInRpt = true;
-    for (int index = 0; index < 5; index++)
-    {
-        if (Check().isNumberInRpt(cards[index]) == false)
-        {
-            isInRpt = false;
-            break;
-        }
-    }
+    Check().checkInRpt(cards, isInRpt);
 
     bool isSame = true;
-    for(int i = 0; i < 4; i++)
-    {
-        for(int j = i+1; j < 5; j++)
-        {
-            if (cards[i] == cards[j])
-            {
-                isSame = false;
-                break;
-            }
-        }
-    }
+    Check().checkSame(cards, isSame);
 
     bool isFlush = true;
-    for(int i = 1; i < 5; i++)
-    {
-        if(returnFlower(cards[0]) != returnFlower(cards[i]))
-        {
-            isFlush = false;
-        }
-    }
+    Check().checkFlush(cards, isFlush);
 
     bool isStraight = true;
-    for (int i = 1; i < 5; i++)
-    {
-        if (returnNumber(cards[0]) + i != returnNumber(cards[i]))
-        {
-            isStraight = false;
-        }
-    }
+    Check().checkStraight(cards, isStraight);
 
-    if (returnNumber(cards[0]) ==  1 &&
-        returnNumber(cards[1]) == 10 && 
-        returnNumber(cards[2]) == 11 && 
-        returnNumber(cards[3]) == 12 && 
-        returnNumber(cards[4]) == 13)
-    {
-        isStraight = true;
-    }
+    Check().checkSpecialStraight(cards, isStraight);
 
     if(isInRpt && isSame && isStraight && isFlush)
     {
@@ -439,12 +328,4 @@ void Card::arrange(double *card, int size)
             }
         }
     }
-}
-
-// Test
-void Card::print() const
-{
-    for (auto i : straightFlush_arr)
-        cout << i << " ";
-    cout << endl;
 }
