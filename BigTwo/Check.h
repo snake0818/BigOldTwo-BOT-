@@ -8,6 +8,11 @@ class Check
 public:
     bool isNumberInRpt(const double) const;
     void checkInRpt(double [], bool &);
+    void checkSame(double [], bool &);
+    void checkFlush(double [], bool &);
+    void checkStraight(double [], bool &);
+    void checkSpecialStraight(double [], bool &);
+
     // bool numberInPairs(const double,const double) const;
     // bool numberInTriples(const double,const double,const double) const;
 
