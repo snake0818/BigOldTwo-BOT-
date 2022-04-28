@@ -18,6 +18,8 @@ private:
 public:
     void setNumber(double);
     void setFlower(double);
+    int returnNumber(double);
+    int returnFlower(double);
     void setSingle(double);
     void setPairs(double, double);
     void setTriples(double, double, double);

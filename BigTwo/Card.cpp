@@ -14,6 +14,16 @@ void Card::setFlower(double number)
     this->flower = int(number * 10) % 10;
 }
 
+int Card::returnNumber(double number)
+{
+    return int(number);
+}
+
+int Card::returnFlower(double card)
+{
+    return int(number * 10) % 10;
+}
+
 void Card::setSingle(double card)
 {
     if (Check().isNumberInRpt(card))
@@ -82,7 +92,9 @@ void Card::setTriples(double card_1, double card_2, double card_3)
         }
     }
     
-    if ((int(card_1) == int(card_2) && int(card_1) == int(card_3)) && isInRpt && isSame)
+    if ((returnNumber(card_1) == returnNumber(card_2) &&
+        returnNumber(card_1) == returnNumber(card_3)) &&
+        isInRpt && isSame)
     {
         for (int index = 0; index < 3; index++)
         {
@@ -214,16 +226,12 @@ void Card::setFullHouse(double card_1, double card_2, double card_3, double card
 // {
 //     double cards[5] = {card_1, card_2, card_3, card_4, card_5};
 //     arrange(cards, 5);
-//     int Decide = 0;
+//     bool Decide = true;
 //     for (int i = 1; i < 5; i++)
 //     {
-//         if (int(cards[0] + i == int(cards[i])))
+//         if (int(cards[0] + i != int(cards[i])))
 //         {
-//             Decide++;
-//         }
-//         else
-//         {
-//             Decide = 0;
+//             Decide = false;
 //         }
 //     }
 
