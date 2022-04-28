@@ -38,11 +38,7 @@ public:
     double *getFullHouse() const;
     double *getTiki() const;
     double *getStraightFlush() const;
-
     void arrange(double *, int);
-
-    // Test
-    void print() const;
 };
 
 #endif
