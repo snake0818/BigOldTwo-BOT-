@@ -192,10 +192,10 @@ void Card::setFullHouse(double card_1, double card_2, double card_3, double card
     delete triplesIndex;
 
     setPairs(pairs[0], pairs[1]);
-    delete pairs;
+    delete [] pairs;
 
     setTriples(triples[0], triples[1], triples[2]);
-    delete triples;
+    delete [] triples;
 
     for(int index = 0; index < 5; index++)
     {
@@ -304,7 +304,7 @@ void Card::arrange(double *card, int size)
 // Test
 void Card::print() const
 {
-    for (auto i : fullHouse_arr)
+    for (auto i : pairs_arr)
         cout << i << " ";
     cout << endl;
 }
