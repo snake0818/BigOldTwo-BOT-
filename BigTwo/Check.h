@@ -7,8 +7,10 @@ class Check
 {
 public:
     bool isNumberInRpt(const double) const;
+    void checkInRpt(double [], bool &);
     // bool numberInPairs(const double,const double) const;
     // bool numberInTriples(const double,const double,const double) const;
+
 };
 
 #endif

@@ -19,6 +19,11 @@ bool Check::isNumberInRpt(const double card) const
     return false;
 }
 
+void Check::checkInRpt(double cards[], bool &isInRpt)
+{
+    
+}
+
 // bool Check::numberInPairs(const double card_1) const
 // {
 //     if( card_1 > Game().getCardsOnField(1))
