@@ -222,36 +222,64 @@ void Card::setFullHouse(double card_1, double card_2, double card_3, double card
     }
 }
 
-// void Card::setStraight(double card_1, double card_2, double card_3, double card_4, double card_5)
-// {
-//     double cards[5] = {card_1, card_2, card_3, card_4, card_5};
-//     arrange(cards, 5);
-//     bool Decide = true;
-//     for (int i = 1; i < 5; i++)
-//     {
-//         if (int(cards[0] + i != int(cards[i])))
-//         {
-//             Decide = false;
-//         }
-//     }
+void Card::setStraight(double card_1, double card_2, double card_3, double card_4, double card_5)
+{
+    double cards[5] = {card_1, card_2, card_3, card_4, card_5};
+    arrange(cards, 5);
 
-//     if (int(cards[0]) == 1 && int(cards[1]) == 10 && int(cards[2]) == 11 && int(cards[3]) == 12 && int(cards[4]) == 13)
-//     {
-//         Decide = 4;
-//     }
+    bool isInRpt = true;
+    for (int index = 0; index < 5; index++)
+    {
+        if (Check().isNumberInRpt(cards[index]) == false)
+        {
+            isInRpt = false;
+            break;
+        }
+    }
 
-//     if (Decide == 4)
-//     {
-//         for (int index = 0; index < 5; index++)
-//         {
-//             this->straight_arr[index] = cards[index];
-//         }
-//     }
-//     else
-//     {
-//         // 重新出牌（還未開發此功能）
-//     }
-// }
+    bool isSame = true;
+    for(int i = 0; i < 4; i++)
+    {
+        for(int j = i+1; j < 5; j++)
+        {
+            if (cards[i] == cards[j])
+            {
+                isSame = false;
+                break;
+            }
+        }
+    }
+
+    bool Decide = true;
+    for (int i = 1; i < 5; i++)
+    {
+        if (returnNumber(cards[0]) + i != returnNumber(cards[i]))
+        {
+            Decide = false;
+        }
+    }
+
+    if (returnNumber(cards[0]) ==  1 &&
+        returnNumber(cards[1]) == 10 && 
+        returnNumber(cards[2]) == 11 && 
+        returnNumber(cards[3]) == 12 && 
+        returnNumber(cards[4]) == 13)
+    {
+        Decide = true;
+    }
+
+    if (Decide && isInRpt && isSame)
+    {
+        for (int index = 0; index < 5; index++)
+        {
+            this->straight_arr[index] = cards[index];
+        }
+    }
+    else
+    {
+        // 重新出牌（還未開發此功能）
+    }
+}
 
 // void Card::setTiki(double card1, double card2, double card3, double card4, double card5)
 // {
@@ -312,7 +340,7 @@ void Card::arrange(double *card, int size)
 // Test
 void Card::print() const
 {
-    for (auto i : pairs_arr)
+    for (auto i : straight_arr)
         cout << i << " ";
     cout << endl;
 }
