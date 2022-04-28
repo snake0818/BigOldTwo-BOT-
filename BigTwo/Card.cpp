@@ -21,7 +21,7 @@ int Card::returnNumber(double number)
 
 int Card::returnFlower(double card)
 {
-    return int(number * 10) % 10;
+    return int(card * 10) % 10;
 }
 
 void Card::setSingle(double card)
@@ -134,29 +134,18 @@ void Card::setFlush(double card_1, double card_2, double card_3, double card_4, 
         }
     }
 
-    int Decide = 0;
     arrange(cards, 5);
 
-    int *firstFlower = new int;
-    int *secondFlower = new int;
-    setFlower(cards[0]);
-    *firstFlower = getFlower();
-
-    for (int index = 1; index < 5; index++)
+    bool isFlush = true;
+    for(int i = 1; i < 5; i++)
     {
-        setFlower(cards[index]);
-        *secondFlower = getFlower();
-
-        if (*firstFlower == *secondFlower)
+        if(returnFlower(cards[0]) != returnFlower(cards[i]))
         {
-            Decide++;
+            isFlush = false;
         }
     }
 
-    delete firstFlower;
-    delete secondFlower;
-
-    if (Decide == 4 && isInRpt && isSame)
+    if (isFlush && isInRpt && isSame)
     {
         for (int index = 0; index < 5; index++)
         {
@@ -357,6 +346,74 @@ void Card::setTiki(double card_1, double card_2, double card_3, double card_4, d
     }
 }
 
+void Card::setStraightFlush(double card_1, double card_2, double card_3, double card_4, double card_5)
+{
+    double cards[5] = {card_1, card_2, card_3, card_4, card_5};
+    arrange(cards, 5);
+    
+    bool isInRpt = true;
+    for (int index = 0; index < 5; index++)
+    {
+        if (Check().isNumberInRpt(cards[index]) == false)
+        {
+            isInRpt = false;
+            break;
+        }
+    }
+
+    bool isSame = true;
+    for(int i = 0; i < 4; i++)
+    {
+        for(int j = i+1; j < 5; j++)
+        {
+            if (cards[i] == cards[j])
+            {
+                isSame = false;
+                break;
+            }
+        }
+    }
+
+    bool isFlush = true;
+    for(int i = 1; i < 5; i++)
+    {
+        if(returnFlower(cards[0]) != returnFlower(cards[i]))
+        {
+            isFlush = false;
+        }
+    }
+
+    bool isStraight = true;
+    for (int i = 1; i < 5; i++)
+    {
+        if (returnNumber(cards[0]) + i != returnNumber(cards[i]))
+        {
+            isStraight = false;
+        }
+    }
+
+    if (returnNumber(cards[0]) ==  1 &&
+        returnNumber(cards[1]) == 10 && 
+        returnNumber(cards[2]) == 11 && 
+        returnNumber(cards[3]) == 12 && 
+        returnNumber(cards[4]) == 13)
+    {
+        isStraight = true;
+    }
+
+    if(isInRpt && isSame && isStraight && isFlush)
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            straightFlush_arr[i] = cards[i];
+        }
+    }
+    else
+    {
+        // 重新出牌（還未開發此功能）
+    }
+}
+
 int Card::getNumber() const
 {
     return number;
@@ -387,7 +444,7 @@ void Card::arrange(double *card, int size)
 // Test
 void Card::print() const
 {
-    for (auto i : tiki_arr)
+    for (auto i : straightFlush_arr)
         cout << i << " ";
     cout << endl;
 }
