@@ -10,9 +10,12 @@ public:
     double get1RptCard(int);
     double get1CardOnField(int) const;
     double *getCardsOnField() const;
+    double *shuffleCards();
+    // void distributeCards();
 
 private:
     double repository[52];
+    double *pRepository;
     void setRpt();
     static double cardsOnField[5];
 };
