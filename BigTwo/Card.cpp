@@ -281,34 +281,81 @@ void Card::setStraight(double card_1, double card_2, double card_3, double card_
     }
 }
 
-// void Card::setTiki(double card1, double card2, double card3, double card4, double card5)
-// {
-//     double card[5] = {card1, card2, card3, card4, card5};
-//     arrange(card, 5);
-//     int Decide = 0;
+void Card::setTiki(double card_1, double card_2, double card_3, double card_4, double card_5)
+{
+    double cards[5] = {card_1, card_2, card_3, card_4, card_5};
+    arrange(cards, 5);
 
-//     for (int i = 0; i < 5; i++)
-//     {
-//         if (int(card[3]) == int(card[i]))
-//         {
-//             Decide++;
-//         }
-//     }
-//     if (Decide == 4)
-//     {
-//         for (int i = 0; i < 5; i++)
-//         {
-//             this->tiki_arr[i] = card[i];
-//         }
-//     }
-//     else
-//     {
-//         for (int i = 0; i < 5; i++)
-//         {
-//             this->tiki_arr[i] = 0;
-//         }
-//     }
-// }
+    bool isInRpt = true;
+    for (int index = 0; index < 5; index++)
+    {
+        if (Check().isNumberInRpt(cards[index]) == false)
+        {
+            isInRpt = false;
+            break;
+        }
+    }
+
+    bool isSame = true;
+    for(int i = 0; i < 4; i++)
+    {
+        for(int j = i+1; j < 5; j++)
+        {
+            if (cards[i] == cards[j])
+            {
+                isSame = false;
+                break;
+            }
+        }
+    }
+    
+    bool is_C1_C2_Same = true;
+    if(returnNumber(cards[0]) != returnNumber(cards[1]))
+    {
+        is_C1_C2_Same = false;
+    }
+
+    bool fourCardsSame = true;
+
+    if(is_C1_C2_Same)
+    {
+        for(int index = 0; index < 4; index++)
+        {
+            if(returnNumber(cards[0]) != returnNumber(cards[index]))
+            {
+                fourCardsSame = false;
+                break;
+            }
+        }
+    }
+    else
+    {
+        for(int index = 1; index < 5; index++)
+        {
+            if(returnNumber(cards[1]) != returnNumber(cards[index]))
+            {
+                fourCardsSame = false;
+                break;
+            }
+        }
+        
+        double buffer = cards[0];
+        cards[0] = cards[4];
+        cards[4] = buffer;
+    }
+
+    if (fourCardsSame && isInRpt && isSame)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            this->tiki_arr[i] = cards[i];
+        }
+    }
+    else
+    {
+        // 重新出牌（還未開發此功能）
+    }
+}
 
 int Card::getNumber() const
 {
@@ -340,7 +387,7 @@ void Card::arrange(double *card, int size)
 // Test
 void Card::print() const
 {
-    for (auto i : straight_arr)
+    for (auto i : tiki_arr)
         cout << i << " ";
     cout << endl;
 }
