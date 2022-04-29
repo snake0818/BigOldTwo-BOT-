@@ -10,10 +10,12 @@ class Computer
 {
 public:
 	void print();
-	double ComputerArr[13] = { 0 };
+	double computerArr[13] = { 0 };
+	Computer();
+	Computer(double[]);
 private:
 	Game Gamer;
-	
+
 };
 
 #endif
