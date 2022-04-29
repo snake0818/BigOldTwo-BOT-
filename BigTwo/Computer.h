@@ -9,13 +9,17 @@ using namespace std;
 class Computer
 {
 public:
+	void setArr(double,int);
+	void arrange();
+	bool find(double);
+	int getNumOfCards()const;
+	double getCard(int);
+
 	void print();
-	double computerArr[13] = { 0 };
-	Computer();
-	Computer(double[]);
 private:
 	Game Gamer;
-
+	double ComputerArr[13] = { 0 };
+	
 };
 
 #endif
