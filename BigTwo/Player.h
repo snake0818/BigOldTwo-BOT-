@@ -9,11 +9,16 @@ using namespace std;
 class Player
 {
 public:
-	void setHandCards();
+	void setArr(double, int);
+	void arrange();
+	bool find(double);
+	int getNumOfCards() const;
+	double getCard(int) const;
 
 	void print();
-	double PlayerArr[13] = { 0 };
+	
 private:
+	double PlayerArr[13] = { 0 };
 	Game Gamer;
 	
 };
