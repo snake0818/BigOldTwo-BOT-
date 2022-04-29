@@ -11,17 +11,13 @@ class Table
 {
 public:
     void Start();
-    void Arrange();
-    void Print();
-    void print();
     void printHandCards();
-    void whoFirst();
-
+    bool end();
+    int whoFirst();
 private:
-    void arrange(double* card);
-    Game game;
-    Computer computer1, computer2, computer3;
+    static int count;
     Player player;
+    Computer computer1, computer2, computer3;
 };
 
 #endif // !T_H
