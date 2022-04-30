@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+//H5 s13 c9 d12
+int main()
+{
+    string text;
+    getline(cin,text);
+    stringstream word(text);
+
+    string cardByCin[5];
+    double card[5];
+    
+    int numberOfCards=0;
+    while(!word.eof()){
+    	word>>cardByCin[numberOfCards];
+        numberOfCards++;
+    }
+    
+    for(int i=0;i<numberOfCards;i++){
+    	double n=0;
+        double textNumber=0;
+        int dou=1;
+        for(int k=0;k<cardByCin[i].size();k++){
+        	string aa=cardByCin[i];
+            if(k==0){
+                if(aa[0]=='s' or aa[0]=='S'){
+    		    	n=0.4;
+    			}
+    			if(aa[0]=='h' or aa[0]=='H'){
+	    		    n=0.3;
+    			}
+ 	  			if(aa[0]=='d' or aa[0]=='D'){
+	        		n=0.1;
+	    		}
+	    		if(aa[0]=='c' or aa[0]=='C'){
+	        		n=0.2;
+    			}              
+            }
+            else{
+            	textNumber=(textNumber*dou)+(int(aa[k])-48);
+				dou*=10;
+			}
+		card[i]=textNumber+n;
+        }
+    }
+    for(int i=0;i<numberOfCards;i++){
+	    cout<<card[i]<<endl;
+	}
+    return 0;
+}
