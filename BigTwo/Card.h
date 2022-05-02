@@ -30,14 +30,14 @@ public:
     void setStraightFlush(double, double, double, double, double);
     int getNumber() const;
     int getFlower() const;
-    double *getSingle() const;
-    double *getPairs() const;
-    double *getTriples() const;
-    double *getStraight() const;
-    double *getFlush() const;
-    double *getFullHouse() const;
-    double *getTiki() const;
-    double *getStraightFlush() const;
+    double *getSingle();
+    double *getPairs();
+    double *getTriples();
+    double *getStraight();
+    double *getFlush();
+    double *getFullHouse();
+    double *getTiki();
+    double *getStraightFlush();
     void arrange(double *, int);
 };
 
