@@ -329,3 +329,43 @@ void Card::arrange(double *card, int size)
         }
     }
 }
+
+double* Card::getSingle()
+{
+    return single_arr;
+}
+
+double* Card::getPairs()
+{
+    return pairs_arr;
+}
+
+double* Card::getTriples()
+{
+    return triples_arr;
+}
+
+double* Card::getStraight()
+{
+    return straight_arr;
+}
+
+double* Card::getFlush()
+{
+    return flush_arr;
+}
+
+double* Card::getFullHouse()
+{
+    return fullHouse_arr;
+}
+
+double* Card::getTiki()
+{
+    return tiki_arr;
+}
+
+double* Card::getStraightFlush()
+{
+    return straightFlush_arr;
+}
