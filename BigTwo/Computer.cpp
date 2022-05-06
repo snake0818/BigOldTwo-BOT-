@@ -1,53 +1,59 @@
-#include "Computer.h"
+#include <iostream>
+#include <iomanip>
+using namespace std;
 
-void Computer::setArr(double Num, int index)
+#include "Computer.h"
+#include "Tool.h"
+
+Computer::Computer()
 {
-    ComputerArr[index] = Num;
+    for(int i = 0; i < 13; i++)
+    {
+        computer_arr[i] = 0;
+    }
 }
 
-bool Computer::find(double num)
+void Computer::setArr(double num, int index)
 {
-    for (int i = 0; i < 13; i++) {
-        if (ComputerArr[i] == num) return true;
+    computer_arr[index] = num;
+}
+
+bool Computer::isInComputer_arr(double num)
+{
+    for (int i = 0; i < 13; i++)
+    {
+        if (computer_arr[i] == num)
+        {
+            return true;
+        }
     }
     return false;
 }
 
-int Computer::getNumOfCards() const
+int Computer::getHandCardsSize() const
 {
     int count = 0;
-    for (int i = 0; i < 13; i++) {
-        if (ComputerArr[i] != 0) count++;
+    for (int i = 0; i < 13; i++)
+    {
+        if (computer_arr[i] != 0)
+        {
+            count++;
+        }
     }
     return count;
 }
-void Computer::arrange()
-{
-    const int size = 13;
 
-    for (int i = 1; i < size; i++)
-    {
-        for (int j = 0; j < i; j++)
-        {
-            if (ComputerArr[j] > ComputerArr[i])
-            {
-                double temp = ComputerArr[j];
-                ComputerArr[j] = ComputerArr[i];
-                ComputerArr[i] = temp;
-            }
-        }
-    }
+double Computer::getIndexOfCard(int index)
+{
+    return computer_arr[index];
 }
 
-double Computer::getCard(int index)
-{
-    return ComputerArr[index];
-}
-
+// test
 void Computer::print()
 {
-    for (int i = 0; i < 13; i++) {
-        cout << setw(6) << ComputerArr[i];
+    for(auto i:computer_arr)
+    {
+        cout << i << endl;
     }
     cout << endl;
 }

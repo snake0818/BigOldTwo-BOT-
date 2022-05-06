@@ -1,25 +1,23 @@
+#include "Game.h"
+
 #ifndef Com_H
 #define Com_H
-
-#include <iostream>
-#include <iomanip>
-#include "Game.h"
-using namespace std;
 
 class Computer
 {
 public:
-	void setArr(double,int);
-	void arrange();
-	bool find(double);
-	int getNumOfCards()const;
-	double getCard(int);
+	Computer();
+	void setArr(double, int);
+	bool isInComputer_arr(double);
+	int getHandCardsSize() const;
+	double getIndexOfCard(int);
 
+	// test
 	void print();
+
 private:
 	Game Gamer;
-	double ComputerArr[13] = { 0 };
-	
+	double computer_arr[13];
 };
 
 #endif
