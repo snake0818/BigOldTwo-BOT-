@@ -38,7 +38,6 @@ public:
     double *getFullHouse();
     double *getTiki();
     double *getStraightFlush();
-    void arrange(double *, int);
 };
 
 #endif

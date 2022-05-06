@@ -3,6 +3,7 @@ using namespace std;
 
 #include "Card.h"
 #include "Check.h"
+#include "Tool.h"
 
 void Card::setNumber(double number)
 {
@@ -100,7 +101,7 @@ void Card::setFlush(double card_1, double card_2, double card_3, double card_4, 
     bool isSame = true;
     Check().checkSame(cards, isSame);
 
-    arrange(cards, 5);
+    Tool().arrange(cards, 5);
 
     bool isFlush = true;
     Check().checkFlush(cards, isFlush);
@@ -121,7 +122,7 @@ void Card::setFlush(double card_1, double card_2, double card_3, double card_4, 
 void Card::setFullHouse(double card_1, double card_2, double card_3, double card_4, double card_5)
 {
     double cards[5] = {card_1, card_2, card_3, card_4, card_5};
-    arrange(cards, 5);
+    Tool().arrange(cards, 5);
 
     bool isInRpt = true;
     Check().checkInRpt(cards, isInRpt);
@@ -186,7 +187,7 @@ void Card::setFullHouse(double card_1, double card_2, double card_3, double card
 void Card::setStraight(double card_1, double card_2, double card_3, double card_4, double card_5)
 {
     double cards[5] = {card_1, card_2, card_3, card_4, card_5};
-    arrange(cards, 5);
+    Tool().arrange(cards, 5);
 
     bool isInRpt = true;
     Check().checkInRpt(cards, isInRpt);
@@ -215,7 +216,7 @@ void Card::setStraight(double card_1, double card_2, double card_3, double card_
 void Card::setTiki(double card_1, double card_2, double card_3, double card_4, double card_5)
 {
     double cards[5] = {card_1, card_2, card_3, card_4, card_5};
-    arrange(cards, 5);
+    Tool().arrange(cards, 5);
 
     bool isInRpt = true;
     Check().checkInRpt(cards, isInRpt);
@@ -274,7 +275,7 @@ void Card::setTiki(double card_1, double card_2, double card_3, double card_4, d
 void Card::setStraightFlush(double card_1, double card_2, double card_3, double card_4, double card_5)
 {
     double cards[5] = {card_1, card_2, card_3, card_4, card_5};
-    arrange(cards, 5);
+    Tool().arrange(cards, 5);
     
     bool isInRpt = true;
     Check().checkInRpt(cards, isInRpt);
@@ -311,23 +312,6 @@ int Card::getNumber() const
 int Card::getFlower() const
 {
     return flower;
-}
-
-void Card::arrange(double *card, int size)
-{
-    double temp;
-    for (int i = 1; i < size; i++)
-    {
-        for (int j = 0; j < i; j++)
-        {
-            if (card[j] > card[i])
-            {
-                temp = card[j];
-                card[j] = card[i];
-                card[i] = temp;
-            }
-        }
-    }
 }
 
 double* Card::getSingle()
