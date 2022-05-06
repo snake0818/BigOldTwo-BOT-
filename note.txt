@@ -3,3 +3,5 @@ Card 裡面的 function 很多 else 判斷的重新發牌還未完成
 很多的 Card 判斷 code 其實相近，做完 Card 的最基礎演算法還要新增函式去改善
 補-> setFullHouse 會用到 setPairs, setTriples 這個之後希望是刪掉的，
     用上述說的函式去改掉那部分（後面的 pairs_arr, triples_arr 那部分也注意要改到）
+
+Table.h, Table.cpp 的呼叫因為其他地方有改因此有出現錯誤（記得改！！）
