@@ -1,26 +1,27 @@
-#ifndef P_H
-#define P_H
-
-#include "Game.h"
 #include <iostream>
 #include <iomanip>
 using namespace std;
 
+#include "Game.h"
+
+#ifndef P_H
+#define P_H
+
 class Player
 {
 public:
-	void setArr(double, int);
-	void arrange();
-	bool find(double);
-	int getNumOfCards() const;
-	double getCard(int) const;
+	Player();
+	void setPlayerArr(double, int);
+	bool isInPlayer_arr(double);
+	int getHandCardsSize() const;
+	double getIndexOfCard(int) const;
 
+	// test
 	void print();
 	
 private:
-	double PlayerArr[13] = { 0 };
 	Game Gamer;
-	
+	double player_arr[13];
 };
 
 #endif

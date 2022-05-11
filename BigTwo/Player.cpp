@@ -1,54 +1,51 @@
 #include "Player.h"
 
-void Player::setArr(double Num, int index)
+Player::Player()
 {
-	PlayerArr[index] = Num;
+	for (int i = 0; i < 13; i++)
+	{
+		player_arr[i] = 0;
+	}
 }
 
-bool Player::find(double num)
+void Player::setPlayerArr(double num, int index)
 {
-	for (int i = 0; i < 13; i++) {
-		if (PlayerArr[i] == num) return true;
+	player_arr[index] = num;
+}
+
+bool Player::isInPlayer_arr(double num)
+{
+	for (int i = 0; i < 13; i++)
+	{
+		if (player_arr[i] == num)
+		{
+			return true;
+		}
 	}
 	return false;
 }
 
-int Player::getNumOfCards() const
+int Player::getHandCardsSize() const
 {
 	int count = 0;
-	for (int i = 0; i < 13; i++) {
-		if (PlayerArr[i] != 0) count++;
+	for (int i = 0; i < 13; i++)
+	{
+		if (player_arr[i] != 0)
+			count++;
 	}
 	return count;
 }
 
-void Player::arrange()
+double Player::getIndexOfCard(int index) const
 {
-	const int size = 13;
-
-	for (int i = 1; i < size; i++)
-	{
-		for (int j = 0; j < i; j++)
-		{
-			if (PlayerArr[j] > PlayerArr[i])
-			{
-				double temp = PlayerArr[j];
-				PlayerArr[j] = PlayerArr[i];
-				PlayerArr[i] = temp;
-			}
-		}
-	}
-}
-
-double Player::getCard(int index) const
-{
-	return PlayerArr[index];
+	return player_arr[index];
 }
 
 void Player::print()
 {
-	for (int i = 0; i < 13; i++) {
-		cout << setw(6) << PlayerArr[i];
+	for (int i = 0; i < 13; i++)
+	{
+		cout << setw(6) << player_arr[i];
 	}
 	cout << endl;
 }
