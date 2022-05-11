@@ -57,3 +57,8 @@ void Computer::print()
     }
     cout << endl;
 }
+
+double* Computer::getComputer_arr()
+{
+	return computer_arr;
+}
