@@ -43,7 +43,7 @@ int Computer::getHandCardsSize() const
     return count;
 }
 
-double Computer::getIndexOfCard(int index)
+double Computer::getIndexOfCard(int index) const
 {
     return computer_arr[index];
 }

@@ -10,7 +10,7 @@ public:
 	void setComputerArr(double, int);
 	bool isInComputer_arr(double);
 	int getHandCardsSize() const;
-	double getIndexOfCard(int);
+	double getIndexOfCard(int) const;
 
 	// test
 	void print();
