@@ -13,7 +13,7 @@ Computer::Computer()
     }
 }
 
-void Computer::setArr(double num, int index)
+void Computer::setComputerArr(double num, int index)
 {
     computer_arr[index] = num;
 }
