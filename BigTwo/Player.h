@@ -15,6 +15,7 @@ public:
 	bool isInPlayer_arr(double);
 	int getHandCardsSize() const;
 	double getIndexOfCard(int) const;
+	double *getPlayer_arr();
 
 	// test
 	void print();
