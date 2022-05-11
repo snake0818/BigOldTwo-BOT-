@@ -7,7 +7,7 @@ class Computer
 {
 public:
 	Computer();
-	void setArr(double, int);
+	void setComputerArr(double, int);
 	bool isInComputer_arr(double);
 	int getHandCardsSize() const;
 	double getIndexOfCard(int);
