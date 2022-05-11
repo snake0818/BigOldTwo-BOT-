@@ -44,37 +44,6 @@ void Table::start()
     delete [] list;
 }
 
-void Table::printHandCards()
-{
-    for (int i = 0; i < 8; i++)
-        cout << " ";
-    for (int i = 1; i <= 13; i++)
-    {
-        cout << setw(7) << i;
-    }
-    cout << endl;
-    for (int i = 1; i <= 4; i++)
-    {
-        if (i == 1)
-            cout << "Player   ";
-        else
-            cout << "Computer" << i - 1;
-        for (int j = 0; j < 13; j++)
-        {
-            if (i == 1)
-                cout << setw(7) << player.getIndexOfCard(j);
-            if (i == 2)
-                cout << setw(7) << computer1.getIndexOfCard(j);
-            if (i == 3)
-                cout << setw(7) << computer2.getIndexOfCard(j);
-            if (i == 4)
-                cout << setw(7) << computer3.getIndexOfCard(j);
-        }
-        cout << endl;
-    }
-    cout << endl;
-}
-
 int Table::whoFirst()
 {
     const double firstNum = 3.1;

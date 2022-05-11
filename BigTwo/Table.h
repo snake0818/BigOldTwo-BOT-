@@ -12,7 +12,6 @@ class Table
 {
 public:
     void start();
-    void printHandCards();
     bool end();
     int whoFirst();
     Player getPlayer() const;
