@@ -11,6 +11,7 @@ public:
 	bool isInComputer_arr(double);
 	int getHandCardsSize() const;
 	double getIndexOfCard(int) const;
+	double *getComputer_arr();
 
 	// test
 	void print();
