@@ -49,3 +49,8 @@ void Player::print()
 	}
 	cout << endl;
 }
+
+double* Player::getPlayer_arr()
+{
+	return player_arr;
+}
