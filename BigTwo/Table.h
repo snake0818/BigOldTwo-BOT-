@@ -8,7 +8,7 @@ using namespace std;
 #ifndef T_H
 #define T_H
 
-class Table
+class Table : public Game
 {
 public:
     void start();
