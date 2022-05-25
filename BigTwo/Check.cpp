@@ -81,26 +81,26 @@ void Check::checkSpecialStraight(double cards[], bool &isSpecialStraight)
     }
 }
 
-// bool Check::numberInPairs(const double card_1) const
-// {
-//     if( card_1 > Game().getCardsOnField(1))
-//     {
-//         return true;
-//     }
-//     else
-//     {
-//         return false;
-//     }
-// }
+bool Check::numberInPairs(const double card_1) const
+{
+    if( card_1 > Game().get1CardOnField(1))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 
-// bool Check::numberInTriples(const double card_1) const
-// {
-//     if( card_1 > Game().getCardsOnField(2))
-//     {
-//         return true;
-//     }
-//     else
-//     {
-//         return false;
-//     }
-// }    
+bool Check::numberInTriples(const double card_1) const
+{
+    if( card_1 > Game().get1CardOnField(2))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}    
