@@ -268,7 +268,7 @@ void Card::setTiki(double card_1, double card_2, double card_3, double card_4, d
     }
     else
     {
-        // 重新出牌（還未開發此功能）
+        // 重新出牌（還未開發此功能）已寫入setCardsOnField 有防呆 沒做pass的情況
     }
 }
 
