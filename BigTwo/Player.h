@@ -16,7 +16,8 @@ public:
 	int getHandCardsSize() const;
 	double getIndexOfCard(int) const;
 	double *getPlayer_arr();
-
+	void playerOutCard();
+        bool isCorrect;
 	// test
 	void print();
 	
