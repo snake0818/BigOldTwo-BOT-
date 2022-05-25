@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <sstream>
 using namespace std;
 
 #include "Game.h"
@@ -18,6 +20,8 @@ public:
     Computer getComputer1() const;
     Computer getComputer2() const;
     Computer getComputer3() const;
+    void playerOutCard();
+    bool isCorrect;
 
 private:
     static int count;
