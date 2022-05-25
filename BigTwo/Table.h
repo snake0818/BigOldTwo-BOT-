@@ -20,9 +20,7 @@ public:
     Computer getComputer1() const;
     Computer getComputer2() const;
     Computer getComputer3() const;
-    void playerOutCard();
-    bool isCorrect;
-
+    
 private:
     static int count;
     Player player;
