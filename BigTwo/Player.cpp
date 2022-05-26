@@ -68,56 +68,49 @@ void Player::playerOutCard(){
     	word>>cardByCin[numberOfCards];
         numberOfCards++;
     }
-    
+    isCorrect=true;
     for(int i=0;i<numberOfCards;i++){
-    	double n=0;
-        double textNumber=0;
-        int dou=1;
+        if(cardByCin[0]=="pass" or cardByCin[0]=="Pass"){
+            break;
+        }
+        string textWord=cardByCin[i];
+        double douNumber=0;
+        double intNumber=0;
+        isCorrect=false;
         for(int k=0;k<cardByCin[i].size();k++){
-            if(isCorrect==false){
-                cout<<"Please recin"<<endl;
-                break;
-            }
-        	string aa=cardByCin[i];
             if(k==0){
-                if(aa[0]=='s' or aa[0]=='S'){
-    		    	n=0.4;
-    			}
-    			if(aa[0]=='h' or aa[0]=='H'){
-	    		    n=0.3;
-    			}
- 	  			if(aa[0]=='d' or aa[0]=='D'){
-	        		n=0.1;
-	    		}
-	    		if(aa[0]=='c' or aa[0]=='C'){
-	        		n=0.2;
-    			}
-    			if(aa[0]!='c' and aa[0]!='C' and aa[0]!='d' and aa[0]!='D' and aa[0]!='h' and aa[0]!='H' and aa[0]!='s' and aa[0]!='S'){
-    			    isCorrect=false;
-    			    cout<<"Error"<<endl;
-    			}
+                if(textWord[0]=='c' or textWord[0]=='C'){
+                    douNumber=0.1;
+                    isCorrect=true;
+                }
+                if(textWord[0]=='d' or textWord[0]=='D'){
+                    douNumber=0.2;
+                    isCorrect=true;
+                }
+                if(textWord[0]=='h' or textWord[0]=='H'){
+                    douNumber=0.3;
+                    isCorrect=true;
+                }
+                if(textWord[0]=='s' or textWord[0]=='S'){
+                    douNumber=0.4;
+                    isCorrect=true;
+                }
             }
             else{
-            	textNumber=(textNumber*dou)+(int(aa[k])-48);
-				dou*=10;
-			}
-		if(n==0.4 or n==0.3 or n==0.2 or n==0.1){
-		    if(textNumber>0 and textNumber<=13){
-		        card[i]=textNumber+n;
-		    }
-		    else{
-		        isCorrect=false;
-		    }
-		}
-		else{
-		    isCorrect=false;
-		}
+                int text=int(textWord[k])-48;
+                intNumber=intNumber*10+text;
+            }
         }
+        if(isCorrect==false){
+            cout<<"Please recin"<<endl;
+            break;
+        }
+        Game().setField_2(intNumber+douNumber,i);
     }
-    if(isCorrect==true){
-        Game().setField(card[0],card[1],card[2],card[3],card[4]);
+    if(cardByCin[0]=="pass" or cardByCin[0]=="Pass"){
+        cout<<"Pass"<<endl;
     }
-    else{
+    if(isCorrect==false){
         Player().playerOutCard();
     }
 }
