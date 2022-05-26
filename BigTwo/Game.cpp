@@ -67,3 +67,6 @@ double *Game::getCardsOnField() const
 {
     return cardsOnField;
 }
+void Game::setField_2(double number,int side){
+    cardsOnField[side]=number;
+}
