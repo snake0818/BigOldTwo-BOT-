@@ -105,12 +105,20 @@ void Player::playerOutCard(){
             cout<<"Please recin"<<endl;
             break;
         }
-        Game().setField_2(intNumber+douNumber,i);
+        card[i]=intNumber+douNumber;
     }
     if(cardByCin[0]=="pass" or cardByCin[0]=="Pass"){
         cout<<"Pass"<<endl;
+        isCorrect=true;
     }
-    if(isCorrect==false){
-        Player().playerOutCard();
+    else{
+        if(isCorrect==false){
+            Player().playerOutCard();
+        }
+        else{
+            for(int i=0;i<numberOfCards;i++){
+                Game().setField_2(card[i],i);
+            }
+        }
     }
 }
