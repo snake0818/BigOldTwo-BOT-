@@ -10,8 +10,8 @@ int main()
 {
     Table play;
     play.start();
+    int sequence = play.whoFirst();
 
-    
     /*    
         以下部分都通過測試
         play.getPlayer().print();
