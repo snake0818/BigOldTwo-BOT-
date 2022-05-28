@@ -18,7 +18,8 @@ public:
 	double getIndexOfCard(int) const;
 	double *getPlayer_arr();
 	void playerOutCard();
-        bool isCorrect;
+    bool isCorrect;
+	
 	// test
 	void print();
 	
