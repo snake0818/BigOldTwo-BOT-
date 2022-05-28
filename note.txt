@@ -1,1 +1,2 @@
 Card 裡面的 function 很多 else 判斷的重新發牌還未完成
+Table 裡的出牌順序還未完成
