@@ -1,7 +1,7 @@
 #include "Table.h"
 #include "Tool.h"
 
-int Table::count = 1;
+int Table::sequence = 1;
 
 Player Table::getPlayer() const
 {
@@ -42,33 +42,123 @@ void Table::start()
     Tool().arrange(computer3.getComputer_arr(), 13);
 
     delete [] list;
+
+    firstTime = true;
 }
 
 int Table::whoFirst()
 {
-    const double firstNum = 3.1;
-    if (player.isInPlayer_arr(firstNum))
+    const double FIRST = 3.1;
+    if (player.isInPlayer_arr(FIRST))
     {
-        count = 4;
+        sequence = 4;
     }
-    if (computer1.isInComputer_arr(firstNum))
+    else if (computer1.isInComputer_arr(FIRST))
     {
-        count = 1;
+        sequence = 1;
     }
-    if (computer2.isInComputer_arr(firstNum))
+    else if (computer2.isInComputer_arr(FIRST))
     {
-        count = 2;
+        sequence = 2;
     }
-    if (computer3.isInComputer_arr(firstNum))
+    else if (computer3.isInComputer_arr(FIRST))
     {
-        count = 3;
+        sequence = 3;
     }
-    return count;
+    
+    return sequence;
 }
 
 bool Table::end()
 {
-    if (player.getHandCardsSize() == 0 || computer1.getHandCardsSize() == 0 || computer2.getHandCardsSize() == 0 || computer3.getHandCardsSize() == 0)
+    if (player.getHandCardsSize() == 0
+        || computer1.getHandCardsSize() == 0
+        || computer2.getHandCardsSize() == 0 
+        || computer3.getHandCardsSize() == 0)
+    {
         return true;
+    }
+    
     return false;
+}
+
+bool Table::getFirstTime() const
+{
+    return firstTime;
+}
+
+void Table::playerFirst()
+{
+    if(getFirstTime())
+    {
+        // 第一次出一定要有方塊 3
+        // player 出牌
+    }
+    else
+    {
+        // player 出牌
+    }
+    
+    // computer1 出牌
+
+    // computer2 出牌
+
+    // computer3 出牌
+}
+
+void Table::computer1First()
+{
+    if(getFirstTime())
+    {
+        // 第一次出一定要有方塊 3
+        // computer1 出牌
+    }
+    else
+    {
+        // computer1 出牌
+    }
+
+    // computer2 出牌
+
+    // computer3 出牌
+
+    // player 出牌
+}
+
+void Table::computer2First()
+{
+    if(getFirstTime())
+    {
+        // 第一次出一定要有方塊 3
+        // computer2 出牌
+    }
+    else
+    {
+        // computer2 出牌
+    }
+
+    // computer3 出牌
+
+    // player 出牌
+
+    // computer1 出牌
+}
+
+void Table::computer3First()
+{
+    if(getFirstTime())
+    {
+        // 第一次出一定要有方塊 3
+        // computer3 出牌
+    }
+    else
+    {
+        // computer3 出牌
+    }
+
+    // player 出牌
+
+    // computer1 出牌
+
+    // computer2 出牌
 }

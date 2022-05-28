@@ -20,11 +20,19 @@ public:
     Computer getComputer1() const;
     Computer getComputer2() const;
     Computer getComputer3() const;
+    bool getFirstTime() const;
+
+    // Out of card sequence.
+    void playerFirst();
+    void computer1First();
+    void computer2First();
+    void computer3First();
     
 private:
-    static int count;
+    static int sequence;
     Player player;
     Computer computer1, computer2, computer3;
+    bool firstTime;
 };
 
 #endif
