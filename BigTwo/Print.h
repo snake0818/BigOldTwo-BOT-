@@ -6,6 +6,8 @@ class Print
 public:
     void welcome();
     void rule();
+    void PrintHandCard();
+    void FieldCard();
 };
 
 #endif
