@@ -1,1 +1,1 @@
-g++ Card.cpp Check.cpp Computer.cpp Game.cpp main.cpp Player.cpp Table.cpp Tool.cpp -o main
+g++ Card.cpp Check.cpp Computer.cpp Game.cpp main.cpp Player.cpp Table.cpp Tool.cpp Print.cpp -o main
