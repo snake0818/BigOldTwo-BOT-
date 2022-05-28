@@ -5,9 +5,14 @@
 #include "Player.h"
 #include "Table.h"
 #include "Tool.h"
+#include "Print.h"
 
 int main()
 {
+    Print print;
+    print.welcome();
+    print.rule();
+
     Table play;
     play.start();
     int sequence = play.whoFirst();
