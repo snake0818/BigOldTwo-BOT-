@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "Table.h"
+#include "Check.h"
 
 Player::Player()
 {
