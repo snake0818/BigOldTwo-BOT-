@@ -7,13 +7,15 @@ public:
     Game();
     void setField_2(double, int);
     void setField(double, double, double, double, double);
+    void setField(double*);
     void gameStart(); // 目前沒有功能
     double get1RptCard(int);
     double get1CardOnField(int) const;
     double *getCardsOnField() const;
     double *shuffleCards();
-    // void distributeCards();
+    bool compare(double[], string)const;
 
+    // void distributeCards();
 private:
     double repository[52];
     double *pRepository;
