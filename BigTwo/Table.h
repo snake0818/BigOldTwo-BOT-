@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "Computer.h"
-#
+#include "Tool.h"
 
 #ifndef T_H
 #define T_H
