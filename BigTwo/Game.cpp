@@ -1,4 +1,7 @@
+#include <iostream>
 #include <ctime>
+using namespace std;
+
 #include "Game.h"
 
 double Game::cardsOnField[5] = {0, 0, 0, 0, 0};
