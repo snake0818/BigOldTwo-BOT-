@@ -1,7 +1,3 @@
-#include <iostream>
-#include <iomanip>
-using namespace std;
-
 #include "Computer.h"
 #include "Tool.h"
 
