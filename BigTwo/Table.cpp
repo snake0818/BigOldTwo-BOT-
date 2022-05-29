@@ -1,6 +1,7 @@
 #include "Table.h"
 #include "Tool.h"
 
+string Table::cardsType = "First";
 int Table::sequence = 1;
 
 Player Table::getPlayer() const
@@ -162,7 +163,6 @@ void Table::computer3First()
 
     // computer2 出牌
 }
-string Table::cardsType = "First";
 void Table::setCardsType(string type){
     cardsType=type;
 }
