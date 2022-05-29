@@ -12,7 +12,7 @@ public:
 	int getHandCardsSize() const;
 	double getIndexOfCard(int) const;
 	double *getComputer_arr();
-
+    	void computerOutCard();
 	// test
 	void print();
 
