@@ -33,8 +33,8 @@ public:
 private:
     static int sequence;
     Player player;
-    string cardsType;
-   
+    static string cardsType;
+
     Computer computer1, computer2, computer3;
     bool firstTime;
 };
