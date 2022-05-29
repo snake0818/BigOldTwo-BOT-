@@ -60,12 +60,53 @@ void Print::rule()
     // 未完待續
 }
 
-void Print::PrintHandCard()
+void Print::printHandCard()
 {
     cout << "您的手牌目前有 : ";
 }
 
-void Print::FieldCard()
+void Print::fieldCard()
 {
     cout << "場上的牌有 : ";
+}
+
+void Print::shuffleCard()
+{
+    cout << "(按 Enter 開始洗牌)" << endl;
+    cin.get();
+
+    cout << "咻～咻～咻～  唰～唰～唰～\n\n";
+}
+
+void Print::printSequence(int sequence)
+{
+    cout << "本遊戲出牌的順序採取逆時鐘進行\n";
+    if(sequence == 1)
+    {
+        cout << "本輪你的出牌順序（如下）\n\n"
+             << "[[[[ 電腦(1) --> 電腦(2) -->"
+             << "電腦(3) --> 玩家(you) ]]]]\n";
+    }
+    else if(sequence == 2)
+    {
+        cout << "本輪你的出牌順序（如下）\n\n"
+             << "[[[[ 電腦(2) --> 電腦(3) -->"
+             << "玩家(you) --> 電腦(1) ]]]]\n";
+    }
+    else if(sequence == 3)
+    {
+        cout << "本輪你的出牌順序（如下）\n\n"
+             << "[[[[ 電腦(3) --> 玩家(you) -->"
+             << "電腦(1) --> 電腦(2) ]]]]\n";
+    }
+    else if(sequence == 4)
+    {
+        cout << "本輪你的出牌順序（如下）\n\n"
+             << "[[[[ 玩家(you) --> 電腦(1) -->"
+             << "電腦(2) --> 電腦(3) ]]]]\n";
+    }
+    else
+    {
+        throw runtime_error("sequence error.");
+    }
 }
