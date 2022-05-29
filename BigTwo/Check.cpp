@@ -80,27 +80,24 @@ void Check::checkSpecialStraight(double cards[], bool &isSpecialStraight)
         isSpecialStraight = true;
     }
 }
-
-bool Check::numberInPairs(const double card_1) const
-{
-    if( card_1 > Game().get1CardOnField(1))
-    {
-        return true;
+    
+string Check::checkCardsType(double cards[],int size){
+    bool type=false;
+    if(size==5){
+        checkSpecialStraight(cards,type);
+        if(type==true){
+            return "SpecialStraight";
+        }
+        type=true;
+        checkStraight(cards,type);
+        if(type==true){
+            return "Straight";
+        }
+        type=true;
+        checkFlush(cards,type);
+        if(type==true){
+            return "Flush";
+        }
     }
-    else
-    {
-        return false;
-    }
+    return "no";
 }
-
-bool Check::numberInTriples(const double card_1) const
-{
-    if( card_1 > Game().get1CardOnField(2))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}    
