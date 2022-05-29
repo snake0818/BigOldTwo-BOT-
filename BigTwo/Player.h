@@ -1,8 +1,4 @@
-#include <iostream>
-#include <iomanip>
 #include <sstream>
-using namespace std;
-
 #include "Game.h"
 
 #ifndef P_H
