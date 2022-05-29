@@ -1,6 +1,3 @@
-#include <iostream>
-using namespace std;
-
 #include "Card.h"
 #include "Check.h"
 #include "Tool.h"
