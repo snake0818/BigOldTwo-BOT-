@@ -12,10 +12,13 @@ int main()
     Print print;
     print.welcome();
     print.rule();
+    print.shuffleCard();
 
     Table play;
     play.start();
     int sequence = play.whoFirst();
+
+    print.printSequence(sequence);
 
     /*    
         以下部分都通過測試
