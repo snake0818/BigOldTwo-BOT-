@@ -10,6 +10,9 @@ public:
     void fieldCard();
     void shuffleCard();
     void printSequence(int);
+
+private:
+    void clear();
 };
 
 #endif

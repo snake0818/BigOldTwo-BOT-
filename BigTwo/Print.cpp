@@ -12,6 +12,7 @@ void Print::rule()
 {
     cout << "(按 Enter 顯示規則說明)" << endl;
     cin.get();
+    clear();
 
     cout << "規則：\n\n"
          << "本遊戲採取的是一次一場 ， 一場12局的方式進行\n\n"
@@ -26,6 +27,7 @@ void Print::rule()
 
     cout << "(按 Enter 顯示可出牌型)" << endl;
     cin.get();
+    clear();
 
     cout << "注意！！！ 牌不是想出就出，必須比要上一個人出的牌還要大才能出牌喔！\n\n";
     cout << "牌型：\n\n"
@@ -47,6 +49,7 @@ void Print::rule()
 
     cout << "(按 Enter 顯示結算方式)" << endl;
     cin.get();
+    clear();
 
     cout << "結算方式:\n\n";
     cout << "若有人已結束手牌，該局就結束並計算每位玩家的手牌剩餘數，計算其失分。\n\n"
@@ -74,6 +77,7 @@ void Print::shuffleCard()
 {
     cout << "(按 Enter 開始洗牌)" << endl;
     cin.get();
+    clear();
 
     cout << "咻～咻～咻～  唰～唰～唰～\n\n";
 }
@@ -109,4 +113,9 @@ void Print::printSequence(int sequence)
     {
         throw runtime_error("sequence error.");
     }
+}
+
+void Print::clear()
+{
+    system("cls");
 }
