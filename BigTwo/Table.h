@@ -21,6 +21,8 @@ public:
     Computer getComputer2() const;
     Computer getComputer3() const;
     bool getFirstTime() const;
+    void setCardsType(string);
+    string getCardsType();
 
     // Out of card sequence.
     void playerFirst();
