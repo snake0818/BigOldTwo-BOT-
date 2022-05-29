@@ -1,7 +1,3 @@
-#include <iostream>
-using namespace std;
-
-#include "Game.h"
 #include "Check.h"
 #include "Card.h"
 
