@@ -58,7 +58,7 @@ int main()
     while (play.end() == false) {
     
         cout << "S :4是黑桃" << " " << "H :3是紅心" << " " << "C :2是梅花" << " " << "D :1是方塊" << endl << endl;
-        cout << "請輸入英文+數字方式出牌，Ex:方塊3 = C3 or c3" << endl << endl;
+        cout << "請輸入英文+數字方式出牌，Ex:方塊3 = D3 or d3" << endl << endl;
 
         Computer c1;
 
