@@ -162,3 +162,10 @@ void Table::computer3First()
 
     // computer2 出牌
 }
+string Table::cardsType = "First";
+void Table::setCardsType(string type){
+    cardsType=type;
+}
+string Table::getCardsType(){
+    return cardsType;
+}
