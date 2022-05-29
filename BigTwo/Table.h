@@ -1,11 +1,8 @@
-#include <iostream>
-#include <string>
 #include <sstream>
-using namespace std;
-
 #include "Game.h"
 #include "Player.h"
 #include "Computer.h"
+#
 
 #ifndef T_H
 #define T_H
