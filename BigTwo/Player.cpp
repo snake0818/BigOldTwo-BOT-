@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Table.h"
 #include "Check.h"
+#include "Card.h"
 
 Player::Player()
 {
@@ -47,7 +48,23 @@ void Player::printPlayer_arr()
 {
     for (int i = 0; i < 13; i++)
     {
-        cout << player_arr[i] << "  ";
+        int Flower = Card().returnFlower(player_arr[i]);
+        if(Flower == 1)
+        {
+            cout << player_arr[i] << "  ";
+        }
+        else if(Flower == 2)
+        {
+            cout << "\e[31m" << player_arr[i] << "  \e[0m";
+        }
+        else if(Flower == 3)
+        {
+            cout << "\e[33m" << player_arr[i] << "  \e[0m";
+        }
+        else if(Flower == 4)
+        {
+            cout << "\e[35m" << player_arr[i] << "  \e[0m";
+        }
     }
     cout << endl;
 }
