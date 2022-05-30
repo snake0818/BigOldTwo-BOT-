@@ -20,5 +20,17 @@ int main()
 
     print.printSequence(sequence);
 
+    while(sequence != 4) // while for test
+    {
+        cout << "Computer time." << endl;
+        sequence++;
+    }
+
+    if(sequence == 4)
+    {
+        print.OutCard(play);
+        sequence++;
+    }
+
     return 0;
 }
