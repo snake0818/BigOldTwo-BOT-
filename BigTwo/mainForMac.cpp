@@ -6,6 +6,7 @@
 #include "Table.h"
 #include "Tool.h"
 #include "PrintForMac.h"
+#include "OutOfCard.h"
 
 int main()
 {
