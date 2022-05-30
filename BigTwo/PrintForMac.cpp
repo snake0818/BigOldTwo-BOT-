@@ -66,7 +66,7 @@ void Print::rule()
 void Print::printHandCard(const Table& t)
 {
     cout << "\e[32m您的手牌目前有 : \e[0m";
-    t.getPlayer().print();
+    t.getPlayer().printPlayer_arr();
 }
 
 void Print::fieldCard()

@@ -43,7 +43,7 @@ double Player::getIndexOfCard(int index) const
     return player_arr[index];
 }
 
-void Player::print()
+void Player::printPlayer_arr()
 {
     for (int i = 0; i < 13; i++)
     {

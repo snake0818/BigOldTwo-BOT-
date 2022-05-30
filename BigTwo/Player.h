@@ -1,5 +1,6 @@
 #include <sstream>
 #include "Game.h"
+#include "Card.h"
 
 #ifndef P_H
 #define P_H
@@ -14,13 +15,12 @@ public:
 	double getIndexOfCard(int) const;
 	double *getPlayer_arr();
 	void playerOutCard();
-   	bool isCorrect;
-	bool isPass;
-	
-	// test
-	void print();
+
+	void printPlayer_arr();
 	
 private:
+	bool isCorrect;
+	bool isPass;
 	Game Gamer;
 	double player_arr[13];
 };
