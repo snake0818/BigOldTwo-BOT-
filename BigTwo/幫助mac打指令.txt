@@ -1,1 +1,1 @@
-g++ Card.cpp Check.cpp Computer.cpp Game.cpp mainForMac.cpp Player.cpp Table.cpp Tool.cpp PrintForMac.cpp -o main
+g++ Card.cpp Check.cpp Computer.cpp Game.cpp mainForMac.cpp Player.cpp Table.cpp Tool.cpp PrintForMac.cpp OutOfCard.cpp -o main
