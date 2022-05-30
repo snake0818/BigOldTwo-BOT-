@@ -1,0 +1,10 @@
+# 本為牌型專屬代碼，用來分別牌型
+
+single        : 691
+pairs         : 692
+triples       : 693
+straight      : 694
+flush         : 695
+fullHouse     : 696
+tiki          : 697
+straightFlush : 698
