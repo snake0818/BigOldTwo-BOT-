@@ -9,7 +9,9 @@ using namespace std;
 class Tool
 {
 public:
+    Tool();
     void arrange(double*, int);
+    void copyDouble_arr(double [], double [], int);
 };
 
 #endif

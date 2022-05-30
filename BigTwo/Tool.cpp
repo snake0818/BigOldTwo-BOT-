@@ -1,5 +1,7 @@
 #include "Tool.h"
 
+Tool::Tool() {}
+
 void Tool::arrange(double *card, int size)
 {
     double temp;
@@ -14,5 +16,13 @@ void Tool::arrange(double *card, int size)
                 card[i] = temp;
             }
         }
+    }
+}
+
+void Tool::copyDouble_arr(double sourceArr[], double targetArr[], int size)
+{
+    for(int i = 0; i < size; i++)
+    {
+        targetArr[i] = sourceArr[i];
     }
 }
