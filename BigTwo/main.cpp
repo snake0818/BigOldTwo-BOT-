@@ -46,7 +46,7 @@ int main()
     //以下部分都通過測試
     print.printHandCard();
     cout << endl << endl <<"   ";
-    play.getPlayer().print();
+    play.getPlayer().printPlayer_arr();
 
     //電腦測試
     play.getComputer1().print();
@@ -174,7 +174,7 @@ int main()
 
         print.printHandCard();
         cout << endl << endl << "   ";
-        play.getPlayer().print();
+        play.getPlayer().printPlayer_arr();
         play.getComputer1().print();
         play.getComputer2().print();
         play.getComputer3().print();
