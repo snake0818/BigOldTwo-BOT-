@@ -63,9 +63,10 @@ void Print::rule()
     // 未完待續
 }
 
-void Print::printHandCard()
+void Print::printHandCard(const Table& t)
 {
     cout << "\e[32m您的手牌目前有 : \e[0m";
+    t.getPlayer().print();
 }
 
 void Print::fieldCard()
@@ -115,9 +116,21 @@ void Print::printSequence(int sequence)
     {
         throw runtime_error("sequence error.");
     }
+
+    cout << "(按 Enter 繼續)" << endl;
+    cin.get();
+    system("clear");
 }
 
 void Print::clear()
 {
     system("clear");
+}
+
+void Print::OutCard(const Table& t)
+{
+    cout << "\e[31m輪到你出牌囉！！！\e[0m\n\n";
+    printHandCard(t);
+    cout << endl;
+    cout << "\e[32m請輸入你要出的牌 (請用空格分隔卡牌) : \e[0m";
 }
