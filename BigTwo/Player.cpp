@@ -47,7 +47,7 @@ void Player::print()
 {
     for (int i = 0; i < 13; i++)
     {
-        cout << setw(6) << player_arr[i];
+        cout << player_arr[i] << "  ";
     }
     cout << endl;
 }
