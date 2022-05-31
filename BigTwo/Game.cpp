@@ -1,6 +1,6 @@
 #include <ctime>
-
 #include "Game.h"
+#include "Tool.h"
 
 double Game::cardsOnField[5] = {0, 0, 0, 0, 0};
 
@@ -70,8 +70,22 @@ void Game::setField(double card_1, double card_2,
     double card_3, double card_4, double card_5)
 {
     double card[5] = {card_1, card_2, card_3, card_4, card_5};
+    Tool().arrange(card, 5);
 
     for (int index = 0; index < 5; index++)
+    {
+        if (card[index] != 0)
+        {
+            cardsOnField[index] = card[index];
+        }
+    }
+}
+
+void Game::setField(double* card)
+{
+    int size = (sizeof(card) / sizeof(double));
+    Tool().arrange(card, size);
+    for (int index = 0; index < size; index++)
     {
         if (card[index] != 0)
         {
