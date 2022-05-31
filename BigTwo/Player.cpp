@@ -74,23 +74,24 @@ double *Player::getPlayer_arr()
     return player_arr;
 }
 
-void Player::playerOutCard(){
+void Player::playerOutCard()
+{
     isPass = false;
     isCorrect = false;
     string playerOutCard;
-    getline(cin,playerOutCard);
+    getline(cin, playerOutCard);
     stringstream word(playerOutCard);
 
     string cardByCin[5];
     double card[5] = { 0 };
-    
-    int numberOfCards=0;
-    while(!word.eof()){
-    	word>>cardByCin[numberOfCards];
+
+    int numberOfCards = 0;
+    while (!word.eof()) {
+        word >> cardByCin[numberOfCards];
         numberOfCards++;
     }
 
-    for(int i=0;i<numberOfCards;i++){
+    for (int i = 0; i < numberOfCards; i++) {
         if ((cardByCin[i] == "pass" or cardByCin[i] == "Pass" or cardByCin[i] == "PASS") and
             (cardByCin[0] != "pass" or cardByCin[0] != "Pass" or cardByCin[0] != "PASS"))
         {
@@ -107,36 +108,34 @@ void Player::playerOutCard(){
         char sign;
         ss >> sign >> card[i];
 
-        isCorrect=false;
-        switch(sign)
+        isCorrect = false;
+        switch (sign)
         {
             case 'd':
             case 'D':
                 card[i] += 0.1;
-                isCorrect=true;
+                isCorrect = true;
                 break;
             case 'c':
             case 'C':
-                card[i] +=0.2;
-                isCorrect=true;
+                card[i] += 0.2;
+                isCorrect = true;
                 break;
             case 'h':
             case 'H':
-                card[i] +=0.3;
-                isCorrect=true;
+                card[i] += 0.3;
+                isCorrect = true;
                 break;
             case 's':
             case 'S':
-                card[i] +=0.4;
-                isCorrect=true;
+                card[i] += 0.4;
+                isCorrect = true;
                 break;
         }
-        if(isCorrect==false) break;
+        if (!isCorrect) break;
     }
-    
-    if (isPass) {
-        cout<<"---Pass---"<<endl;
-    }
+
+    if (isPass) cout << "---Pass---" << endl;
     else
     {
         if (isCorrect and Game().compare(card, Table().getCardsType())
@@ -146,8 +145,6 @@ void Player::playerOutCard(){
         }
         else
         {
-            if (Table().getCardsType() != Check().checkCardsType(card, numberOfCards)) 
-                cout << "Type error." << endl;
             cout << "Please recin" << endl;
             Player().playerOutCard();
         }
