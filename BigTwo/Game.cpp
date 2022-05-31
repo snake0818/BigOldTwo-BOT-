@@ -47,6 +47,25 @@ double *Game::shuffleCards()
     return bufferRpt;
 }
 
+bool Game::compare(double* cards, string type) const
+{
+    for (int i = 0; i < getNumOfCardsOnField(); i++)
+    {
+        // if (cardsOnField < cards) return true; //未完成
+    }
+    return false;
+}
+
+int Game::getNumOfCardsOnField() const
+{
+    int NumOfCards = 0;
+    for (int i = 0; i < 5; i++)
+    {
+        if (cardsOnField[i] != 0) NumOfCards++;
+    }
+    return NumOfCards;
+}
+
 void Game::setField(double card_1, double card_2,
     double card_3, double card_4, double card_5)
 {
@@ -66,12 +85,12 @@ double Game::get1CardOnField(int index) const
     return cardsOnField[index];
 }
 
-double *Game::getCardsOnField() const
+double* Game::getCardsOnField() const
 {
     return cardsOnField;
 }
 
-void Game::setField_2(double number, int side)
+void Game::setField(double number, int side)
 {
     cardsOnField[side] = number;
 }
