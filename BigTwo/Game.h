@@ -8,7 +8,7 @@ class Game
 {
 public:
     Game();
-    void setField_2(double, int);
+    void setField(double, int);
     void setField(double, double, double, double, double);
     void setField(double*);
     void gameStart(); // 目前沒有功能
@@ -16,7 +16,8 @@ public:
     double get1CardOnField(int) const;
     double *getCardsOnField() const;
     double *shuffleCards();
-    bool compare(double[], string)const;
+    bool compare(double*, string) const;
+    int getNumOfCardsOnField() const;
 
     // void distributeCards();
 private:
