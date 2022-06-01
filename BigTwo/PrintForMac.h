@@ -13,6 +13,8 @@ public:
     void shuffleCard();
     void printSequence(int);
     void OutCard(const Table&);
+    void printTable();
+    void printShape();
 
 private:
     void clear();

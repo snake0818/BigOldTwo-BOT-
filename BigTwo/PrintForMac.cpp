@@ -137,3 +137,36 @@ void Print::OutCard(const Table& t)
     printHandCard(t);
     cout << endl;
 }
+
+void Print::printTable()
+{
+    printShape();
+    cout << endl;
+
+    double *table = Game().getCardsOnField();
+    if(table[0] == 0)
+    {
+        cout << "\e[07;33m場上目前沒有牌喔！等你開秀！！！\e[0m" << endl;
+    }
+    else
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            if(table[i] == 0)
+            {
+                break;
+            }
+            cout << table[i] << "\t";
+        }
+        cout << endl;
+    }
+
+    cout << endl;
+    printShape();
+}
+
+void Print::printShape()
+{
+    cout << "++========================="
+        << "============================++" << endl;
+}
