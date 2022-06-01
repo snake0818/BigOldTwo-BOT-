@@ -30,21 +30,84 @@ void OutOfCard::computerFirstOutHand(Computer& computer)
         }
     }
 
-    cout << numOfThree << endl;
-
     if(numOfThree == 4)
     {
-        // 找除了 1, 2, 3 最小的一張牌合併成 tiki
+        int index = computer.returnIndex(3.1);
+        for(int i = 0; i < 4; i++, index++)
+        {
+            Game().setField(computer.getIndexOfCard(index), i);
+            computer.setComputerArr(0, index);
+        }
+
+        int singleIndex;
+        bool allPairs = true;
+        for(int i = index; i < 12; i++)
+        {
+            int num1 = Card().returnNumber(computer.getIndexOfCard(i));
+            int num2 = Card().returnNumber(computer.getIndexOfCard(i+1));
+
+            if(num1 == num2)
+            {
+                i++;
+            }
+            else
+            {
+                singleIndex = i;
+                allPairs = false;
+                break;
+            }
+        }
+
+        if(allPairs)
+        {
+            Game().setField(computer.getIndexOfCard(index), 4);
+            computer.setComputerArr(0, index);
+        }
+        else
+        {
+            Game().setField(computer.getIndexOfCard(singleIndex), 4);
+            computer.setComputerArr(0, singleIndex);
+        }
+        Tool().arrange(computer.getComputer_arr(), 13);
     }
     else if(numOfThree == 3)
     {
-        // 找除了 1, 2, 3 最小的兩張牌能組合成 pairs 和本來 3 張成 fullHouse
-        // 假如沒有 next = true;
-        // else
+        int index = computer.returnIndex(3.1);
+        int pairsIndex;
+        bool isFullHouse = false;
+        for(int i = index+3; i < 12; i++)
+        {
+            int num1 = Card().returnNumber(computer.getIndexOfCard(i));
+            int num2 = Card().returnNumber(computer.getIndexOfCard(i+1));
+
+            if(num1 == num2)
+            {
+                pairsIndex = i;
+                isFullHouse = true;
+                break;
+            }
+        }
+
+        if(isFullHouse)
+        {
+            for(int i = 0; i < 3; i++, index++)
+            {
+                Game().setField(computer.getIndexOfCard(index), i);
+                computer.setComputerArr(0, index);
+            }
+
+            for(int i = 3; i < 5; i++, pairsIndex++)
+            {
+                Game().setField(computer.getIndexOfCard(pairsIndex), i);
+                computer.setComputerArr(0, pairsIndex);
+            }
+            Tool().arrange(computer.getComputer_arr(), 13);
+        }
+        else
+        {
             if(numOfThree == 2)
             {
-                int index, index2;
-                index = computer.returnIndex(3.1);
+                int index = computer.returnIndex(3.1);
                 
                 for(int i = 0; i < 2; i++, index++)
                 {
@@ -60,11 +123,11 @@ void OutOfCard::computerFirstOutHand(Computer& computer)
                 computer.setComputerArr(0, index);
                 Tool().arrange(computer.getComputer_arr(), 13);
             }
+        }
     }
     else if(numOfThree == 2)
     {
-        int index, index2;
-        index = computer.returnIndex(3.1);
+        int index = computer.returnIndex(3.1);
         
         for(int i = 0; i < 2; i++, index++)
         {
