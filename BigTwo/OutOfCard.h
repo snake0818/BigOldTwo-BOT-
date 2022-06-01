@@ -8,7 +8,7 @@ class OutOfCard
 {
 public:
     OutOfCard();
-    void ComputerFirstOutHand(Computer);
+    void computerFirstOutHand(Computer);
 
 private:
     int code;
