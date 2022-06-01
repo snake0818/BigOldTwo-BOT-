@@ -4,7 +4,8 @@
 
 OutOfCard::OutOfCard() {}
 
-void OutOfCard::FirstOutHand(Computer computer)
+void OutOfCard::ComputerFirstOutHand(Computer computer)
 {
-    
+    double *computerArr = computer.getComputer_arr();
+    Tool().copyDouble_arr(computerArr, handCard, 13);
 }
