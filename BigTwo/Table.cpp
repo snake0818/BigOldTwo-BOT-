@@ -9,17 +9,17 @@ Player Table::getPlayer() const
     return player;
 }
 
-Computer Table::getComputer1() const
+Computer& Table::getComputer1()
 {
     return computer1;
 }
 
-Computer Table::getComputer2() const
+Computer& Table::getComputer2()
 {
     return computer2;
 }
 
-Computer Table::getComputer3() const
+Computer& Table::getComputer3()
 {
     return computer3;
 }

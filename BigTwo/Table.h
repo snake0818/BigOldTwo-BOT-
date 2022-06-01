@@ -14,9 +14,9 @@ public:
     bool end();
     int whoFirst();
     Player getPlayer() const;
-    Computer getComputer1() const;
-    Computer getComputer2() const;
-    Computer getComputer3() const;
+    Computer& getComputer1();
+    Computer& getComputer2();
+    Computer& getComputer3();
     bool getFirstTime() const;
     void setCardsType(string);
     string getCardsType();
