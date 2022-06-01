@@ -1,4 +1,4 @@
-#include "Player.h"
+
 #include "Computer.h"
 
 #ifndef O_H
@@ -8,7 +8,6 @@ class OutOfCard
 {
 public:
     OutOfCard();
-    void FirstOutHand(Player);
     void FirstOutHand(Computer);
 
 private:
