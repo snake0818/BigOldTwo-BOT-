@@ -20,31 +20,21 @@ int main()
 
     Print().printSequence(sequence);
 
-    // play.getComputer1().print();
-    // play.getComputer2().print();
-    // play.getComputer3().print();
-    
     // test
-    // play.getPlayer().printPlayer_arr();
-    // OutOfCard().computerFirstOutHand(play.getComputer1());
-    // OutOfCard().computerFirstOutHand(play.getComputer2());
-    // OutOfCard().computerFirstOutHand(play.getComputer3());
+    play.getComputer1().print();
+    play.getComputer2().print();
+    play.getComputer3().print();
+    play.getPlayer().printPlayer_arr();
 
     play.outCardSequence();
 
     Print().printTable();
 
-    // while(sequence != 4) // while for test
-    // {
-    //     cout << "Computer time." << endl;
-    //     sequence++;
-    // }
-
-    // if(sequence == 4)
-    // {
-    //     print.OutCard(play);
-    //     sequence++;
-    // }
+    // test
+    play.getComputer1().print();
+    play.getComputer2().print();
+    play.getComputer3().print();
+    play.getPlayer().printPlayer_arr();
 
     return 0;
 }
