@@ -18,6 +18,7 @@ public:
     double *shuffleCards();
     bool compare(double*, string) const;
     int getNumOfCardsOnField() const;
+    void clearField();
 
     // void distributeCards();
 private:

@@ -108,3 +108,11 @@ void Game::setField(double number, int side)
 {
     cardsOnField[side] = number;
 }
+
+void Game::clearField()
+{
+    for(int i = 0; i < 5; i++)
+    {
+        cardsOnField[i] = 0;
+    }
+}
