@@ -169,6 +169,10 @@ void Print::printTable()
 
 void Print::printShape()
 {
-    cout << "++========================="
-        << "============================++" << endl;
+    cout << "++";
+    for(int i = 0; i < 76; i++)
+    {
+        cout << "=";
+    }
+    cout << "++" << endl;
 }
