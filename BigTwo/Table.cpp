@@ -112,7 +112,7 @@ void Table::computer1First()
 {
     if(getFirstTime())
     {
-        OutOfCard().FirstOutHand(getComputer1());
+        OutOfCard().computerFirstOutHand(getComputer1());
         firstTime = false;
     }
     else
@@ -131,7 +131,7 @@ void Table::computer2First()
 {
     if(getFirstTime())
     {
-        OutOfCard().FirstOutHand(getComputer2());
+        OutOfCard().computerFirstOutHand(getComputer2());
         firstTime = false;
     }
     else
@@ -150,7 +150,7 @@ void Table::computer3First()
 {
     if(getFirstTime())
     {
-        OutOfCard().FirstOutHand(getComputer3());
+        OutOfCard().computerFirstOutHand(getComputer3());
         firstTime = false;
     }
     else
