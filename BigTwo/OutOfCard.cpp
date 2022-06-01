@@ -5,7 +5,7 @@
 
 OutOfCard::OutOfCard() {}
 
-void OutOfCard::computerFirstOutHand(Computer computer)
+void OutOfCard::computerFirstOutHand(Computer& computer)
 {
     double *computerArr = computer.getComputer_arr();
     Tool().copyDouble_arr(computerArr, handCard, 13);
@@ -52,7 +52,15 @@ void OutOfCard::computerFirstOutHand(Computer computer)
     }
     else if(numOfThree == 2)
     {
-        // 出最小的 2 張 3
+        int index, index2;
+        index = computer.returnIndex(3.1);
+        
+        for(int i = 0; i < 2; i++, index++)
+        {
+            Game().setField(computer.getIndexOfCard(index), i);
+            computer.setComputerArr(0, index);
+        }
+        Tool().arrange(computer.getComputer_arr(), 13);
     }
     else if(numOfThree == 1)
     {
