@@ -22,13 +22,14 @@ public:
     string getCardsType();
 
     // Out of card sequence.
+    void outCardSequence();
     void playerFirst();
     void computer1First();
     void computer2First();
     void computer3First();
     
 private:
-    static int sequence;
+    int sequence;
     Player player;
     static string cardsType;
 

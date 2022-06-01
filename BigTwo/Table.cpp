@@ -1,8 +1,8 @@
 #include "Table.h"
 #include "Tool.h"
+#include "OutOfCard.h"
 
 string Table::cardsType = "First";
-int Table::sequence = 1;
 
 Player Table::getPlayer() const
 {
@@ -93,7 +93,8 @@ void Table::playerFirst()
     if(getFirstTime())
     {
         // 第一次出一定要有方塊 3
-        // player 出牌
+        cout << "player 出牌" << endl;
+        firstTime = false;
     }
     else
     {
@@ -111,8 +112,8 @@ void Table::computer1First()
 {
     if(getFirstTime())
     {
-        // 第一次出一定要有方塊 3
-        // computer1 出牌
+        OutOfCard().FirstOutHand(getComputer1());
+        firstTime = false;
     }
     else
     {
@@ -130,8 +131,8 @@ void Table::computer2First()
 {
     if(getFirstTime())
     {
-        // 第一次出一定要有方塊 3
-        // computer2 出牌
+        OutOfCard().FirstOutHand(getComputer2());
+        firstTime = false;
     }
     else
     {
@@ -149,8 +150,8 @@ void Table::computer3First()
 {
     if(getFirstTime())
     {
-        // 第一次出一定要有方塊 3
-        // computer3 出牌
+        OutOfCard().FirstOutHand(getComputer3());
+        firstTime = false;
     }
     else
     {
@@ -163,9 +164,33 @@ void Table::computer3First()
 
     // computer2 出牌
 }
-void Table::setCardsType(string type){
-    cardsType=type;
+
+void Table::outCardSequence()
+{
+    if(sequence == 1)
+    {
+        computer1First();
+    }
+    else if(sequence == 2)
+    {
+        computer2First();
+    }
+    else if(sequence == 3)
+    {
+        computer3First();
+    }
+    else if(sequence == 4)
+    {
+        playerFirst();
+    }
 }
-string Table::getCardsType(){
+
+void Table::setCardsType(string type)
+{
+    cardsType = type;
+}
+
+string Table::getCardsType()
+{
     return cardsType;
 }
