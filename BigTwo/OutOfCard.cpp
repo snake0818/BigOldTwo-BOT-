@@ -43,11 +43,22 @@ void OutOfCard::computerFirstOutHand(Computer& computer)
         // else
             if(numOfThree == 2)
             {
-                // 出最小的 2 張 3
+                int index, index2;
+                index = computer.returnIndex(3.1);
+                
+                for(int i = 0; i < 2; i++, index++)
+                {
+                    Game().setField(computer.getIndexOfCard(index), i);
+                    computer.setComputerArr(0, index);
+                }
+                Tool().arrange(computer.getComputer_arr(), 13);
             }
             else if(numOfThree == 1)
             {
-                // 出方塊 3
+                int index = computer.returnIndex(3.1);
+                Game().setField(3.1, 0);
+                computer.setComputerArr(0, index);
+                Tool().arrange(computer.getComputer_arr(), 13);
             }
     }
     else if(numOfThree == 2)
