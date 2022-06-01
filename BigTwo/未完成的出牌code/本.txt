@@ -1,0 +1,101 @@
+void Computer::computerOutCard(){
+    bool isCorrect = false;
+    double cardsField[5] = { 0 };
+    double card[5] = { 0 };
+    double cardsByComputer[13] = { 0 };
+    for(int i=0;i<13;i++){
+        if(int(computer_arr[i])==1 or int(computer_arr[i])==2){
+            cardsByComputer[i]=computer_arr[i]+13;
+        }
+        else{
+            cardsByComputer[i]=computer_arr[i];
+        }
+    }
+    Tool().arrange(cardsByComputer, 13);
+    int numOfCards = Game().getNumOfCardsOnField();
+    int type = Table().getCardsType();
+    double minValue = 3.0;
+
+    if (type == 690)
+    {
+        card[0] = 3.1;
+        type = Check().checkCardsType(cardsByComputer, card);
+    }
+    else
+    {
+        for (int i = 0; i < numOfCards; i++)
+        {
+            cardsField[i] = Game().getCardsOnField()[i];
+            if (int(cardsField[i]) == 1 or
+                int(cardsField[i]) == 2) cardsField[i] += 13;
+        }
+        minValue = cardsField[0];
+        for (int i = 1; i < numOfCards; i++)
+        {
+            if (cardsField[i] < minValue) minValue = cardsField[i];
+        }
+    }
+
+    switch (type)
+    {
+        case 691:
+            isCorrect = Check().checkSingle(cardsByComputer, card, minValue);
+            break;
+        case 692:
+            isCorrect = Check().checkPairs(cardsByComputer, card, minValue);
+            break;
+        case 693:
+            isCorrect = Check().checkTriples(cardsByComputer, card, minValue);
+        case 694:
+            isCorrect = Check().checkStraight(cardsByComputer, card, minValue);
+            break;
+        case 695:
+            isCorrect = Check().checkFlush(cardsByComputer, card, minValue);
+            break;
+        case 696:
+            isCorrect = Check().checkFullHouse(cardsByComputer, card, minValue);
+            break;
+        case 697:
+            isCorrect = Check().checkTiki(cardsByComputer, card, minValue);
+            break;
+        case 698:
+            isCorrect = Check().checkStraightFlush(cardsByComputer, card, minValue);
+            break;
+        default:
+            isCorrect = false;
+            break;
+
+        if (!isCorrect) break;
+    }
+
+    if (isCorrect)
+    {
+        for (int i = 0; i < numOfCards; i++)
+        {
+            if (Card().returnNumber(card[i]) == 14 or Card().returnNumber(card[i]) == 15) card[i] -= 13;
+            if (card[i] != 0)cout << setw(5) << card[i];
+        }
+        cout << endl;
+
+        Game().setField(card);
+
+        deleteCardInArr(card, numOfCards);
+        cout << "Done." << endl;
+    }
+    else
+    {
+        Table().setCardsType(960);
+        cout << "Pass." << endl;
+    }
+}
+
+void Computer::deleteCardInArr(double* cards, int size = 5)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < 13; j++)
+        {
+            if (computer_arr[j] == cards[i]) computer_arr[j] = 0;
+        }
+    }
+}
