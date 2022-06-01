@@ -48,6 +48,12 @@ void Player::printPlayer_arr()
 {
     for (int i = 0; i < 13; i++)
     {
+        if(player_arr[i] == 3.1)
+        {
+            cout << "\e[07;33m" << player_arr[i] << "\e[0m" << " ";
+            continue;
+        }
+
         int Flower = Card().returnFlower(player_arr[i]);
         if(Flower == 1)
         {
