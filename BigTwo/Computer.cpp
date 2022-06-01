@@ -85,6 +85,6 @@ void Computer::computerOutCard(){
                 cout<<"sc"<<endl;
             }
         }
-        Game().setField_2(cardsByComputer[side],0);
+        Game().setField(cardsByComputer[side],0);
     }
 }
