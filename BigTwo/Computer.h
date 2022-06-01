@@ -13,6 +13,7 @@ public:
 	double getIndexOfCard(int) const;
 	double *getComputer_arr();
     void computerOutCard();
+	int returnIndex(double) const;
 	
 	// test
 	void print();

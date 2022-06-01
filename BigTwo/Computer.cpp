@@ -88,3 +88,14 @@ void Computer::computerOutCard(){
         Game().setField(cardsByComputer[side],0);
     }
 }
+
+int Computer::returnIndex(double num) const
+{
+    for(int i = 0; i < 13; i++)
+    {
+        if(computer_arr[i] == num)
+        {
+            return i;
+        }
+    }
+}
