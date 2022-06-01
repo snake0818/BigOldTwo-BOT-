@@ -1,6 +1,7 @@
 #include "OutOfCard.h"
 #include "Card.h"
 #include "Tool.h"
+#include "Table.h"
 
 OutOfCard::OutOfCard() {}
 
@@ -55,7 +56,10 @@ void OutOfCard::computerFirstOutHand(Computer computer)
     }
     else if(numOfThree == 1)
     {
-        // 出方塊 3
+        int index = computer.returnIndex(3.1);
+        Game().setField(3.1, 0);
+        computer.setComputerArr(0, index);
+        Tool().arrange(computer.getComputer_arr(), 13);
     }
     else
     {
