@@ -10,30 +10,29 @@
 
 int main()
 {
-    Print print;
-    print.welcome();
-    print.rule();
-    print.shuffleCard();
+    Print().welcome();
+    Print().rule();
+    Print().shuffleCard();
 
     Table play;
     play.start();
     int sequence = play.whoFirst();
 
-    print.printSequence(sequence);
+    Print().printSequence(sequence);
 
-    play.getComputer1().print();
-    play.getComputer2().print();
-    play.getComputer3().print();
+    // play.getComputer1().print();
+    // play.getComputer2().print();
+    // play.getComputer3().print();
     
     // test
-    play.getPlayer().printPlayer_arr();
+    // play.getPlayer().printPlayer_arr();
     // OutOfCard().computerFirstOutHand(play.getComputer1());
     // OutOfCard().computerFirstOutHand(play.getComputer2());
     // OutOfCard().computerFirstOutHand(play.getComputer3());
 
     play.outCardSequence();
 
-    print.printTable();
+    Print().printTable();
 
     // while(sequence != 4) // while for test
     // {
