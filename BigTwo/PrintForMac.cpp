@@ -3,6 +3,8 @@ using namespace std;
 
 #include "PrintForMac.h"
 
+Print::Print() {}
+
 void Print::welcome()
 {
     cout << "\e[31m歡迎來到 \e[0m\e[32m1 個孤獨的人也能玩的 4 人大老二\e[0m" << endl;

@@ -6,6 +6,7 @@
 class Print
 {
 public:
+    Print();
     void welcome();
     void rule();
     void printHandCard(const Table&);
