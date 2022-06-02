@@ -62,13 +62,16 @@ double* Computer::getComputer_arr()
 
 int Computer::returnIndex(double num) const
 {
+    int index;
     for(int i = 0; i < 13; i++)
     {
         if(computer_arr[i] == num)
         {
-            return i;
+            index = i;
+            break;
         }
     }
+    return index;
 }
 
 void Computer::addBeginIndex(int add)
