@@ -22,7 +22,7 @@ private:
 	bool isCorrect;
 	bool isPass;
 	Game Gamer;
-	double player_arr[13];
+	static double player_arr[13];
 };
 
 #endif
