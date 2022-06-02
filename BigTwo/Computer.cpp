@@ -75,3 +75,8 @@ void Computer::addBeginIndex(int add)
 {
     beginIndex += add;
 }
+
+int Computer::getBeginIndex() const
+{
+    return beginIndex;
+}

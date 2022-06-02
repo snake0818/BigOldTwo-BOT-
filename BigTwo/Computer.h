@@ -14,6 +14,7 @@ public:
 	double *getComputer_arr();
 	int returnIndex(double) const;
 	void addBeginIndex(int);
+	int getBeginIndex() const;
 	
 	// test
 	void print();
