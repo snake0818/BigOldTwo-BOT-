@@ -4,7 +4,7 @@
 
 string Table::cardsType = "First";
 
-Player Table::getPlayer() const
+Player& Table::getPlayer()
 {
     return player;
 }

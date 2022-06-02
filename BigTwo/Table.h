@@ -13,7 +13,7 @@ public:
     void start();
     bool end();
     int whoFirst();
-    Player getPlayer() const;
+    Player& getPlayer();
     Computer& getComputer1();
     Computer& getComputer2();
     Computer& getComputer3();
