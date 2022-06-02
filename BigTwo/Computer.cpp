@@ -71,7 +71,7 @@ int Computer::returnIndex(double num) const
     }
 }
 
-void Computer::setBeginIndex(int index)
+void Computer::addBeginIndex(int add)
 {
-    beginIndex = index;
+    beginIndex += add;
 }
