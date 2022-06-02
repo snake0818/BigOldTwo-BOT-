@@ -2,13 +2,10 @@
 #include "Table.h"
 #include "Check.h"
 #include "Card.h"
-
+double Player::player_arr[13]={0};
 Player::Player()
 {
-    for (int i = 0; i < 13; i++)
-    {
-        player_arr[i] = 0;
-    }
+    
 }
 
 void Player::setPlayerArr(double num, int index)
@@ -48,12 +45,6 @@ void Player::printPlayer_arr()
 {
     for (int i = 0; i < 13; i++)
     {
-        if(player_arr[i] == 3.1)
-        {
-            cout << "\e[07;33m" << player_arr[i] << "\e[0m" << " ";
-            continue;
-        }
-
         int Flower = Card().returnFlower(player_arr[i]);
         if(Flower == 1)
         {
@@ -82,8 +73,12 @@ double *Player::getPlayer_arr()
 
 void Player::playerOutCard()
 {
+    for(int i=0;i<13;i++){
+        cout<<player_arr[i]<<" ";
+    }
+    cout<<endl;
     isPass = false;
-    isCorrect = false;
+    isCorrect = true;
     string playerOutCard;
     getline(cin, playerOutCard);
     stringstream word(playerOutCard);
@@ -96,63 +91,50 @@ void Player::playerOutCard()
         word >> cardByCin[numberOfCards];
         numberOfCards++;
     }
-
-    for (int i = 0; i < numberOfCards; i++) {
-        if ((cardByCin[i] == "pass" or cardByCin[i] == "Pass" or cardByCin[i] == "PASS") and
-            (cardByCin[0] != "pass" or cardByCin[0] != "Pass" or cardByCin[0] != "PASS"))
-        {
-            isCorrect = false;
+    for(int i=0;i<numberOfCards;i++){
+        string text=cardByCin[i];
+        if(((cardByCin[i]=="pass" or cardByCin[i]=="Pass" or cardByCin[i]=="PASS") and 
+           (cardByCin[0]!="pass" or cardByCin[0]!="Pass" or cardByCin[0]!="PASS") and i!=0) or isCorrect==false){
+            isCorrect=false;
             break;
         }
-        if (cardByCin[0] == "pass" or cardByCin[0] == "Pass" or cardByCin[0] == "PASS")
-        {
-            isPass = true;
+        if((cardByCin[0]=="pass" or cardByCin[0]=="Pass" or cardByCin[0]=="PASS") and
+           (cardByCin[i]!="pass" or cardByCin[i]!="Pass" or cardByCin[i]!="PASS")){
+            isPass=true;
+        }
+        double num=0;
+        double numPo=0;
+        for(int k=0;k<text.size();k++){
+            if(text[k]=='.'){
+                if(int(text[k+1])>48 and int(text[k+1])<53){
+                    numPo=text[k+1]-48;
+                }
+                else{
+                    isCorrect=false;
+                }
+                break;
+            }
+            else{
+                num=(num*10)+(int(text[k])-48);
+            }
+        }
+        cout<<"isCorrect:"<<isCorrect<<endl;
+        num=num+(numPo*0.1);
+        if(isPass==true){
             break;
         }
-
-        stringstream ss(cardByCin[i]);
-        char sign;
-        ss >> sign >> card[i];
-
-        isCorrect = false;
-        switch (sign)
-        {
-            case 'd':
-            case 'D':
-                card[i] += 0.1;
-                isCorrect = true;
+        for(int i=0;i<13;i++){
+            if(num != player_arr[i]){
+                isCorrect=false;
+            }
+            else{
+                isCorrect=true;
                 break;
-            case 'c':
-            case 'C':
-                card[i] += 0.2;
-                isCorrect = true;
-                break;
-            case 'h':
-            case 'H':
-                card[i] += 0.3;
-                isCorrect = true;
-                break;
-            case 's':
-            case 'S':
-                card[i] += 0.4;
-                isCorrect = true;
-                break;
+            }
         }
-        if (!isCorrect) break;
-    }
-
-    if (isPass) cout << "---Pass---" << endl;
-    else
-    {
-        if (isCorrect and Game().compare(card, Table().getCardsType())
-            and Table().getCardsType() == Check().checkCardsType(card, numberOfCards))
-        {
-            Game().setField(card);
+        if(isCorrect ==true){
+            cout<<"SC"<<endl;
         }
-        else
-        {
-            cout << "Please recin" << endl;
-            Player().playerOutCard();
-        }
+        
     }
 }
