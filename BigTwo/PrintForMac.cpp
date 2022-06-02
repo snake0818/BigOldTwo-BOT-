@@ -65,7 +65,7 @@ void Print::rule()
     // 未完待續
 }
 
-void Print::printHandCard(const Table& t)
+void Print::printHandCard(Table& t)
 {
     cout << "\e[32m您目前的手牌有 : \e[0m";
     t.getPlayer().printPlayer_arr();
@@ -129,7 +129,7 @@ void Print::clear()
     system("clear");
 }
 
-void Print::OutCard(const Table& t)
+void Print::OutCard(Table& t)
 {
     cout << "\e[31m輪到你出牌囉！！！\e[0m\n";
     cout << "(按 Enter 繼續)" << endl;
