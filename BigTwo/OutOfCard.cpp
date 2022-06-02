@@ -226,3 +226,8 @@ void OutOfCard::computerOutHand(Computer& computer)
         cout << "Cpmputer pass" << endl;
     }
 }
+
+void OutOfCard::computer_2outHand(Computer& computer)
+{
+    // wait for programing.
+}

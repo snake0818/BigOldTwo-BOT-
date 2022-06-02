@@ -10,6 +10,7 @@ public:
     OutOfCard();
     void computerFirstOutHand(Computer&);
     void computerOutHand(Computer&);
+    void computer_2outHand(Computer&);
 
 private:
     int code;
