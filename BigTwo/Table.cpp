@@ -101,13 +101,14 @@ void Table::playerFirst()
     else
     {
         // player 出牌
+        cout << "player 出牌" << endl;
     }
     
-    // computer1 出牌
+    OutOfCard().computerOutHand(getComputer1());
 
-    // computer2 出牌
+    OutOfCard().computerOutHand(getComputer2());
 
-    // computer3 出牌
+    OutOfCard().computerOutHand(getComputer3());
 }
 
 void Table::computer1First()
@@ -119,14 +120,15 @@ void Table::computer1First()
     }
     else
     {
-        // computer1 出牌
+        OutOfCard().computerOutHand(getComputer1());
     }
 
-    // computer2 出牌
+    OutOfCard().computerOutHand(getComputer2());
 
-    // computer3 出牌
+    OutOfCard().computerOutHand(getComputer3());
 
     // player 出牌
+    cout << "player 出牌" << endl;
 }
 
 void Table::computer2First()
@@ -138,14 +140,15 @@ void Table::computer2First()
     }
     else
     {
-        // computer2 出牌
+        OutOfCard().computerOutHand(getComputer2());
     }
 
-    // computer3 出牌
+    OutOfCard().computerOutHand(getComputer3());
 
     // player 出牌
+    cout << "player 出牌" << endl;
 
-    // computer1 出牌
+    OutOfCard().computerOutHand(getComputer1());
 }
 
 void Table::computer3First()
@@ -157,14 +160,15 @@ void Table::computer3First()
     }
     else
     {
-        // computer3 出牌
+        OutOfCard().computerOutHand(getComputer3());
     }
 
     // player 出牌
+    cout << "player 出牌" << endl;
 
-    // computer1 出牌
+    OutOfCard().computerOutHand(getComputer1());
 
-    // computer2 出牌
+    OutOfCard().computerOutHand(getComputer2());
 }
 
 void Table::outCardSequence()
