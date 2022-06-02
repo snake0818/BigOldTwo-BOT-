@@ -83,7 +83,7 @@ void Game::setField(double card_1, double card_2,
 
 void Game::setField(double* card)
 {
-    int size = (sizeof(card) / sizeof(double));
+    int size = (sizeof(*card) / sizeof(card[0]));
     Tool().arrange(card, size);
     for (int index = 0; index < size; index++)
     {
