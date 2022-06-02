@@ -70,3 +70,8 @@ int Computer::returnIndex(double num) const
         }
     }
 }
+
+void Computer::setBeginIndex(int index)
+{
+    beginIndex = index;
+}
