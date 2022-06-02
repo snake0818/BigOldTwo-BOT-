@@ -151,45 +151,78 @@ void OutOfCard::computerOutHand(Computer& computer)
 {
     int type = Table().getCardsType();
 
-    /* 
-        場上單張時
-        可出單張、鐵支、同花順
-    */
+    bool isOutHand = false;
+    if(type == 691)
+    {
+        /* 
+            場上單張時
+            判斷有沒有單張可以出，有的話出單張
+        */
+        isOutHand = true;
+    }
+    else if(type == 692)
+    {
+        /*
+            場上呸時
+            判斷有沒有呸可以出，有的話出呸
+        */
+        isOutHand = true;
+    }
+    else if(type == 693)
+    {
+        /*
+            場上三條時
+            判斷有沒有三條可以出，有的話出三條
+        */
+        isOutHand = true;
+    }
+    else if(type == 694)
+    {
+        /*
+            場上順子時
+            判斷有沒有順子可以出，有的話出順子
+        */
+        isOutHand = true;
+    }
+    else if(type == 695)
+    {
+        /*
+            場上同花時
+            判斷有沒有同花可以出，有的話出同花
+        */
+        isOutHand = true;
+    }
+    else if(type == 696)
+    {
+        /*
+            場上葫蘆時
+            判斷有沒有葫蘆可以出，有的話出葫蘆
+        */
+        isOutHand = true;
+    }
 
-    /*
-        場上呸時
-        可出呸、鐵支、同花順
-    */
+    if(!isOutHand)
+    {
+        if(type == 697)
+        {
+            /*
+                場上鐵支時
+                判斷有沒有鐵支可以出，有的話出鐵支
+            */
+            isOutHand = true;
+        }
+        if(!isOutHand)
+        {
+            /*
+                場上同花順時
+                判斷有沒有同花順可以出，有的話出同花順
+            */
+        }
+    }
 
-    /*
-        場上三條時
-        可出三條、鐵支、同花順
-    */
-
-    /*
-        場上順子時
-        可出順子、鐵支、同花順
-    */
-
-    /*
-        場上同花時
-        可出同花、鐵支、同花順
-    */
-
-    /*
-        場上葫蘆時
-        可出葫蘆、鐵支、同花順
-    */
-
-    /*
-        場上鐵支時
-        可出鐵支、同花順
-    */
-
-    /*
-        場上同花順時
-        可出同花順
-    */
-
-    // 上述都沒有達成就 pass
+    if(!isOutHand)
+    {
+        // Computer pass
+        cout << "Cpmputer pass" << endl;
+    }
 }
