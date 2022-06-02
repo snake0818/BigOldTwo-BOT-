@@ -10,6 +10,7 @@
 class Table : public Game
 {
 public:
+    Table();
     void start();
     bool end();
     int whoFirst();

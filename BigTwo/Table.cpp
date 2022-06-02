@@ -4,6 +4,8 @@
 
 int Table::cardsType = 0;
 
+Table::Table() {}
+
 Player& Table::getPlayer()
 {
     return player;
