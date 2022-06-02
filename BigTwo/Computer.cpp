@@ -7,6 +7,7 @@ Computer::Computer()
     {
         computer_arr[i] = 0;
     }
+    beginIndex = 0;
 }
 
 void Computer::setComputerArr(double num, int index)

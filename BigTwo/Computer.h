@@ -20,6 +20,7 @@ public:
 private:
 	Game Gamer;
 	double computer_arr[13];
+	int beginIndex;
 };
 
 #endif
