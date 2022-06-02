@@ -18,8 +18,8 @@ public:
     Computer& getComputer2();
     Computer& getComputer3();
     bool getFirstTime() const;
-    void setCardsType(string);
-    string getCardsType();
+    void setCardsType(int);
+    int getCardsType() const;
 
     // Out of card sequence.
     void outCardSequence();
@@ -31,7 +31,7 @@ public:
 private:
     int sequence;
     Player player;
-    static string cardsType;
+    static int cardsType;
 
     Computer computer1, computer2, computer3;
     bool firstTime;

@@ -2,7 +2,7 @@
 #include "Tool.h"
 #include "OutOfCard.h"
 
-string Table::cardsType = "First";
+int Table::cardsType = 0;
 
 Player& Table::getPlayer()
 {
@@ -185,12 +185,12 @@ void Table::outCardSequence()
     }
 }
 
-void Table::setCardsType(string type)
+void Table::setCardsType(int type)
 {
     cardsType = type;
 }
 
-string Table::getCardsType()
+int Table::getCardsType() const
 {
     return cardsType;
 }
