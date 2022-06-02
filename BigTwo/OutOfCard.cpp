@@ -109,25 +109,14 @@ void OutOfCard::computerFirstOutHand(Computer& computer)
         }
         else
         {
-            // if(numOfThree == 2)
-            // {
-            //     int index = computer.returnIndex(3.1);
-                
-            //     for(int i = 0; i < 2; i++, index++)
-            //     {
-            //         Game().setField(computer.getIndexOfCard(index), i);
-            //         computer.setComputerArr(0, index);
-            //     }
-            //     Tool().arrange(computer.getComputer_arr(), 13);
+            for(int i = 0; i < 3; i++, index++)
+            {
+                Game().setField(computer.getIndexOfCard(index), i);
+                computer.setComputerArr(0, index);
+            }
+            Tool().arrange(computer.getComputer_arr(), 13);
 
-            // }
-            // else if(numOfThree == 1)
-            // {
-            //     int index = computer.returnIndex(3.1);
-            //     Game().setField(3.1, 0);
-            //     computer.setComputerArr(0, index);
-            //     Tool().arrange(computer.getComputer_arr(), 13);
-            // }
+            Table().setCardsType(693);
         }
     }
     else if(numOfThree == 2)
