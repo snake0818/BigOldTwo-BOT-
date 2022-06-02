@@ -9,6 +9,7 @@ class OutOfCard
 public:
     OutOfCard();
     void computerFirstOutHand(Computer&);
+    void computerOutHand(Computer&);
 
 private:
     int code;

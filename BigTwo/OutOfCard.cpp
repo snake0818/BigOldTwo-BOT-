@@ -146,3 +146,50 @@ void OutOfCard::computerFirstOutHand(Computer& computer)
         throw runtime_error("numOfThree out of range.");
     }
 }
+
+void OutOfCard::computerOutHand(Computer& computer)
+{
+    int type = Table().getCardsType();
+
+    /* 
+        場上單張時
+        可出單張、鐵支、同花順
+    */
+
+    /*
+        場上呸時
+        可出呸、鐵支、同花順
+    */
+
+    /*
+        場上三條時
+        可出三條、鐵支、同花順
+    */
+
+    /*
+        場上順子時
+        可出順子、鐵支、同花順
+    */
+
+    /*
+        場上同花時
+        可出同花、鐵支、同花順
+    */
+
+    /*
+        場上葫蘆時
+        可出葫蘆、鐵支、同花順
+    */
+
+    /*
+        場上鐵支時
+        可出鐵支、同花順
+    */
+
+    /*
+        場上同花順時
+        可出同花順
+    */
+
+    // 上述都沒有達成就 pass
+}
