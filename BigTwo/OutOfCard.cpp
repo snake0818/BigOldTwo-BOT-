@@ -8,7 +8,6 @@ OutOfCard::OutOfCard() {}
 void OutOfCard::computerFirstOutHand(Computer& computer)
 {
     double *computerArr = computer.getComputer_arr();
-    Tool().copyDouble_arr(computerArr, handCard, 13);
     
     /* 
         電腦要是有方塊 3 出牌想法很簡單
@@ -19,7 +18,7 @@ void OutOfCard::computerFirstOutHand(Computer& computer)
     int numOfThree = 0;
     for(int i = 0; i < 13; i++)
     {
-        int card = Card().returnNumber(handCard[i]);
+        int card = computer.getIndexOfCard(i);
         if(card == 3)
         {
             numOfThree++;
@@ -211,7 +210,7 @@ void OutOfCard::computerOutHand(Computer& computer)
             */
             isOutHand = true;
         }
-        if(!isOutHand)
+        if(!isOutHand && type == 698)
         {
             /*
                 場上同花順時
