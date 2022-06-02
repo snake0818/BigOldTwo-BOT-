@@ -68,6 +68,7 @@ void OutOfCard::computerFirstOutHand(Computer& computer)
             computer.setComputerArr(0, singleIndex);
         }
         Tool().arrange(computer.getComputer_arr(), 13);
+        computer.addBeginIndex(5);
 
         Table().setCardsType(697);
     }
@@ -103,6 +104,7 @@ void OutOfCard::computerFirstOutHand(Computer& computer)
                 computer.setComputerArr(0, pairsIndex);
             }
             Tool().arrange(computer.getComputer_arr(), 13);
+            computer.addBeginIndex(5);
 
             Table().setCardsType(696);
         }
@@ -114,6 +116,7 @@ void OutOfCard::computerFirstOutHand(Computer& computer)
                 computer.setComputerArr(0, index);
             }
             Tool().arrange(computer.getComputer_arr(), 13);
+            computer.addBeginIndex(3);
 
             Table().setCardsType(693);
         }
@@ -128,6 +131,7 @@ void OutOfCard::computerFirstOutHand(Computer& computer)
             computer.setComputerArr(0, index);
         }
         Tool().arrange(computer.getComputer_arr(), 13);
+        computer.addBeginIndex(2);
 
         Table().setCardsType(692);
     }
@@ -137,6 +141,7 @@ void OutOfCard::computerFirstOutHand(Computer& computer)
         Game().setField(3.1, 0);
         computer.setComputerArr(0, index);
         Tool().arrange(computer.getComputer_arr(), 13);
+        computer.addBeginIndex(1);
 
         Table().setCardsType(691);
     }
