@@ -2,6 +2,7 @@
 #include "Card.h"
 #include "Tool.h"
 #include "Table.h"
+#include "Compare.h"
 
 OutOfCard::OutOfCard() {}
 
@@ -162,6 +163,31 @@ void OutOfCard::computerOutHand(Computer& computer)
             場上單張時
             判斷有沒有單張可以出，有的話出單張
         */
+        if(computer.getHandCardsSize() > 4)
+        {
+
+        }
+        else if(computer.getHandCardsSize() > 3)
+        {
+
+        }
+        else if(computer.getHandCardsSize() > 2)
+        {
+
+        }
+        else if(computer.getHandCardsSize() > 1)
+        {
+            
+        }
+        else
+        {
+            double lastOne = computer.getIndexOfCard(12);
+            if(Compare().singleComapre(lastOne))
+            {
+                Game().setField(lastOne, 0);
+                computer.setComputerArr(0, 12);
+            }
+        }
         isOutHand = true;
     }
     else if(type == 692)
