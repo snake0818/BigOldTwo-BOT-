@@ -79,7 +79,7 @@ bool Compare::straightCompare(double* Straight)
     for (int i = 0; i < 5; i++)
     {
         tableStraight[i] = Game().getCardsOnField()[i];
-        if (Straight[i] != 0) straight[i] = Straight[i];
+        straight[i] = Straight[i];
     }
 
     for (int i = 0; i < 5; i++)
@@ -108,7 +108,7 @@ bool Compare::flushCompare(double* Flush)
     for (int i = 0; i < 5; i++)
     {
         tableFlush[i] = Game().getCardsOnField()[i];
-        if (Flush[i] != 0) flush[i] = Flush[i];
+        flush[i] = Flush[i];
     }
 
     for (int i = 0; i < 5; i++)
@@ -138,7 +138,7 @@ bool Compare::fullHouseCompare(double* FullHouse)
     for (int i = 0; i < 5; i++)
     {
         tableFullHouse[i] = Game().getCardsOnField()[i];
-        if (FullHouse[i] != 0) fullHouse[i] = FullHouse[i];
+        fullHouse[i] = FullHouse[i];
     }
 
     for (int i = 0; i < 5; i++)
@@ -178,7 +178,7 @@ bool Compare::tikiCompare(double* Tiki)
     for (int i = 0; i < 5; i++)
     {
         tableTiki[i] = Game().getCardsOnField()[i];
-        if (Tiki[i] != 0) tiki[i] = Tiki[i];
+        tiki[i] = Tiki[i];
     }
 
     for (int i = 0; i < 5; i++)
@@ -211,13 +211,13 @@ bool Compare::tikiCompare(double* Tiki)
 
 bool Compare::straightFlushCompare(double* StraightFlush)
 {
-    double* straightFlush = { 0 };
-    double* tableStraight = { 0 };
+    double straightFlush[5] = {0};
+    double tableStraight[5] = {0};
 
     for (int i = 0; i < 5; i++)
     {
         tableStraight[i] = Game().getCardsOnField()[i];
-        if (StraightFlush[i] != 0) straightFlush[i] = StraightFlush[i];
+        straightFlush[i] = StraightFlush[i];
     }
 
     for (int i = 0; i < 5; i++)
