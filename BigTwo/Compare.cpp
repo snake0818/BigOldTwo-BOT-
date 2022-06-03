@@ -13,8 +13,9 @@ bool Compare::singleCompare(double num)
     return (num > tableSingle);
 }
 
-bool Compare::pairsCompare(double* pairs)
+bool Compare::pairsCompare(double* Pairs)
 {
+    double* pairs = Pairs;
     double* tablePairs = Game().getCardsOnField();
 
     for (int i = 0; i < 2; i++)
@@ -31,8 +32,9 @@ bool Compare::pairsCompare(double* pairs)
     return false;
 }
 
-bool Compare::tripleCompare(double* triple)
+bool Compare::tripleCompare(double* Triple)
 {
+    double* triple = Triple;
     double* tableTriple = Game().getCardsOnField();
 
     for (int i = 0; i < 3; i++)
@@ -49,8 +51,9 @@ bool Compare::tripleCompare(double* triple)
     return false;
 }
 
-bool Compare::straightCompare(double* straight)
+bool Compare::straightCompare(double* Straight)
 {
+    double* straight = Straight;
     double* tableStraight = Game().getCardsOnField();
 
     for (int i = 0; i < 5; i++)
@@ -67,8 +70,9 @@ bool Compare::straightCompare(double* straight)
     return false;
 }
 
-bool Compare::flushCompare(double* flush)
+bool Compare::flushCompare(double* Flush)
 {
+    double* flush = Flush;
     double* tableFlush = Game().getCardsOnField();
 
     for (int i = 0; i < 5; i++)
@@ -85,8 +89,9 @@ bool Compare::flushCompare(double* flush)
     return false;
 }
 
-bool Compare::fullHouseCompare(double* fullHouse)
+bool Compare::fullHouseCompare(double* FullHouse)
 {
+    double* fullHouse = FullHouse;
     double* tableFullHouse = Game().getCardsOnField();
     double tableFullHouseValue = 0, fullHouseValue = 0;
 
@@ -114,8 +119,9 @@ bool Compare::fullHouseCompare(double* fullHouse)
     return false;
 }
 
-bool Compare::tikiCompare(double* tiki)
+bool Compare::tikiCompare(double* Tiki)
 {
+    double* tiki = Tiki;
     double* tableTiki = Game().getCardsOnField();
     double tableTikiValue = 0, tikiValue = 0;
 
@@ -143,8 +149,9 @@ bool Compare::tikiCompare(double* tiki)
     return false;
 }
 
-bool Compare::straightFlushCompare(double* straightFlush)
+bool Compare::straightFlushCompare(double* StraightFlush)
 {
+    double* straightFlush = StraightFlush;
     double* tableStraight = Game().getCardsOnField();
 
     for (int i = 0; i < 5; i++)
