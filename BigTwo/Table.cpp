@@ -1,6 +1,7 @@
 #include "Table.h"
 #include "Tool.h"
 #include "OutOfCard.h"
+#include "PrintForMac.h"
 
 int Table::cardsType = 0;
 
@@ -97,18 +98,23 @@ void Table::playerFirst()
         // 第一次出一定要有方塊 3
         cout << "player 出牌" << endl;
         firstTime = false;
+        Print().printTable();
     }
     else
     {
         // player 出牌
         cout << "player 出牌" << endl;
+        Print().printTable();
     }
     
     OutOfCard().computerOutHand(getComputer1());
+    Print().printTable();
 
     OutOfCard().computerOutHand(getComputer2());
+    Print().printTable();
 
     OutOfCard().computerOutHand(getComputer3());
+    Print().printTable();
 }
 
 void Table::computer1First()
@@ -117,15 +123,19 @@ void Table::computer1First()
     {
         OutOfCard().computerFirstOutHand(getComputer1());
         firstTime = false;
+        Print().printTable();
     }
     else
     {
         OutOfCard().computerOutHand(getComputer1());
+        Print().printTable();
     }
 
     OutOfCard().computerOutHand(getComputer2());
+    Print().printTable();
 
     OutOfCard().computerOutHand(getComputer3());
+    Print().printTable();
 
     // player 出牌
     cout << "player 出牌" << endl;
@@ -137,18 +147,23 @@ void Table::computer2First()
     {
         OutOfCard().computerFirstOutHand(getComputer2());
         firstTime = false;
+        Print().printTable();
     }
     else
     {
         OutOfCard().computerOutHand(getComputer2());
+        Print().printTable();
     }
 
     OutOfCard().computerOutHand(getComputer3());
+    Print().printTable();
 
     // player 出牌
     cout << "player 出牌" << endl;
+    Print().printTable();
 
     OutOfCard().computerOutHand(getComputer1());
+    Print().printTable();
 }
 
 void Table::computer3First()
@@ -157,18 +172,23 @@ void Table::computer3First()
     {
         OutOfCard().computerFirstOutHand(getComputer3());
         firstTime = false;
+        Print().printTable();
     }
     else
     {
         OutOfCard().computerOutHand(getComputer3());
+        Print().printTable();
     }
 
     // player 出牌
     cout << "player 出牌" << endl;
+    Print().printTable();
 
     OutOfCard().computerOutHand(getComputer1());
+    Print().printTable();
 
     OutOfCard().computerOutHand(getComputer2());
+    Print().printTable();
 }
 
 void Table::outCardSequence()
