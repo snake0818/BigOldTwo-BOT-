@@ -92,9 +92,49 @@ bool Compare::straightCompare(double* Straight)
             tableStraight[i] += 13;
     }
 
+    {
+        if (Card().returnNumber(straight[0]) == 14 &&
+            Card().returnNumber(straight[1]) == 15 &&
+            Card().returnNumber(straight[2]) == 3 &&
+            Card().returnNumber(straight[3]) == 4 &&
+            Card().returnNumber(straight[4]) == 5)
+        {
+            straight[0] -= 13;
+            straight[1] -= 13;
+        }
+        if (Card().returnNumber(tableStraight[0]) == 3 &&
+            Card().returnNumber(tableStraight[1]) == 4 &&
+            Card().returnNumber(tableStraight[2]) == 5 &&
+            Card().returnNumber(tableStraight[3]) == 14 &&
+            Card().returnNumber(tableStraight[4]) == 15)
+        {
+            straight[0] -= 13;
+            straight[1] -= 13;
+        }
+
+        if (Card().returnNumber(straight[0]) == 15 &&
+            Card().returnNumber(straight[1]) == 3 &&
+            Card().returnNumber(straight[2]) == 4 &&
+            Card().returnNumber(straight[3]) == 5 &&
+            Card().returnNumber(straight[4]) == 6)
+        {
+            straight[0] -= 13;
+            straight[1] -= 13;
+        }
+        if (Card().returnNumber(tableStraight[0]) == 15 &&
+            Card().returnNumber(tableStraight[1]) == 3 &&
+            Card().returnNumber(tableStraight[2]) == 4 &&
+            Card().returnNumber(tableStraight[3]) == 5 &&
+            Card().returnNumber(tableStraight[4]) == 6)
+        {
+            straight[0] -= 13;
+            straight[1] -= 13;
+        }
+    }
+
     Tool().postZero(straight, 5);
     Tool().postZero(tableStraight, 5);
-
+     
     if (straight[0] > tableStraight[0]) return true;
 
     return false;
