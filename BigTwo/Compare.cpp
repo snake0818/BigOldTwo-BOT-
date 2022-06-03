@@ -82,6 +82,9 @@ bool Compare::straightCompare(double* Straight)
         straight[i] = Straight[i];
     }
 
+    Tool().postZero(straight, 5);
+    Tool().postZero(tableStraight, 5);
+
     for (int i = 0; i < 5; i++)
     {
         if (Card().returnNumber(straight[i]) == 1 or
@@ -102,11 +105,11 @@ bool Compare::straightCompare(double* Straight)
             straight[0] -= 13;
             straight[1] -= 13;
         }
-        if (Card().returnNumber(tableStraight[0]) == 3 &&
-            Card().returnNumber(tableStraight[1]) == 4 &&
-            Card().returnNumber(tableStraight[2]) == 5 &&
-            Card().returnNumber(tableStraight[3]) == 14 &&
-            Card().returnNumber(tableStraight[4]) == 15)
+        if (Card().returnNumber(tableStraight[0]) == 14 &&
+            Card().returnNumber(tableStraight[1]) == 15 &&
+            Card().returnNumber(tableStraight[2]) == 3 &&
+            Card().returnNumber(tableStraight[3]) == 4 &&
+            Card().returnNumber(tableStraight[4]) == 5)
         {
             straight[0] -= 13;
             straight[1] -= 13;
