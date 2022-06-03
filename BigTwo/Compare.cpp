@@ -26,10 +26,10 @@ bool Compare::pairsCompare(double* Pairs)
 
     for (int i = 0; i < 5; i++)
     {
-        if (Card().returnNumber(pairs[i]) == 1 and
+        if (Card().returnNumber(pairs[i]) == 1 or
             Card().returnNumber(pairs[i]) == 2)
             pairs[i] += 13;
-        if (Card().returnNumber(tablePairs[i]) == 1 and
+        if (Card().returnNumber(tablePairs[i]) == 1 or
             Card().returnNumber(tablePairs[i]) == 2)
             tablePairs[i] += 13;
     }
@@ -49,16 +49,16 @@ bool Compare::tripleCompare(double* Triple)
 
     for (int i = 0; i < 5; i++)
     {
-        tableTriple[i] = Game().get1CardOnField(i);
+        tableTriple[i] = Game().getCardsOnField()[i];
         if (Triple[i] != 0) triple[i] = Triple[i];
     }
 
     for (int i = 0; i < 5; i++)
     {
-        if (Card().returnNumber(triple[i]) == 1 and 
+        if (Card().returnNumber(triple[i]) == 1 or
             Card().returnNumber(triple[i]) == 2)
             triple[i] += 13;
-        if (Card().returnNumber(tableTriple[i]) == 1 and
+        if (Card().returnNumber(tableTriple[i]) == 1 or
             Card().returnNumber(tableTriple[i]) == 2) 
             tableTriple[i] += 13;
     }
@@ -84,10 +84,10 @@ bool Compare::straightCompare(double* Straight)
 
     for (int i = 0; i < 5; i++)
     {
-        if (Card().returnNumber(straight[i]) == 1 and
+        if (Card().returnNumber(straight[i]) == 1 or
             Card().returnNumber(straight[i]) == 2)
             straight[i] += 13;
-        if (Card().returnNumber(tableStraight[i]) == 1 and
+        if (Card().returnNumber(tableStraight[i]) == 1 or
             Card().returnNumber(tableStraight[i]) == 2)
             tableStraight[i] += 13;
     }
@@ -113,10 +113,10 @@ bool Compare::flushCompare(double* Flush)
 
     for (int i = 0; i < 5; i++)
     {
-        if (Card().returnNumber(flush[i]) == 1 and
+        if (Card().returnNumber(flush[i]) == 1 or
             Card().returnNumber(flush[i]) == 2)
             flush[i] += 13;
-        if (Card().returnNumber(tableFlush[i]) == 1 and
+        if (Card().returnNumber(tableFlush[i]) == 1 or
             Card().returnNumber(tableFlush[i]) == 2)
             tableFlush[i] += 13;
     }
@@ -143,10 +143,10 @@ bool Compare::fullHouseCompare(double* FullHouse)
 
     for (int i = 0; i < 5; i++)
     {
-        if (Card().returnNumber(fullHouse[i]) == 1 and
+        if (Card().returnNumber(fullHouse[i]) == 1 or
             Card().returnNumber(fullHouse[i]) == 2)
             fullHouse[i] += 13;
-        if (Card().returnNumber(tableFullHouse[i]) == 1 and
+        if (Card().returnNumber(tableFullHouse[i]) == 1 or
             Card().returnNumber(tableFullHouse[i]) == 2)
             tableFullHouse[i] += 13;
     }
@@ -183,10 +183,10 @@ bool Compare::tikiCompare(double* Tiki)
 
     for (int i = 0; i < 5; i++)
     {
-        if (Card().returnNumber(tiki[i]) == 1 and
+        if (Card().returnNumber(tiki[i]) == 1 or
             Card().returnNumber(tiki[i]) == 2)
             tiki[i] += 13;
-        if (Card().returnNumber(tableTiki[i]) == 1 and
+        if (Card().returnNumber(tableTiki[i]) == 1 or
             Card().returnNumber(tableTiki[i]) == 2)
             tableTiki[i] += 13;
     }
@@ -222,18 +222,16 @@ bool Compare::straightFlushCompare(double* StraightFlush)
 
     for (int i = 0; i < 5; i++)
     {
-        if (Card().returnNumber(straightFlush[i]) == 1 and
-            Card().returnNumber(straightFlush[i]) == 2)
-            straightFlush[i] += 13;
-        if (Card().returnNumber(tableStraight[i]) == 1 and
-            Card().returnNumber(tableStraight[i]) == 2)
-            tableStraight[i] += 13;
+        if (Card().returnNumber(straightFlush[i]) == 1 or
+            Card().returnNumber(straightFlush[i]) == 2) straightFlush[i] += 13;
+        if (Card().returnNumber(tableStraight[i]) == 1 or
+            Card().returnNumber(tableStraight[i]) == 2) tableStraight[i] += 13;
     }
 
     Tool().postZero(straightFlush, 5);
     Tool().postZero(tableStraight, 5);
 
-    if (straightFlush[0] > tableStraight[0]) return true;
+    if (straightFlush[4] > tableStraight[4]) return true;
 
     return false;
 }
