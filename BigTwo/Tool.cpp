@@ -17,6 +17,11 @@ void Tool::arrange(double *card, int size)
             }
         }
     }
+}
+
+void Tool::postZero(double* card, int size)
+{
+    arrange(card, size);
     while (card[0] == 0)
     {
         for (int i = 1; i < size; i++)
