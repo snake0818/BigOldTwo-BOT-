@@ -177,18 +177,28 @@ void OutOfCard::computerOutHand(Computer& computer)
         }
         else if(computer.getHandCardsSize() > 1)
         {
-            
+            for(int i = computer.getBeginIndex(); i < 13; i++)
+            {
+                // double card = computer.getIndexOfCard(i);
+                // if(Compare().singleCompare(card))
+                // {
+                //     Game().setField(card, 0);
+                //     computer.setComputerArr(0, i);
+                //     isOutHand = true;
+                //     break;
+                // }
+            }
         }
         else
         {
             double lastOne = computer.getIndexOfCard(12);
-            if(Compare().singleComapre(lastOne))
+            if(Compare().singleCompare(lastOne))
             {
                 Game().setField(lastOne, 0);
                 computer.setComputerArr(0, 12);
+                isOutHand = true;
             }
         }
-        isOutHand = true;
     }
     else if(type == 692)
     {
