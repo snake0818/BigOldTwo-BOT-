@@ -173,7 +173,55 @@ void OutOfCard::computerOutHand(Computer& computer)
         }
         else if(computer.getHandCardsSize() > 2)
         {
+            const int INDEX = 10;
+            double num1 = Card().returnNumber(computer.getIndexOfCard(INDEX));
+            int sameOfNum = 1;
+            for(int i = INDEX+1; i < 13; i++)
+            {
+                double num2 = Card().returnNumber(computer.getIndexOfCard(i));
+                if(num1 == num2)
+                {
+                    sameOfNum++;
+                }
+            }
 
+            if(sameOfNum == 1)
+            {
+                double card = computer.getIndexOfCard(10);
+                if(Compare().singleCompare(card))
+                {
+                    Game().setField(card, 0);
+                    computer.setComputerArr(0, 10);
+                    Tool().arrange(computer.getComputer_arr(), 13);
+                    isOutHand = true;
+                }
+            }
+            else if(sameOfNum == 2)
+            {
+                double lastOne = computer.getIndexOfCard(12);
+                if(Compare().singleCompare(lastOne))
+                {
+                    Game().setField(lastOne, 0);
+                    computer.setComputerArr(0, 12);
+                    Tool().arrange(computer.getComputer_arr(), 13);
+                    isOutHand = true;
+                }
+            }
+            else if(sameOfNum == 3)
+            {
+                for(int i = INDEX; i < 13; i++)
+                {
+                    double card = computer.getIndexOfCard(i);
+                    if(Compare().singleCompare(card))
+                    {
+                        Game().setField(card, 0);
+                        computer.setComputerArr(0, i);
+                        Tool().arrange(computer.getComputer_arr(), 13);
+                        isOutHand = true;
+                        break;
+                    }
+                }
+            }
         }
         else if(computer.getHandCardsSize() > 1)
         {
