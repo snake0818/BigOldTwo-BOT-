@@ -1,12 +1,14 @@
 #include "Check.h"
 #include "Card.h"
+#include "Game.h"
+#include "Tool.h"
 
 bool Check::isNumberInRpt(const double card) const
 {
-    Game *bufferGame = new Game;
-    for(int index = 0; index < 52; index++)
+    Game* bufferGame = new Game;
+    for (int index = 0; index < 52; index++)
     {
-        if(card == bufferGame->get1RptCard(index))
+        if (card == bufferGame->get1RptCard(index))
         {
             delete bufferGame;
             return true;
@@ -33,9 +35,9 @@ bool Check::checkInRpt(double* cards)
 bool Check::checkSame(double* cards)
 {
     bool isSame = true;
-    for(int i = 0; i < 2; i++)
+    for (int i = 0; i < 2; i++)
     {
-        for(int j = i+1; j < 3; j++)
+        for (int j = i + 1; j < 3; j++)
         {
             if (cards[i] == cards[j])
             {
@@ -69,7 +71,7 @@ bool Check::checkTriples(double* cards)
 bool Check::checkFlush(double* cards)
 {
     int isFlush = 0;
-    for(int i = 1; i < 5; i++)
+    for (int i = 1; i < 5; i++)
     {
         if (Card().returnFlower(cards[0]) == Card().returnFlower(cards[i]))
         {
@@ -124,17 +126,17 @@ bool Check::checkStraightFlush(double* cards)
 
 bool Check::checkSpecialStraight(double* cards)
 {
-    if (Card().returnNumber(cards[0]) ==  1 &&
-        Card().returnNumber(cards[1]) == 10 && 
-        Card().returnNumber(cards[2]) == 11 && 
-        Card().returnNumber(cards[3]) == 12 && 
+    if (Card().returnNumber(cards[0]) == 1 &&
+        Card().returnNumber(cards[1]) == 10 &&
+        Card().returnNumber(cards[2]) == 11 &&
+        Card().returnNumber(cards[3]) == 12 &&
         Card().returnNumber(cards[4]) == 13)
     {
         return true;
     }
     return false;
 }
-    
+
 bool Check::checkFullHouse(double* cards)
 {
     Tool().arrange(cards, 5);
@@ -157,7 +159,7 @@ bool Check::checkFullHouse(double* cards)
     return false;
 }
 
-int Check::checkCardsType(double* cards, double* card) 
+int Check::checkCardsType(double* cards, double* card)
 {
     bool isFirst = false;
     bool Correct = false;
@@ -169,10 +171,10 @@ int Check::checkCardsType(double* cards, double* card)
         {
             for (int i = 0; i < 5; i++)
             {
-                if(card[i]==3.1) Correct = true;
+                if (card[i] == 3.1) Correct = true;
             }
         }
-        if(Correct) return 696;
+        if (Correct) return 696;
     }
     if (checkFlush(cards, card, 3.1))
     {
@@ -196,7 +198,7 @@ int Check::checkCardsType(double* cards, double* card)
         }
         if (Correct) return 694;
     }
-    if (checkTriples(cards, card, 3.1)) 
+    if (checkTriples(cards, card, 3.1))
     {
         if (isFirst)
         {
@@ -231,7 +233,7 @@ int Check::checkCardsType(double* cards, double* card)
         }
         if (Correct) return 697;
     }
-    if (checkStraightFlush(cards, card, 3.1)) 
+    if (checkStraightFlush(cards, card, 3.1))
     {
         if (isFirst)
         {
@@ -293,7 +295,7 @@ bool Check::checkPairs(double* cards, double* card, double value)
         break;
     }
 
-    for (int i = index; i < 12; i++) 
+    for (int i = index; i < 12; i++)
     {
         for (int j = i + 1; j < 13; j++)
         {
@@ -323,7 +325,7 @@ bool Check::checkTriples(double* cards, double* card, double value)
         break;
     }
 
-    for (int i = index; i < 11; i++) 
+    for (int i = index; i < 11; i++)
     {
         for (int j = i + 1; j < 12; j++)
         {
@@ -505,7 +507,7 @@ bool Check::checkTiki(double* cards, double* card, double value)
 bool Check::checkStraightFlush(double* cards, double* card, double value)
 {
     bool conform = false;
-    
+
     int index = 0;
     for (int i = 0; i < 13; i++)
     {
