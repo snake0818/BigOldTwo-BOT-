@@ -203,12 +203,12 @@ bool Compare::fullHouseCompare(double* FullHouse)
     Tool().postZero(fullHouse, 5);
     Tool().postZero(tableFullHouse, 5);
 
-    if (Card().returnNumber(fullHouse[0]) == Card().returnNumber(fullHouse[1]))
+    if (Card().returnNumber(fullHouse[0]) == Card().returnNumber(fullHouse[2]))
         fullHouseValue = Card().returnNumber(fullHouse[0]);
     else
         fullHouseValue = Card().returnNumber(fullHouse[2]);
 
-    if (Card().returnNumber(tableFullHouse[0]) == Card().returnNumber(tableFullHouse[1]))
+    if (Card().returnNumber(tableFullHouse[0]) == Card().returnNumber(tableFullHouse[2]))
         tableFullHouseValue = Card().returnNumber(tableFullHouse[0]);
     else
         tableFullHouseValue = Card().returnNumber(tableFullHouse[2]);
