@@ -10,6 +10,12 @@ bool Compare::singleCompare(double num)
     {
         num += 13;
     }
+
+    if(tableSingle < 3)
+    {
+        return (num > tableSingle + 13);
+    }
+    
     return (num > tableSingle);
 }
 
