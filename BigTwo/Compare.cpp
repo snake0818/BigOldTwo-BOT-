@@ -23,8 +23,8 @@ bool Compare::pairsCompare(double* pairs)
         if (Card().returnNumber(tablePairs[i]) < 3) tablePairs[i] += 13;
     }
 
-    Tool().arrange(pairs, 2);
-    Tool().arrange(tablePairs, 2);
+    Tool().postZero(pairs, 2);
+    Tool().postZero(tablePairs, 2);
 
     if (pairs[0] > tablePairs[0]) return true;
 
@@ -41,8 +41,8 @@ bool Compare::tripleCompare(double* triple)
         if (Card().returnNumber(tableTriple[i]) < 3) tableTriple[i] += 13;
     }
 
-    Tool().arrange(triple, 3);
-    Tool().arrange(tableTriple, 3);
+    Tool().postZero(triple, 3);
+    Tool().postZero(tableTriple, 3);
 
     if (triple[0] > tableTriple[0]) return true;
 
@@ -59,8 +59,8 @@ bool Compare::straightCompare(double* straight)
         if (Card().returnNumber(tableStraight[i]) < 3) tableStraight[i] += 13;
     }
 
-    Tool().arrange(straight, 5);
-    Tool().arrange(tableStraight, 5);
+    Tool().postZero(straight, 5);
+    Tool().postZero(tableStraight, 5);
 
     if (straight[0] > tableStraight[0]) return true;
 
@@ -77,8 +77,8 @@ bool Compare::flushCompare(double* flush)
         if (Card().returnNumber(tableFlush[i]) < 3) tableFlush[i] += 13;
     }
 
-    Tool().arrange(flush, 5);
-    Tool().arrange(tableFlush, 5);
+    Tool().postZero(flush, 5);
+    Tool().postZero(tableFlush, 5);
 
     if (flush[4] > tableFlush[4]) return true;
 
@@ -96,8 +96,8 @@ bool Compare::fullHouseCompare(double* fullHouse)
         if (Card().returnNumber(tableFullHouse[i]) < 3) tableFullHouse[i] += 13;
     }
 
-    Tool().arrange(fullHouse, 5);
-    Tool().arrange(tableFullHouse, 5);
+    Tool().postZero(fullHouse, 5);
+    Tool().postZero(tableFullHouse, 5);
 
     if (Card().returnNumber(fullHouse[0]) == Card().returnNumber(fullHouse[1]))
         fullHouseValue = Card().returnNumber(fullHouse[0]);
@@ -125,8 +125,8 @@ bool Compare::tikiCompare(double* tiki)
         if (Card().returnNumber(tableTiki[i]) < 3) tableTiki[i] += 13;
     }
 
-    Tool().arrange(tiki, 5);
-    Tool().arrange(tableTiki, 5);
+    Tool().postZero(tiki, 5);
+    Tool().postZero(tableTiki, 5);
 
     if (Card().returnNumber(tiki[0]) == Card().returnNumber(tiki[1]))
         tikiValue = Card().returnNumber(tiki[4]);
@@ -153,8 +153,8 @@ bool Compare::straightFlushCompare(double* straightFlush)
         if (Card().returnNumber(tableStraight[i]) < 3) tableStraight[i] += 13;
     }
 
-    Tool().arrange(straightFlush, 5);
-    Tool().arrange(tableStraight, 5);
+    Tool().postZero(straightFlush, 5);
+    Tool().postZero(tableStraight, 5);
 
     if (straightFlush[0] > tableStraight[0]) return true;
 
