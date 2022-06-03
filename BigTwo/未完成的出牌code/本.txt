@@ -46,6 +46,7 @@ void Computer::computerOutCard(){
             break;
         case 693:
             isCorrect = Check().checkTriples(cardsByComputer, card, minValue);
+            break;
         case 694:
             isCorrect = Check().checkStraight(cardsByComputer, card, minValue);
             break;
