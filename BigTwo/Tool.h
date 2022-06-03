@@ -12,6 +12,7 @@ public:
     Tool();
     void arrange(double*, int);
     void copyDouble_arr(double [], double [], int);
+    void Print(double*, int);
 };
 
 #endif
