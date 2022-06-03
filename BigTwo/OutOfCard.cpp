@@ -157,60 +157,127 @@ void OutOfCard::computerOutHand(Computer &computer)
     int type = Table().getCardsType();
 
     bool isOutHand = false;
-    if (type == 691)
+    if(type == 691)
     {
-        /*
+        /* 
             場上單張時
             判斷有沒有單張可以出，有的話出單張
         */
-        if (computer.getHandCardsSize() > 4)
+        if(computer.getHandCardsSize() > 4)
         {
+
         }
-        else if (computer.getHandCardsSize() > 3)
+        else if(computer.getHandCardsSize() > 3)
         {
-        }
-        else if (computer.getHandCardsSize() > 2)
-        {
-            const int INDEX = 10;
+            const int INDEX = 9;
             double num1 = Card().returnNumber(computer.getIndexOfCard(INDEX));
             int sameOfNum = 1;
-            for (int i = INDEX + 1; i < 13; i++)
+            for(int i = INDEX+1; i < 13; i++)
             {
                 double num2 = Card().returnNumber(computer.getIndexOfCard(i));
-                if (num1 == num2)
+                if(num1 == num2)
                 {
                     sameOfNum++;
                 }
             }
 
-            if (sameOfNum == 1)
+            if(sameOfNum == 1)
             {
-                double card = computer.getIndexOfCard(10);
-                if (Compare().singleCompare(card))
+                double card = computer.getIndexOfCard(INDEX);
+                if(Compare().singleCompare(card))
                 {
                     Game().setField(card, 0);
-                    computer.setComputerArr(0, 10);
+                    computer.setComputerArr(0, INDEX);
                     Tool().arrange(computer.getComputer_arr(), 13);
                     isOutHand = true;
                 }
-            }
-            else if (sameOfNum == 2)
-            {
-                double lastOne = computer.getIndexOfCard(12);
-                if (Compare().singleCompare(lastOne))
+                
+                if(!isOutHand)
                 {
-                    Game().setField(lastOne, 0);
-                    computer.setComputerArr(0, 12);
-                    Tool().arrange(computer.getComputer_arr(), 13);
-                    isOutHand = true;
+                    const int INDEX = 10;
+                    double num1 = Card().returnNumber(computer.getIndexOfCard(INDEX));
+                    int sameOfNum = 1;
+                    for(int i = INDEX+1; i < 13; i++)
+                    {
+                        double num2 = Card().returnNumber(computer.getIndexOfCard(i));
+                        if(num1 == num2)
+                        {
+                            sameOfNum++;
+                        }
+                    }
+
+                    if(sameOfNum == 1)
+                    {
+                        double card = computer.getIndexOfCard(10);
+                        if(Compare().singleCompare(card))
+                        {
+                            Game().setField(card, 0);
+                            computer.setComputerArr(0, 10);
+                            Tool().arrange(computer.getComputer_arr(), 13);
+                            isOutHand = true;
+                        }
+                    }
+                    else if(sameOfNum == 2)
+                    {
+                        double lastOne = computer.getIndexOfCard(12);
+                        if(Compare().singleCompare(lastOne))
+                        {
+                            Game().setField(lastOne, 0);
+                            computer.setComputerArr(0, 12);
+                            Tool().arrange(computer.getComputer_arr(), 13);
+                            isOutHand = true;
+                        }
+                    }
+                    else if(sameOfNum == 3)
+                    {
+                        for(int i = INDEX; i < 13; i++)
+                        {
+                            double card = computer.getIndexOfCard(i);
+                            if(Compare().singleCompare(card))
+                            {
+                                Game().setField(card, 0);
+                                computer.setComputerArr(0, i);
+                                Tool().arrange(computer.getComputer_arr(), 13);
+                                isOutHand = true;
+                                break;
+                            }
+                        }
+                    }
                 }
             }
-            else if (sameOfNum == 3)
+            else if(sameOfNum == 2)
             {
-                for (int i = INDEX; i < 13; i++)
+                bool twoPairs = false;
+                int card1 = Card().returnNumber(computer.getIndexOfCard(INDEX+2));
+                int card2 = Card().returnNumber(computer.getIndexOfCard(INDEX+3));
+
+                if(card1 == card2)
+                {
+                    twoPairs = true;
+                }
+
+                if(!twoPairs)
+                {
+                    for(int i = INDEX+2; i < 13; i++)
+                    {
+                        double card = computer.getIndexOfCard(i);
+                        if(Compare().singleCompare(card))
+                        {
+                            Game().setField(card, 0);
+                            computer.setComputerArr(0, i);
+                            Tool().arrange(computer.getComputer_arr(), 13);
+                            isOutHand = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            else if(sameOfNum == 3 || sameOfNum == 4)
+            {
+                for(int i = INDEX; i < 13; i++)
                 {
                     double card = computer.getIndexOfCard(i);
-                    if (Compare().singleCompare(card))
+                    if(Compare().singleCompare(card))
                     {
                         Game().setField(card, 0);
                         computer.setComputerArr(0, i);
@@ -221,12 +288,80 @@ void OutOfCard::computerOutHand(Computer &computer)
                 }
             }
         }
-        else if (computer.getHandCardsSize() > 1)
+        else if(computer.getHandCardsSize() > 2)
         {
-            for (int i = 11; i < 13; i++)
+            const int INDEX = 10;
+            double num1 = Card().returnNumber(computer.getIndexOfCard(INDEX));
+            int sameOfNum = 1;
+            for(int i = INDEX+1; i < 13; i++)
+            {
+                double num2 = Card().returnNumber(computer.getIndexOfCard(i));
+                if(num1 == num2)
+                {
+                    sameOfNum++;
+                }
+            }
+
+            if(sameOfNum == 1)
+            {
+                double card = computer.getIndexOfCard(10);
+                if(Compare().singleCompare(card))
+                {
+                    Game().setField(card, 0);
+                    computer.setComputerArr(0, 10);
+                    Tool().arrange(computer.getComputer_arr(), 13);
+                    isOutHand = true;
+                }
+                
+                if(!isOutHand)
+                {
+                    for(int i = 11; i < 13; i++)
+                    {
+                        double card = computer.getIndexOfCard(i);
+                        if(Compare().singleCompare(card))
+                        {
+                            Game().setField(card, 0);
+                            computer.setComputerArr(0, i);
+                            Tool().arrange(computer.getComputer_arr(), 13);
+                            isOutHand = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            else if(sameOfNum == 2)
+            {
+                double lastOne = computer.getIndexOfCard(12);
+                if(Compare().singleCompare(lastOne))
+                {
+                    Game().setField(lastOne, 0);
+                    computer.setComputerArr(0, 12);
+                    Tool().arrange(computer.getComputer_arr(), 13);
+                    isOutHand = true;
+                }
+            }
+            else if(sameOfNum == 3)
+            {
+                for(int i = INDEX; i < 13; i++)
+                {
+                    double card = computer.getIndexOfCard(i);
+                    if(Compare().singleCompare(card))
+                    {
+                        Game().setField(card, 0);
+                        computer.setComputerArr(0, i);
+                        Tool().arrange(computer.getComputer_arr(), 13);
+                        isOutHand = true;
+                        break;
+                    }
+                }
+            }
+        }
+        else if(computer.getHandCardsSize() > 1)
+        {
+            for(int i = 11; i < 13; i++)
             {
                 double card = computer.getIndexOfCard(i);
-                if (Compare().singleCompare(card))
+                if(Compare().singleCompare(card))
                 {
                     Game().setField(card, 0);
                     computer.setComputerArr(0, i);
@@ -239,7 +374,7 @@ void OutOfCard::computerOutHand(Computer &computer)
         else
         {
             double lastOne = computer.getIndexOfCard(12);
-            if (Compare().singleCompare(lastOne))
+            if(Compare().singleCompare(lastOne))
             {
                 Game().setField(lastOne, 0);
                 computer.setComputerArr(0, 12);
