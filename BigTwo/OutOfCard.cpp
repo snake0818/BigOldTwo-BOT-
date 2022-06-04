@@ -625,28 +625,6 @@ void OutOfCard::computerOutHand(Computer &computer)
                 }
             }
         }
-        // double card[5] = {0};
-
-        // double minValue = Game().getCardsOnField()[0];
-        // for (int i = 1; i < 5; i++)
-        // {
-        //     if (Game().getCardsOnField()[i] < minValue)
-        //         minValue = Game().getCardsOnField()[i];
-        // }
-
-        // if (Check().checkTriples(Computer().getComputer_arr(), card, minValue))
-        // {
-        //     if (Compare().tripleCompare(card))
-        //     {
-        //         Tool().arrange(card, 5);
-        //         for (int i = 0; i < 3; i++)
-        //         {
-        //             Game().setField(card, 5);
-        //         }
-        //     }
-        // }
-        // else
-        //     isOutHand = true;
     }
     else if (type == 694)
     { /* 場上順子時 判斷有沒有順子可以出，有的話出順子 */
