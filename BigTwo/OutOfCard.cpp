@@ -165,7 +165,62 @@ void OutOfCard::computerOutHand(Computer &computer)
         */
         if(computer.getHandCardsSize() > 4)
         {
+            int beginIndex = computer.getBeginIndex();
+            for(int i = beginIndex; i < 12; i++)
+            {
+                // 前後只要不一樣就出前面那張，要是一樣跳第 3 張(1, 2 先排除)
+                // 要是上述沒有出
+                double card1 = Card().returnNumber(computer.getIndexOfCard(i));
+                if(card1 < 3)
+                {
+                    continue;
+                }
 
+                double card2 = Card().returnNumber(computer.getIndexOfCard(i+1));
+                if(card1 == card2)
+                {
+                    i++;
+                    continue;
+                }
+
+                double card = computer.getIndexOfCard(i);
+                if(Compare().singleCompare(card))
+                {
+                    Game().setField(card, 0);
+                    computer.setComputerArr(0, i);
+                    Tool().arrange(computer.getComputer_arr(), 13);
+                    isOutHand = true;
+                    computer.addBeginIndex(1);
+                    break;
+                }
+            }
+
+            for(int i = beginIndex; i < 12; i++)
+            {
+                double card1 = Card().returnNumber(computer.getIndexOfCard(i));
+                if(card1 > 2)
+                {
+                    break;
+                }
+
+                double card2 = Card().returnNumber(computer.getIndexOfCard(i+1));
+                if(card1 == card2)
+                {
+                    i++;
+                    continue;
+                }
+
+                double card = computer.getIndexOfCard(i);
+                if(Compare().singleCompare(card))
+                {
+                    Game().setField(card, 0);
+                    computer.setComputerArr(0, i);
+                    Tool().arrange(computer.getComputer_arr(), 13);
+                    isOutHand = true;
+                    computer.addBeginIndex(1);
+                    break;
+                }
+            }
         }
         else if(computer.getHandCardsSize() > 3)
         {
@@ -190,6 +245,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     computer.setComputerArr(0, INDEX);
                     Tool().arrange(computer.getComputer_arr(), 13);
                     isOutHand = true;
+                    computer.addBeginIndex(1);
                 }
                 
                 if(!isOutHand)
@@ -215,6 +271,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                             computer.setComputerArr(0, 10);
                             Tool().arrange(computer.getComputer_arr(), 13);
                             isOutHand = true;
+                            computer.addBeginIndex(1);
                         }
                     }
                     else if(sameOfNum == 2)
@@ -226,6 +283,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                             computer.setComputerArr(0, 12);
                             Tool().arrange(computer.getComputer_arr(), 13);
                             isOutHand = true;
+                            computer.addBeginIndex(1);
                         }
                     }
                     else if(sameOfNum == 3)
@@ -239,6 +297,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                                 computer.setComputerArr(0, i);
                                 Tool().arrange(computer.getComputer_arr(), 13);
                                 isOutHand = true;
+                                computer.addBeginIndex(1);
                                 break;
                             }
                         }
@@ -267,6 +326,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                             computer.setComputerArr(0, i);
                             Tool().arrange(computer.getComputer_arr(), 13);
                             isOutHand = true;
+                            computer.addBeginIndex(1);
                             break;
                         }
                     }
@@ -283,6 +343,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                         computer.setComputerArr(0, i);
                         Tool().arrange(computer.getComputer_arr(), 13);
                         isOutHand = true;
+                        computer.addBeginIndex(1);
                         break;
                     }
                 }
@@ -311,6 +372,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     computer.setComputerArr(0, 10);
                     Tool().arrange(computer.getComputer_arr(), 13);
                     isOutHand = true;
+                    computer.addBeginIndex(1);
                 }
                 
                 if(!isOutHand)
@@ -324,6 +386,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                             computer.setComputerArr(0, i);
                             Tool().arrange(computer.getComputer_arr(), 13);
                             isOutHand = true;
+                            computer.addBeginIndex(1);
                             break;
                         }
                     }
@@ -338,6 +401,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     computer.setComputerArr(0, 12);
                     Tool().arrange(computer.getComputer_arr(), 13);
                     isOutHand = true;
+                    computer.addBeginIndex(1);
                 }
             }
             else if(sameOfNum == 3)
@@ -351,6 +415,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                         computer.setComputerArr(0, i);
                         Tool().arrange(computer.getComputer_arr(), 13);
                         isOutHand = true;
+                        computer.addBeginIndex(1);
                         break;
                     }
                 }
@@ -367,6 +432,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     computer.setComputerArr(0, i);
                     Tool().arrange(computer.getComputer_arr(), 13);
                     isOutHand = true;
+                    computer.addBeginIndex(1);
                     break;
                 }
             }
@@ -379,6 +445,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                 Game().setField(lastOne, 0);
                 computer.setComputerArr(0, 12);
                 isOutHand = true;
+                computer.addBeginIndex(1);
             }
         }
     }
