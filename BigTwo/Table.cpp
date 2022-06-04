@@ -30,7 +30,7 @@ Computer& Table::getComputer3()
 void Table::start()
 {
     double *list = new double[52];
-    list = Game().shuffleCards();
+    list = Game(1).shuffleCards();
 
     for (int i = 0; i < 52; i += 4) 
     {
