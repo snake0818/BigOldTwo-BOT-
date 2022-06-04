@@ -195,30 +195,33 @@ void OutOfCard::computerOutHand(Computer &computer)
                 }
             }
 
-            for(int i = beginIndex; i < 12; i++)
+            if(!isOutHand)
             {
-                double card1 = Card().returnNumber(computer.getIndexOfCard(i));
-                if(card1 > 2)
+                for(int i = beginIndex; i < 12; i++)
                 {
-                    break;
-                }
+                    double card1 = Card().returnNumber(computer.getIndexOfCard(i));
+                    if(card1 > 2)
+                    {
+                        break;
+                    }
 
-                double card2 = Card().returnNumber(computer.getIndexOfCard(i+1));
-                if(card1 == card2)
-                {
-                    i++;
-                    continue;
-                }
+                    double card2 = Card().returnNumber(computer.getIndexOfCard(i+1));
+                    if(card1 == card2)
+                    {
+                        i++;
+                        continue;
+                    }
 
-                double card = computer.getIndexOfCard(i);
-                if(Compare().singleCompare(card))
-                {
-                    Game().setField(card, 0);
-                    computer.setComputerArr(0, i);
-                    Tool().arrange(computer.getComputer_arr(), 13);
-                    isOutHand = true;
-                    computer.addBeginIndex(1);
-                    break;
+                    double card = computer.getIndexOfCard(i);
+                    if(Compare().singleCompare(card))
+                    {
+                        Game().setField(card, 0);
+                        computer.setComputerArr(0, i);
+                        Tool().arrange(computer.getComputer_arr(), 13);
+                        isOutHand = true;
+                        computer.addBeginIndex(1);
+                        break;
+                    }
                 }
             }
         }
@@ -450,8 +453,38 @@ void OutOfCard::computerOutHand(Computer &computer)
         }
     }
     else if (type == 692)
-    { /*  場上呸時 判斷有沒有呸可以出，有的話出呸    */
-        // double card[5] = {0};
+    {
+        // const int INDEX = computer.getBeginIndex();
+
+        // for(int i = INDEX; i < 12; i++)
+        // {
+        //     double card1 = Card().returnNumber(computer.getIndexOfCard(i));
+        //     if(card1 < 3)
+        //     {
+        //         continue;
+        //     }
+
+        //     double card2 = Card().returnNumber(computer.getIndexOfCard(i+1));
+        //     if(card1 == card2)
+        //     {
+        //         // 出牌
+        //     }
+        // }
+
+        // for(int i = INDEX; i < 12; i++)
+        // {
+        //     double card1 = Card().returnNumber(computer.getIndexOfCard(i));
+        //     if(card1 > 2)
+        //     {
+        //         break;
+        //     }
+
+        //     double card2 = Card().returnNumber(computer.getIndexOfCard(i+1));
+        //     if(card1 == card2)
+        //     {
+        //         // 出牌
+        //     }
+        // }
 
         // double minValue = Game().getCardsOnField()[0];
         // for (int i = 1; i < 5; i++)
