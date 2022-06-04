@@ -454,37 +454,63 @@ void OutOfCard::computerOutHand(Computer &computer)
     }
     else if (type == 692)
     {
-        // const int INDEX = computer.getBeginIndex();
+        const int INDEX = computer.getBeginIndex();
 
-        // for(int i = INDEX; i < 12; i++)
-        // {
-        //     double card1 = Card().returnNumber(computer.getIndexOfCard(i));
-        //     if(card1 < 3)
-        //     {
-        //         continue;
-        //     }
+        for(int i = INDEX; i < 12; i++)
+        {
+            int card1num = Card().returnNumber(computer.getIndexOfCard(i));
+            double card1 = computer.getIndexOfCard(i);
+            if(card1num < 3)
+            {
+                continue;
+            }
 
-        //     double card2 = Card().returnNumber(computer.getIndexOfCard(i+1));
-        //     if(card1 == card2)
-        //     {
-        //         // 出牌
-        //     }
-        // }
+            int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
+            double card2 = computer.getIndexOfCard(i+1);
+            if(card1num == card2num)
+            {
+                double pairs[2] = {card1, card2};
+                if(Compare().pairsCompare(pairs))
+                {
+                    Game().setField(card1, 0);
+                    Game().setField(card2, 1);
+                    computer.setComputerArr(0, i);
+                    computer.setComputerArr(0, i+1);
+                    Tool().arrange(computer.getComputer_arr(), 13);
+                    isOutHand = true;
+                    computer.addBeginIndex(2);
+                    break;
+                }
+            }
+        }
 
-        // for(int i = INDEX; i < 12; i++)
-        // {
-        //     double card1 = Card().returnNumber(computer.getIndexOfCard(i));
-        //     if(card1 > 2)
-        //     {
-        //         break;
-        //     }
+        for(int i = INDEX; i < 12; i++)
+        {
+            int card1num = Card().returnNumber(computer.getIndexOfCard(i));
+            double card1 = computer.getIndexOfCard(i);
+            if(card1num > 2)
+            {
+                break;
+            }
 
-        //     double card2 = Card().returnNumber(computer.getIndexOfCard(i+1));
-        //     if(card1 == card2)
-        //     {
-        //         // 出牌
-        //     }
-        // }
+            int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
+            double card2 = computer.getIndexOfCard(i+1);
+            if(card1num == card2num)
+            {
+                double pairs[2] = {card1, card2};
+                if(Compare().pairsCompare(pairs))
+                {
+                    Game().setField(card1, 0);
+                    Game().setField(card2, 1);
+                    computer.setComputerArr(0, i);
+                    computer.setComputerArr(0, i+1);
+                    Tool().arrange(computer.getComputer_arr(), 13);
+                    isOutHand = true;
+                    computer.addBeginIndex(2);
+                    break;
+                }
+            }
+        }
 
         // double minValue = Game().getCardsOnField()[0];
         // for (int i = 1; i < 5; i++)
