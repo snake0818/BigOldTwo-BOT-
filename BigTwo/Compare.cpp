@@ -21,31 +21,30 @@ bool Compare::singleCompare(double num)
 
 bool Compare::pairsCompare(double* Pairs)
 {
-    double pairs[5] = { 0 };
-    double tablePairs[5] = {0};
-
-    for (int i = 0; i < 5; i++)
+    double *table = Game().getCardsOnField();
+    double tableMax = table[0];
+    if(table[0] < table[1])
     {
-        tablePairs[i] = Game().getCardsOnField()[i];
-        if (Pairs[i] != 0) pairs[i] = Pairs[i];
+        tableMax = table[1];
     }
 
-    for (int i = 0; i < 5; i++)
+    if(tableMax < 3)
     {
-        if (Card().returnNumber(pairs[i]) == 1 or
-            Card().returnNumber(pairs[i]) == 2)
-            pairs[i] += 13;
-        if (Card().returnNumber(tablePairs[i]) == 1 or
-            Card().returnNumber(tablePairs[i]) == 2)
-            tablePairs[i] += 13;
+        tableMax += 13;
     }
 
-    Tool().postZero(pairs, 5);
-    Tool().postZero(tablePairs, 5);
+    double pairsMax = Pairs[0];
+    if(Pairs[0] < Pairs[1])
+    {
+        pairsMax = Pairs[1];
+    }
 
-    if (pairs[0] > tablePairs[0]) return true;
+    if(pairsMax < 3)
+    {
+        pairsMax += 13;
+    }
 
-    return false;
+    return (pairsMax > tableMax);
 }
 
 bool Compare::tripleCompare(double* Triple)
