@@ -516,7 +516,115 @@ void OutOfCard::computerOutHand(Computer &computer)
         }
     }
     else if (type == 693)
-    { /* 場上三條時 判斷有沒有三條可以出，有的話出三條 */
+    {
+        const int INDEX = computer.getBeginIndex();
+
+        bool isTriples = false;
+        int numOfSame = 0;
+        for(int i = INDEX; i < 11; i++)
+        {
+            int card1num = Card().returnNumber(computer.getIndexOfCard(i));
+            double card1 = computer.getIndexOfCard(i);
+
+            if(card1num < 3)
+            {
+                continue;
+            }
+
+            int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
+            double card2 = computer.getIndexOfCard(i+1);
+            int card3num = Card().returnNumber(computer.getIndexOfCard(i+2));
+            double card3 = computer.getIndexOfCard(i+2);
+            int card4num = Card().returnNumber(computer.getIndexOfCard(i+3));
+            double card4 = computer.getIndexOfCard(i+3);
+
+            if(card1num != card2num)
+            {
+                continue;
+            }
+
+            if(card1num == card2num && card1num != card3num)
+            {
+                i++;
+                continue;
+            }
+
+            if(card1num == card2num && card1num == card3num && card1num == card4num)
+            {
+                i += 3;
+                continue;
+            }
+
+            double triples[3] = {card1, card2, card3};
+            if(Compare().pairsCompare(triples))
+            {
+                Game().setField(card1, 0);
+                Game().setField(card2, 1);
+                Game().setField(card3, 2);
+                for(int j = 0; j < 3; j++)
+                {
+                    computer.setComputerArr(0, i+j);
+                }
+                Tool().arrange(computer.getComputer_arr(), 13);
+                isOutHand = true;
+                computer.addBeginIndex(3);
+                break;
+            }
+        }
+
+        if(!isOutHand)
+        {
+            for(int i = INDEX; i < 11; i++)
+            {
+                int card1num = Card().returnNumber(computer.getIndexOfCard(i));
+                double card1 = computer.getIndexOfCard(i);
+
+                if(card1num > 2)
+                {
+                    break;
+                }
+                
+                int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
+                double card2 = computer.getIndexOfCard(i+1);
+                int card3num = Card().returnNumber(computer.getIndexOfCard(i+2));
+                double card3 = computer.getIndexOfCard(i+2);
+                int card4num = Card().returnNumber(computer.getIndexOfCard(i+3));
+                double card4 = computer.getIndexOfCard(i+3);
+
+                if(card1num != card2num)
+                {
+                    continue;
+                }
+
+                if(card1num == card2num && card1num != card3num)
+                {
+                    i++;
+                    continue;
+                }
+
+                if(card1num == card2num && card1num == card3num && card1num == card4num)
+                {
+                    i += 3;
+                    continue;
+                }
+
+                double triples[3] = {card1, card2, card3};
+                if(Compare().pairsCompare(triples))
+                {
+                    Game().setField(card1, 0);
+                    Game().setField(card2, 1);
+                    Game().setField(card3, 2);
+                    for(int j = 0; j < 3; j++)
+                    {
+                        computer.setComputerArr(0, i+j);
+                    }
+                    Tool().arrange(computer.getComputer_arr(), 13);
+                    isOutHand = true;
+                    computer.addBeginIndex(3);
+                    break;
+                }
+            }
+        }
         // double card[5] = {0};
 
         // double minValue = Game().getCardsOnField()[0];
