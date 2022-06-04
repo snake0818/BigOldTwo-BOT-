@@ -483,31 +483,34 @@ void OutOfCard::computerOutHand(Computer &computer)
                 }
             }
         }
-
-        for(int i = INDEX; i < 12; i++)
+        
+        if(!isOutHand)
         {
-            int card1num = Card().returnNumber(computer.getIndexOfCard(i));
-            double card1 = computer.getIndexOfCard(i);
-            if(card1num > 2)
+            for(int i = INDEX; i < 12; i++)
             {
-                break;
-            }
-
-            int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
-            double card2 = computer.getIndexOfCard(i+1);
-            if(card1num == card2num)
-            {
-                double pairs[2] = {card1, card2};
-                if(Compare().pairsCompare(pairs))
+                int card1num = Card().returnNumber(computer.getIndexOfCard(i));
+                double card1 = computer.getIndexOfCard(i);
+                if(card1num > 2)
                 {
-                    Game().setField(card1, 0);
-                    Game().setField(card2, 1);
-                    computer.setComputerArr(0, i);
-                    computer.setComputerArr(0, i+1);
-                    Tool().arrange(computer.getComputer_arr(), 13);
-                    isOutHand = true;
-                    computer.addBeginIndex(2);
                     break;
+                }
+
+                int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
+                double card2 = computer.getIndexOfCard(i+1);
+                if(card1num == card2num)
+                {
+                    double pairs[2] = {card1, card2};
+                    if(Compare().pairsCompare(pairs))
+                    {
+                        Game().setField(card1, 0);
+                        Game().setField(card2, 1);
+                        computer.setComputerArr(0, i);
+                        computer.setComputerArr(0, i+1);
+                        Tool().arrange(computer.getComputer_arr(), 13);
+                        isOutHand = true;
+                        computer.addBeginIndex(2);
+                        break;
+                    }
                 }
             }
         }
