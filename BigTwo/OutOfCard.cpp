@@ -511,27 +511,6 @@ void OutOfCard::computerOutHand(Computer &computer)
                 }
             }
         }
-
-        // double minValue = Game().getCardsOnField()[0];
-        // for (int i = 1; i < 5; i++)
-        // {
-        //     if (Game().getCardsOnField()[i] < minValue)
-        //         minValue = Game().getCardsOnField()[i];
-        // }
-
-        // if (Check().checkPairs(Computer().getComputer_arr(), card, minValue))
-        // {
-        //     if (Compare().pairsCompare(card))
-        //     {
-        //         Tool().arrange(card, 5);
-        //         for (int i = 0; i < 2; i++)
-        //         {
-        //             Game().setField(card, 5);
-        //         }
-        //     }
-        // }
-        // else
-        //     isOutHand = true;
     }
     else if (type == 693)
     { /* 場上三條時 判斷有沒有三條可以出，有的話出三條 */
