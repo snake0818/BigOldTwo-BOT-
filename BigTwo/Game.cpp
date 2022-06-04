@@ -17,7 +17,9 @@ void Game::setRpt()
     }
 }
 
-Game::Game()
+Game::Game() {}
+
+Game::Game(int dummy)
 {
     this->setRpt();
 }

@@ -8,6 +8,7 @@ class Game
 {
 public:
     Game();
+    Game(int);
     void setField(double, int);
     void setField(double, double, double, double, double);
     void setField(double*);
