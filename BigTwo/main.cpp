@@ -196,6 +196,21 @@ int main()
             TableCa[i] = ca[i];
         }
         
+        Tool tool;
+        
+        if (sequence == 1) {
+            for (int i = 0;i < 13;i++) {
+                for (int j = 0;j < caSize;j++) {
+                    if (TableCa[j] == play.getPlayer().getIndexOfCard(i)) {
+                        cout << i << endl;
+                        play.getPlayer().setPlayerArr(0, i);
+                    }
+                }
+            }
+        }
+        
+        tool.arrange( play.getPlayer().getPlayer_arr(), 13);
+        
         cout << "\033[33m 電腦的牌 ！！！\033[0m" << endl << endl;
 
         play.getComputer1().print();
