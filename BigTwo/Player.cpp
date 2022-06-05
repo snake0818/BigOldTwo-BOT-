@@ -76,7 +76,7 @@ void Player::playerOutCard()
     isPass = false;
     isCorrect = true;
     string playerOutCard;
-    cout<<"Please enter number : ";
+    cout<<"Enter your number : ";
     getline(cin, playerOutCard);
     stringstream word(playerOutCard);
 
@@ -122,44 +122,60 @@ void Player::playerOutCard()
             }
         }
         num=num+(numPo*0.1);
-        for(int i=0;i<13;i++){
-            if(num != player_arr[i]){
-                isCorrect=false;
-            }
-            else{
-                isCorrect=true;
-                break;
+        if(isCorrect==true){
+            for(int k=0;k<13;k++){
+                if(num != player_arr[k]){
+                    isCorrect=false;
+                }
+                else{
+                    card[i]=num;
+                    isCorrect=true;
+                    break;
+                }
             }
         }
         
-        card[i]=num;
     }
     if(isPass==true){
         //將出排設為PASS
     }
     else{
-        if(isCorrect==true)
-        for(int i=0;i<numberOfCards;i++){
-            for(int k=0;k<numberOfCards;k++){
-                cout<<"i:"<<i<<"*"<<"K:"<<k<<endl;
-                if(card[i]==card[k] and i!=k){
-                    isCorrect=false;
-                    break;
-                }
-                else{
-                    cout<<"2"<<endl;
-                    isCorrect=true;
+        if(isCorrect==true){
+            for(int i=0;i<numberOfCards;i++){
+                for(int k=0;k<numberOfCards;k++){
+                    if(card[i]==card[k] and i!=k){
+                        isCorrect=false;
+                        break;
+                    }
+                    else{
+                        isCorrect=true;
+                    }
                 }
             }
-        }
-        cout<<"isCorrect:"<<isCorrect<<endl;
-        if(isCorrect==false and isPass==false){
-            cout<<"FALSE cin"<<endl;
-            cout<<"Please recin"<<endl;
-            Player().playerOutCard();
+            if(numberOfCards>1 and isCorrect!=false){
+                for(int i=0;i<numberOfCards;i++){
+                    for(int k=0;k<numberOfCards;k++){
+                        if(i<k){
+                           if(card[i]>card[k]){
+                               double t=card[i];
+                               card[i]=card[k];
+                               card[k]=t;
+                           } 
+                        }
+                    }
+                }
+            }
+            else{
+                cout<<"The input is error !! first"<<endl;
+                cout<<"Please enter again 😂"<<endl;
+                Player().playerOutCard();
+            }
+            
         }
         else{
-            
+            cout<<"The input is error !!"<<endl;
+            cout<<"Please enter again 😂"<<endl;
+            Player().playerOutCard();
         }
     }
 }
