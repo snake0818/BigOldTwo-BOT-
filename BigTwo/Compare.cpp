@@ -19,7 +19,7 @@ bool Compare::singleCompare(double num)
     return (num > tableSingle);
 }
 
-bool Compare::pairsCompare(double* Pairs)
+bool Compare::pairsCompare(const double* Pairs)
 {
     double *table = Game().getCardsOnField();
     double tableMax = table[0];
@@ -47,7 +47,7 @@ bool Compare::pairsCompare(double* Pairs)
     return (pairsMax > tableMax);
 }
 
-bool Compare::tripleCompare(double* Triple)
+bool Compare::tripleCompare(const double* Triple)
 {
     double triple[5] = { 0 };
     double tableTriple[5] = { 0 };
@@ -76,7 +76,7 @@ bool Compare::tripleCompare(double* Triple)
     return false;
 }
 
-bool Compare::straightCompare(double* Straight)
+bool Compare::straightCompare(const double* Straight)
 {
     double straight[5] = { 0 };
     double tableStraight[5] = { 0 };
@@ -92,63 +92,27 @@ bool Compare::straightCompare(double* Straight)
 
     for (int i = 0; i < 5; i++)
     {
-        if (Card().returnNumber(straight[i]) == 1 or
+        if (Card().returnNumber(straight[i]) == 1 ||
             Card().returnNumber(straight[i]) == 2)
+        {
             straight[i] += 13;
-        if (Card().returnNumber(tableStraight[i]) == 1 or
+        }
+        if (Card().returnNumber(tableStraight[i]) == 1 ||
             Card().returnNumber(tableStraight[i]) == 2)
+        {
             tableStraight[i] += 13;
+        }
     }
 
+    if (straight[0] > tableStraight[0])
     {
-        if (Card().returnNumber(straight[0]) == 14 &&
-            Card().returnNumber(straight[1]) == 15 &&
-            Card().returnNumber(straight[2]) == 3 &&
-            Card().returnNumber(straight[3]) == 4 &&
-            Card().returnNumber(straight[4]) == 5)
-        {
-            straight[0] -= 13;
-            straight[1] -= 13;
-        }
-        if (Card().returnNumber(tableStraight[0]) == 14 &&
-            Card().returnNumber(tableStraight[1]) == 15 &&
-            Card().returnNumber(tableStraight[2]) == 3 &&
-            Card().returnNumber(tableStraight[3]) == 4 &&
-            Card().returnNumber(tableStraight[4]) == 5)
-        {
-            straight[0] -= 13;
-            straight[1] -= 13;
-        }
-
-        if (Card().returnNumber(straight[0]) == 15 &&
-            Card().returnNumber(straight[1]) == 3 &&
-            Card().returnNumber(straight[2]) == 4 &&
-            Card().returnNumber(straight[3]) == 5 &&
-            Card().returnNumber(straight[4]) == 6)
-        {
-            straight[0] -= 13;
-            straight[1] -= 13;
-        }
-        if (Card().returnNumber(tableStraight[0]) == 15 &&
-            Card().returnNumber(tableStraight[1]) == 3 &&
-            Card().returnNumber(tableStraight[2]) == 4 &&
-            Card().returnNumber(tableStraight[3]) == 5 &&
-            Card().returnNumber(tableStraight[4]) == 6)
-        {
-            straight[0] -= 13;
-            straight[1] -= 13;
-        }
+        return true;
     }
-
-    Tool().postZero(straight, 5);
-    Tool().postZero(tableStraight, 5);
-     
-    if (straight[0] > tableStraight[0]) return true;
 
     return false;
 }
 
-bool Compare::flushCompare(double* Flush)
+bool Compare::flushCompare(const double* Flush)
 {
     double flush[5] = { 0 };
     double tableFlush[5] = { 0 };
@@ -177,7 +141,7 @@ bool Compare::flushCompare(double* Flush)
     return false;
 }
 
-bool Compare::fullHouseCompare(double* FullHouse)
+bool Compare::fullHouseCompare(const double* FullHouse)
 {
     double fullHouse[5] = { 0 };
     double tableFullHouse[5] = { 0 };;
@@ -217,7 +181,7 @@ bool Compare::fullHouseCompare(double* FullHouse)
     return false;
 }
 
-bool Compare::tikiCompare(double* Tiki)
+bool Compare::tikiCompare(const double* Tiki)
 {
     double tiki[5] = { 0 };
     double tableTiki[5] = { 0 };
@@ -257,7 +221,7 @@ bool Compare::tikiCompare(double* Tiki)
     return false;
 }
 
-bool Compare::straightFlushCompare(double* StraightFlush)
+bool Compare::straightFlushCompare(const double* StraightFlush)
 {
     double straightFlush[5] = {0};
     double tableStraight[5] = {0};
