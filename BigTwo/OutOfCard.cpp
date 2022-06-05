@@ -627,29 +627,135 @@ void OutOfCard::computerOutHand(Computer &computer)
         }
     }
     else if (type == 694)
-    { /* 場上順子時 判斷有沒有順子可以出，有的話出順子 */
-        // double card[5] = {0};
+    {
+        const int INDEX = computer.getBeginIndex();
 
-        // double minValue = Game().getCardsOnField()[0];
-        // for (int i = 1; i < 5; i++)
-        // {
-        //     if (Game().getCardsOnField()[i] < minValue)
-        //         minValue = Game().getCardsOnField()[i];
-        // }
+        for(int i = INDEX; i < 13; i++)
+        {
+            int card1num = Card().returnNumber(computer.getIndexOfCard(i));
+            double card1 = computer.getIndexOfCard(i);
+            if(card1num > 10)
+            {
+                break;
+            }
 
-        // if (Check().checkStraight(Computer().getComputer_arr(), card, minValue))
-        // {
-        //     if (Compare().straightCompare(card))
-        //     {
-        //         Tool().arrange(card, 5);
-        //         for (int i = 0; i < 3; i++)
-        //         {
-        //             Game().setField(card, 5);
-        //         }
-        //     }
-        // }
-        // else
-        //     isOutHand = true;
+            double straight[5] = {0};
+            straight[0] = card1;
+
+            int index2;
+            bool isCorrect = false;
+            for(int j = i+1; j < 13; j++)
+            {
+                int card2num = Card().returnNumber(computer.getIndexOfCard(j));
+                double card2 = computer.getIndexOfCard(j);
+                if(card1num+1 == card2num)
+                {
+                    straight[1] = card2;
+                    isCorrect = true;
+                    index2 = j;
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+            int index3;
+            if(isCorrect)
+            {
+                for(int j = i+1; j < 13; j++)
+                {
+                    int card3num = Card().returnNumber(computer.getIndexOfCard(j));
+                    double card3 = computer.getIndexOfCard(j);
+                    if(card1num+2 == card3num)
+                    {
+                        straight[2] = card3;
+                        isCorrect = true;
+                        index3 = j;
+                        break;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            else
+            {
+                continue;
+            }
+
+            int index4;
+            if(isCorrect)
+            {
+                for(int j = i+1; j < 13; j++)
+                {
+                    int card4num = Card().returnNumber(computer.getIndexOfCard(j));
+                    double card4 = computer.getIndexOfCard(j);
+                    if(card1num+3 == card4num)
+                    {
+                        straight[3] = card4;
+                        isCorrect = true;
+                        index4 = j;
+                        break;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            else
+            {
+                continue;
+            }
+
+            int index5;
+            if(isCorrect)
+            {
+                for(int j = i+1; j < 13; j++)
+                {
+                    int card5num = Card().returnNumber(computer.getIndexOfCard(j));
+                    double card5 = computer.getIndexOfCard(j);
+                    if(card1num+4 == card5num)
+                    {
+                        straight[4] = card5;
+                        isCorrect = true;
+                        index5 = j;
+                        break;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            else
+            {
+                continue;
+            }
+
+            int indexArr[5] = {i, index2, index3, index4, index5};
+            if(isCorrect)
+            {
+                if(Compare().straightCompare(straight))
+                {
+                    for(int j = 0; j < 5; j++)
+                    {
+                        Game().setField(straight[j], j);
+                    }
+                    for(int j = 0; j < 5; j++)
+                    {
+                        computer.setComputerArr(0, indexArr[j]);
+                    }
+                    Tool().arrange(computer.getComputer_arr(), 13);
+                    isOutHand = true;
+                    computer.addBeginIndex(5);
+                    break;
+                }
+            }
+        }
     }
     else if (type == 695)
     { /* 場上同花時 判斷有沒有同花可以出，有的話出同花 */
