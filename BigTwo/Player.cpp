@@ -73,13 +73,10 @@ double *Player::getPlayer_arr()
 
 void Player::playerOutCard()
 {
-    for(int i=0;i<13;i++){
-        cout<<player_arr[i]<<" ";
-    }
-    cout<<endl;
     isPass = false;
     isCorrect = true;
     string playerOutCard;
+    cout<<"Please enter number : ";
     getline(cin, playerOutCard);
     stringstream word(playerOutCard);
 
@@ -99,7 +96,7 @@ void Player::playerOutCard()
             break;
         }
         if((cardByCin[0]=="pass" or cardByCin[0]=="Pass" or cardByCin[0]=="PASS") and
-           (cardByCin[i]!="pass" or cardByCin[i]!="Pass" or cardByCin[i]!="PASS")){
+           (cardByCin[i]!="pass" or cardByCin[i]!="Pass" or cardByCin[i]!="PASS") and i!=0){
             isPass=true;
         }
         double num=0;
@@ -115,14 +112,16 @@ void Player::playerOutCard()
                 break;
             }
             else{
-                num=(num*10)+(int(text[k])-48);
+                if(int(text[k])<58 and int(text[k])>47){
+                    num=(num*10)+(int(text[k])-48);
+                }
+                else{
+                    isCorrect=false;
+                    break;
+                }
             }
         }
-        cout<<"isCorrect:"<<isCorrect<<endl;
         num=num+(numPo*0.1);
-        if(isPass==true){
-            break;
-        }
         for(int i=0;i<13;i++){
             if(num != player_arr[i]){
                 isCorrect=false;
@@ -132,9 +131,35 @@ void Player::playerOutCard()
                 break;
             }
         }
-        if(isCorrect ==true){
-            cout<<"SC"<<endl;
-        }
         
+        card[i]=num;
+    }
+    if(isPass==true){
+        //將出排設為PASS
+    }
+    else{
+        if(isCorrect==true)
+        for(int i=0;i<numberOfCards;i++){
+            for(int k=0;k<numberOfCards;k++){
+                cout<<"i:"<<i<<"*"<<"K:"<<k<<endl;
+                if(card[i]==card[k] and i!=k){
+                    isCorrect=false;
+                    break;
+                }
+                else{
+                    cout<<"2"<<endl;
+                    isCorrect=true;
+                }
+            }
+        }
+        cout<<"isCorrect:"<<isCorrect<<endl;
+        if(isCorrect==false and isPass==false){
+            cout<<"FALSE cin"<<endl;
+            cout<<"Please recin"<<endl;
+            Player().playerOutCard();
+        }
+        else{
+            
+        }
     }
 }
