@@ -3,6 +3,7 @@
 #include "Check.h"
 #include "Card.h"
 double Player::player_arr[13]={0};
+bool Player::wasDo=false;
 Player::Player()
 {
     
@@ -73,8 +74,8 @@ double *Player::getPlayer_arr()
 
 void Player::playerOutCard()
 {
-    isPass = false;
-    isCorrect = true;
+    bool isPass = false;
+    bool isCorrect = true;
     string playerOutCard;
     cout<<"Enter your number : ";
     getline(cin, playerOutCard);
