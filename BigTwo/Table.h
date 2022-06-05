@@ -21,6 +21,8 @@ public:
     bool getFirstTime() const;
     void setCardsType(int);
     int getCardsType() const;
+    void passNumberPlus();
+    int getPassNumber();
 
     // Out of card sequence.
     void outCardSequence();
@@ -33,6 +35,7 @@ private:
     int sequence;
     Player player;
     static int cardsType;
+    static int passNumber;
 
     Computer computer1, computer2, computer3;
     bool firstTime;
