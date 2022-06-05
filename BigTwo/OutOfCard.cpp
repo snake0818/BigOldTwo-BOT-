@@ -758,29 +758,65 @@ void OutOfCard::computerOutHand(Computer &computer)
         }
     }
     else if (type == 695)
-    { /* 場上同花時 判斷有沒有同花可以出，有的話出同花 */
-        // double card[5] = {0};
+    {
+        const int INDEX = computer.getBeginIndex();
 
-        // double minValue = Game().getCardsOnField()[0];
-        // for (int i = 1; i < 5; i++)
-        // {
-        //     if (Game().getCardsOnField()[i] < minValue)
-        //         minValue = Game().getCardsOnField()[i];
-        // }
+        int numOfFlower[4] = {0};
 
-        // if (Check().checkTriples(Computer().getComputer_arr(), card, minValue))
-        // {
-        //     if (Compare().tripleCompare(card))
-        //     {
-        //         Tool().arrange(card, 5);
-        //         for (int i = 0; i < 3; i++)
-        //         {
-        //             Game().setField(card, 5);
-        //         }
-        //     }
-        // }
-        // else
-        //     isOutHand = true;
+        for(int i = INDEX; i < 13; i++)
+        {
+            int flower = Card().returnFlower(computer.getIndexOfCard(i));
+
+            for(int j = 0; j < 4; j++)
+            {
+                if(flower == j+1)
+                {
+                    numOfFlower[j]++;
+                }
+            }
+        }
+
+        for(int t = 0; t < 4; t++)
+        {
+            if(numOfFlower[t] >= 5 && (!isOutHand))
+            {
+                double flush[5] = {0};
+                int bufferIndex[5] = {0};
+                int flushIndex = 0;
+                for(int i = INDEX; i < 13; i++)
+                {
+                    int flower = Card().returnFlower(computer.getIndexOfCard(i));
+                    double card = computer.getIndexOfCard(i);
+
+                    if(flower == t+1)
+                    {
+                        flush[flushIndex] = card;
+                        bufferIndex[flushIndex] = i;
+                        flushIndex++;
+                    }
+
+                    if(flushIndex > 4)
+                    {
+                        break;
+                    }
+                }
+
+                if(Compare().flushCompare(flush))
+                {
+                    for(int j = 0; j < 5; j++)
+                    {
+                        Game().setField(flush[j], j);
+                    }
+                    for(int j = 0; j < 5; j++)
+                    {
+                        computer.setComputerArr(0, bufferIndex[j]);
+                    }
+                    Tool().arrange(computer.getComputer_arr(), 13);
+                    isOutHand = true;
+                    computer.addBeginIndex(5);
+                }
+            }
+        }
     }
     else if (type == 696)
     { /* 場上葫蘆時 判斷有沒有葫蘆可以出，有的話出葫蘆 */
