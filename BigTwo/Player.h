@@ -19,9 +19,9 @@ public:
 	void printPlayer_arr();
 	
 private:
-	bool isCorrect;
-	bool isPass;
+	
 	Game Gamer;
+	static bool wasDo;
 	static double player_arr[13];
 };
 
