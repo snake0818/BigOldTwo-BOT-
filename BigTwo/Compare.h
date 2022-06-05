@@ -11,13 +11,13 @@ class Compare
 public:
     Compare();
     bool singleCompare(double);
-    bool pairsCompare(double*);
-    bool tripleCompare(double*);
-    bool straightCompare(double*);
-    bool flushCompare(double*);
-    bool fullHouseCompare(double*);
-    bool tikiCompare(double*);
-    bool straightFlushCompare(double*);
+    bool pairsCompare(const double*);
+    bool tripleCompare(const double*);
+    bool straightCompare(const double*);
+    bool flushCompare(const double*);
+    bool fullHouseCompare(const double*);
+    bool tikiCompare(const double*);
+    bool straightFlushCompare(const double*);
 };
 
 #endif
