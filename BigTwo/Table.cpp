@@ -4,6 +4,7 @@
 #include "PrintForMac.h"
 
 int Table::cardsType = 0;
+int Table::passNumber = 0;
 
 Table::Table() {}
 
@@ -219,4 +220,10 @@ void Table::setCardsType(int type)
 int Table::getCardsType() const
 {
     return cardsType;
+}
+void Table::passNumberPlus(){
+    passNumber++;
+}
+int Table::getPassNumber(){
+    return passNumber;
 }
