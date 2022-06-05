@@ -1,12 +1,14 @@
 #include "Check.h"
 #include "Card.h"
+#include "Game.h"
+#include "Tool.h"
 
 bool Check::isNumberInRpt(const double card) const
 {
-    Game *bufferGame = new Game;
-    for(int index = 0; index < 52; index++)
+    Game* bufferGame = new Game;
+    for (int index = 0; index < 52; index++)
     {
-        if(card == bufferGame->get1RptCard(index))
+        if (card == bufferGame->get1RptCard(index))
         {
             delete bufferGame;
             return true;
@@ -16,23 +18,26 @@ bool Check::isNumberInRpt(const double card) const
     return false;
 }
 
-void Check::checkInRpt(double cards[], bool &isInRpt)
+bool Check::checkInRpt(double* cards)
 {
+    bool isInRpt = false;
     for (int index = 0; index < 2; index++)
     {
-        if (Check().isNumberInRpt(cards[index]) == false)
+        if (Check().isNumberInRpt(cards[index]) == true)
         {
-            isInRpt = false;
+            isInRpt = true;
             break;
         }
     }
+    return isInRpt;
 }
 
-void Check::checkSame(double cards[], bool &isSame)
+bool Check::checkSame(double* cards)
 {
-    for(int i = 0; i < 2; i++)
+    bool isSame = true;
+    for (int i = 0; i < 2; i++)
     {
-        for(int j = i+1; j < 3; j++)
+        for (int j = i + 1; j < 3; j++)
         {
             if (cards[i] == cards[j])
             {
@@ -41,59 +46,499 @@ void Check::checkSame(double cards[], bool &isSame)
             }
         }
     }
+    return isSame;
 }
 
-void Check::checkFlush(double cards[], bool &isFlush)
+bool Check::checkPairs(double* cards)
 {
-    for(int i = 1; i < 5; i++)
+    if (Card().returnNumber(cards[0]) == Card().returnNumber(cards[1]))
     {
-        if(Card().returnFlower(cards[0]) != Card().returnFlower(cards[i]))
-        {
-            isFlush = false;
-        }
+        return true;
     }
+    return false;
 }
 
-void Check::checkStraight(double cards[], bool &isStraight)
+bool Check::checkTriples(double* cards)
 {
+    if ((Card().returnNumber(cards[0]) == Card().returnNumber(cards[1]))
+        and (Card().returnNumber(cards[1]) == Card().returnNumber(cards[2])))
+    {
+        return true;
+    }
+    return false;
+}
+
+bool Check::checkFlush(double* cards)
+{
+    int isFlush = 0;
     for (int i = 1; i < 5; i++)
     {
-        if (Card().returnNumber(cards[0]) + i != Card().returnNumber(cards[i]))
+        if (Card().returnFlower(cards[0]) == Card().returnFlower(cards[i]))
         {
-            isStraight = false;
+            isFlush++;
         }
     }
+    if (isFlush == 4) return true;
+    return false;
 }
 
-void Check::checkSpecialStraight(double cards[], bool &isSpecialStraight)
+bool Check::checkStraight(double* cards)
 {
-    if (Card().returnNumber(cards[0]) ==  1 &&
-        Card().returnNumber(cards[1]) == 10 && 
-        Card().returnNumber(cards[2]) == 11 && 
-        Card().returnNumber(cards[3]) == 12 && 
+    int count = 0;
+    if (checkSpecialStraight(cards)) return true;
+    for (int i = 1; i < 5; i++)
+    {
+        if (Card().returnNumber(cards[0]) + i == Card().returnNumber(cards[i]))
+        {
+            count++;
+        }
+    }
+    if (count == 4) return true;
+    return false;
+}
+
+bool Check::checkTiki(double* cards)
+{
+    int isTiki = 0;
+    for (int i = 1; i < 5; i++)
+    {
+        if (Card().returnNumber(cards[0]) != Card().returnNumber(cards[i]))
+        {
+            isTiki++;
+        }
+    }
+
+    if (isTiki == 1) return true;
+    else return false;
+}
+
+bool Check::checkStraightFlush(double* cards)
+{
+    bool isStraight = false;
+    bool isFlush = false;
+
+    isStraight = checkStraight(cards);
+    isFlush = checkFlush(cards);
+
+    if (isStraight and isFlush) return true;
+    return false;
+}
+
+bool Check::checkSpecialStraight(double* cards)
+{
+    if (Card().returnNumber(cards[0]) == 1 &&
+        Card().returnNumber(cards[1]) == 10 &&
+        Card().returnNumber(cards[2]) == 11 &&
+        Card().returnNumber(cards[3]) == 12 &&
         Card().returnNumber(cards[4]) == 13)
     {
-        isSpecialStraight = true;
+        return true;
     }
+    return false;
 }
-    
-string Check::checkCardsType(double cards[],int size){
-    bool type=false;
-    if(size==5){
-        checkSpecialStraight(cards,type);
-        if(type==true){
-            return "SpecialStraight";
+
+bool Check::checkFullHouse(double* cards)
+{
+    Tool().arrange(cards, 5);
+    bool isPairs = false;
+    bool isTriples = false;
+
+    if (Card().returnNumber(cards[0]) == Card().returnNumber(cards[1]))
+    {
+        if (Card().returnNumber(cards[0]) == Card().returnNumber(cards[1])) isPairs = true;
+        if ((Card().returnNumber(cards[2]) == Card().returnNumber(cards[3]))
+            and (Card().returnNumber(cards[3]) == Card().returnNumber(cards[4]))) isTriples = true;
+    }
+    else
+    {
+        if (Card().returnNumber(cards[3]) == Card().returnNumber(cards[4])) isPairs = true;
+        if ((Card().returnNumber(cards[0]) == Card().returnNumber(cards[1]))
+            and (Card().returnNumber(cards[1]) == Card().returnNumber(cards[2]))) isTriples = true;
+    }
+    if (isPairs and isTriples) return true;
+    return false;
+}
+
+int Check::checkCardsType(double* cards, double* card)
+{
+    bool isFirst = false;
+    bool Correct = false;
+    if (card[0] == 3.1) isFirst = true;
+
+    if (checkFullHouse(cards, card, 3.1))
+    {
+        if (isFirst)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (card[i] == 3.1) Correct = true;
+            }
         }
-        type=true;
-        checkStraight(cards,type);
-        if(type==true){
-            return "Straight";
+        if (Correct) return 696;
+    }
+    if (checkFlush(cards, card, 3.1))
+    {
+        if (isFirst)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (card[i] == 3.1) Correct = true;
+            }
         }
-        type=true;
-        checkFlush(cards,type);
-        if(type==true){
-            return "Flush";
+        if (Correct) return 695;
+    }
+    if (checkStraight(cards, card, 3.1))
+    {
+        if (isFirst)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (card[i] == 3.1) Correct = true;
+            }
+        }
+        if (Correct) return 694;
+    }
+    if (checkTriples(cards, card, 3.1))
+    {
+        if (isFirst)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (card[i] == 3.1) Correct = true;
+            }
+        }
+        if (Correct) return 693;
+    }
+    if (checkPairs(cards, card, 3.1))
+    {
+        {
+            if (isFirst)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    if (card[i] == 3.1) Correct = true;
+                }
+            }
+            if (Correct) return 692;
         }
     }
-    return "no";
+    if (checkTiki(cards, card, 3.1))
+    {
+        if (isFirst)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (card[i] == 3.1) Correct = true;
+            }
+        }
+        if (Correct) return 697;
+    }
+    if (checkStraightFlush(cards, card, 3.1))
+    {
+        if (isFirst)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (card[i] == 3.1) Correct = true;
+            }
+        }
+        if (Correct) return 698;
+    }
+
+    card[0] = 3.1;
+    for (int i = 1; i < 5; i++) {
+        card[i] = 0;
+    }
+    return 691;
+}
+
+int Check::checkCardsType(double* cards, int num) {
+    if (num == 5)
+    {
+        if (checkStraightFlush(cards)) return 698;
+        if (checkTiki(cards)) return 697;
+        if (checkFullHouse(cards)) return 696;
+        if (checkFlush(cards)) return 695;
+        if (checkStraight(cards)) return 694;
+    }
+    if (num == 3)
+        if (checkTriples(cards))return 693;
+    if (num == 2)
+        if (checkPairs(cards)) return 692;
+    if (num == 1) return 691;
+    return 0;
+}
+
+bool Check::checkSingle(double* cards, double* card, double value)
+{
+    bool conform = false;
+
+    for (int i = 0; i < 13; i++)
+    {
+        if (cards[i] > value)
+        {
+            card[0] = cards[i];
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Check::checkPairs(double* cards, double* card, double value = 3.0)
+{
+    bool conform = false;
+
+    int index = 0;
+    for (int i = 0; i < 13; i++)
+    {
+        if (cards[i] > value) index = i;
+        break;
+    }
+
+    for (int i = index; i < 12; i++)
+    {
+        for (int j = i + 1; j < 13; j++)
+        {
+            double pair[2] = { cards[i],cards[j] };
+            if (checkPairs(pair))
+            {
+                conform = checkPairs(pair);
+                for (int i = 0; i < 2; i++)
+                {
+                    card[i] = pair[i];
+                }
+                return conform;
+            }
+        }
+    }
+    return conform;
+}
+
+bool Check::checkTriples(double* cards, double* card, double value)
+{
+    bool conform = false;
+
+    int index = 0;
+    for (int i = 0; i < 13; i++)
+    {
+        if (cards[i] > value) index = i;
+        break;
+    }
+
+    for (int i = index; i < 11; i++)
+    {
+        for (int j = i + 1; j < 12; j++)
+        {
+            for (int p = j + 1; p < 13; p++)
+            {
+                double triples[3] = { cards[i],cards[j],cards[p] };
+
+                if (checkTriples(triples))
+                {
+                    conform = checkTriples(triples);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        card[i] = triples[i];
+                    }
+                    return conform;
+                }
+            }
+        }
+    }
+    return conform;
+}
+
+bool Check::checkFlush(double* cards, double* card, double value)
+{
+    bool conform = false;
+
+    int index = 0;
+    for (int i = 0; i < 13; i++)
+    {
+        if (cards[i] > value) index = i;
+        break;
+    }
+
+    for (int i = index; i < 9; i++)
+    {
+        for (int j = i + 1; j < 10; j++)
+        {
+            for (int p = j + 1; p < 11; p++)
+            {
+                for (int q = p + 1; q < 12; q++)
+                {
+                    for (int k = q + 1; k < 13; k++)
+                    {
+                        double Flush[5] = { cards[i],cards[j],cards[p],cards[q],cards[k] };
+                        if (checkFlush(Flush))
+                        {
+                            conform = checkFlush(Flush);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                card[i] = Flush[i];
+                            }
+                            return conform;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return conform;
+}
+
+bool Check::checkStraight(double* cards, double* card, double value)
+{
+    bool conform = false;
+
+    int index = 0;
+    for (int i = 0; i < 13; i++)
+    {
+        if (cards[i] > value) index = i;
+        break;
+    }
+
+    for (int i = index; i < 9; i++)
+    {
+        for (int j = i + 1; j < 10; j++)
+        {
+            for (int p = j + 1; p < 11; p++)
+            {
+                for (int q = p + 1; q < 12; q++)
+                {
+                    for (int k = q + 1; k < 13; k++)
+                    {
+                        double Straight[5] = { cards[i],cards[j],cards[p],cards[q],cards[k] };
+                        if (checkStraight(Straight))
+                        {
+                            conform = checkStraight(Straight);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                card[i] = Straight[i];
+                            }
+                            return conform;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return conform;
+}
+
+bool Check::checkFullHouse(double* cards, double* card, double value)
+{
+    bool conform = false;
+
+    int index = 0;
+    for (int i = 0; i < 13; i++)
+    {
+        if (cards[i] > value) index = i;
+        break;
+    }
+
+    for (int i = index; i < 9; i++)
+    {
+        for (int j = i + 1; j < 10; j++)
+        {
+            for (int p = j + 1; p < 11; p++)
+            {
+                for (int q = p + 1; q < 12; q++)
+                {
+                    for (int k = q + 1; k < 13; k++)
+                    {
+                        double FullHouse[5] = { cards[i],cards[j],cards[p],cards[q],cards[k] };
+                        if (checkFullHouse(FullHouse))
+                        {
+                            conform = checkFullHouse(FullHouse);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                card[i] = FullHouse[i];
+                            }
+                            return conform;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return conform;
+}
+
+bool Check::checkTiki(double* cards, double* card, double value)
+{
+    bool conform = false;
+
+    int index = 0;
+    for (int i = 0; i < 13; i++)
+    {
+        if (cards[i] > value) index = i;
+        break;
+    }
+
+    for (int i = index; i < 9; i++)
+    {
+        for (int j = i + 1; j < 10; j++)
+        {
+            for (int p = j + 1; p < 11; p++)
+            {
+                for (int q = p + 1; q < 12; q++)
+                {
+                    for (int k = q + 1; k < 13; k++)
+                    {
+                        double Tiki[5] = { cards[i],cards[j],cards[p],cards[q],cards[k] };
+                        if (checkTiki(Tiki))
+                        {
+                            conform = checkTiki(Tiki);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                card[i] = Tiki[i];
+                            }
+                            return conform;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return conform;
+}
+
+bool Check::checkStraightFlush(double* cards, double* card, double value)
+{
+    bool conform = false;
+
+    int index = 0;
+    for (int i = 0; i < 13; i++)
+    {
+        if (cards[i] > value) index = i;
+        break;
+    }
+
+    for (int i = index; i < 9; i++)
+    {
+        for (int j = i + 1; j < 10; j++)
+        {
+            for (int p = j + 1; p < 11; p++)
+            {
+                for (int q = p + 1; q < 12; q++)
+                {
+                    for (int k = q + 1; k < 13; k++)
+                    {
+                        double StraightFlush[5] = { cards[i],cards[j],cards[p],cards[q],cards[k] };
+                        if (checkStraightFlush(StraightFlush))
+                        {
+                            conform = true;
+                            for (int i = 0; i < 5; i++)
+                            {
+                                card[i] = StraightFlush[i];
+                            }
+                            return conform;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return conform;
 }
