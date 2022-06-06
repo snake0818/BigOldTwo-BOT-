@@ -10,9 +10,9 @@ int Table::passNumber = 0;
 
 Table::Table()
 {
-    getComputer1().setNO(1);
-    getComputer2().setNO(2);
-    getComputer3().setNO(3);
+    computer1.setNO(1);
+    computer2.setNO(2);
+    computer3.setNO(3);
 }
 
 Player& Table::getPlayer()
