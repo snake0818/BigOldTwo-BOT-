@@ -246,10 +246,5 @@ bool Compare::straightFlushCompare(const double* StraightFlush)
             Card().returnNumber(tableStraight[i]) == 2) tableStraight[i] += 13;
     }
 
-    Tool().postZero(straightFlush, 5);
-    Tool().postZero(tableStraight, 5);
-
-    if (straightFlush[4] > tableStraight[4]) return true;
-
-    return false;
+    return straightFlush[0] > tableStraight[0];
 }
