@@ -83,3 +83,13 @@ int Computer::getBeginIndex() const
 {
     return beginIndex;
 }
+
+void Computer::setNO(int NO)
+{
+    this->NO = NO;
+}
+
+int Computer::getNO() const
+{
+    return NO;
+}

@@ -15,6 +15,8 @@ public:
 	int returnIndex(double) const;
 	void addBeginIndex(int);
 	int getBeginIndex() const;
+	void setNO(int);
+	int getNO() const;
 	
 	// test
 	void print();
@@ -23,6 +25,7 @@ private:
 	Game Gamer;
 	double computer_arr[13];
 	int beginIndex;
+	int NO;
 };
 
 #endif
