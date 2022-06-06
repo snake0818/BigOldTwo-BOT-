@@ -155,21 +155,16 @@ void OutOfCard::computerFirstOutHand(Computer &computer)
 void OutOfCard::computerOutHand(Computer &computer)
 {
     int type = Table().getCardsType();
-
+    bool RUN = false;
     bool isOutHand = false;
     if(type == 691)
     {
-        /* 
-            場上單張時
-            判斷有沒有單張可以出，有的話出單張
-        */
+        RUN = true;
         if(computer.getHandCardsSize() > 4)
         {
             int beginIndex = computer.getBeginIndex();
             for(int i = beginIndex; i < 12; i++)
             {
-                // 前後只要不一樣就出前面那張，要是一樣跳第 3 張(1, 2 先排除)
-                // 要是上述沒有出
                 double card1 = Card().returnNumber(computer.getIndexOfCard(i));
                 if(card1 < 3)
                 {
@@ -454,6 +449,7 @@ void OutOfCard::computerOutHand(Computer &computer)
     }
     else if (type == 692)
     {
+        RUN = true;
         const int INDEX = computer.getBeginIndex();
 
         for(int i = INDEX; i < 12; i++)
@@ -517,6 +513,7 @@ void OutOfCard::computerOutHand(Computer &computer)
     }
     else if (type == 693)
     {
+        RUN = true;
         const int INDEX = computer.getBeginIndex();
 
         bool isTriples = false;
@@ -628,6 +625,7 @@ void OutOfCard::computerOutHand(Computer &computer)
     }
     else if (type == 694)
     {
+        RUN = true;
         const int INDEX = computer.getBeginIndex();
 
         for(int i = INDEX; i < 13; i++)
@@ -759,6 +757,7 @@ void OutOfCard::computerOutHand(Computer &computer)
     }
     else if (type == 695)
     {
+        RUN = true;
         const int INDEX = computer.getBeginIndex();
 
         int numOfFlower[4] = {0};
@@ -820,6 +819,7 @@ void OutOfCard::computerOutHand(Computer &computer)
     }
     else if (type == 696)
     {
+        RUN = true;
         const int INDEX = computer.getBeginIndex();
 
         bool isTriples = false;
@@ -987,67 +987,90 @@ void OutOfCard::computerOutHand(Computer &computer)
             }
         }
 
-        if(Compare().fullHouseCompare(fullHouse))
+        if(isTriples && isPairs)
         {
-            for(int j = 0; j < 5; j++)
+            if(Compare().fullHouseCompare(fullHouse))
             {
-                Game().setField(fullHouse[j], j);
+                for(int j = 0; j < 5; j++)
+                {
+                    Game().setField(fullHouse[j], j);
+                }
+                for(int j = 0; j < 5; j++)
+                {
+                    computer.setComputerArr(0, bufferIndex[j]);
+                }
+                Tool().arrange(computer.getComputer_arr(), 13);
+                isOutHand = true;
+                computer.addBeginIndex(5);
             }
-            for(int j = 0; j < 5; j++)
-            {
-                computer.setComputerArr(0, bufferIndex[j]);
-            }
-            Tool().arrange(computer.getComputer_arr(), 13);
-            isOutHand = true;
-            computer.addBeginIndex(5);
         }
     }
 
-    if (!isOutHand)
+    if (!isOutHand && type != 698)
     {
-        if (type == 697)
+        const int INDEX = computer.getBeginIndex();
+        double tiki[5] = {0};
+        int bufferIndex[5] = {0};
+        if(computer.getHandCardsSize() > 4)
         {
-            const int INDEX = computer.getBeginIndex();
-            double tiki[5] = {0};
-            int bufferIndex[5] = {0};
-            if(computer.getHandCardsSize() > 4)
+            bool isSingle = false;
+            for(int i = INDEX; i < 10; i++)
             {
-                bool isSingle = false;
-                for(int i = INDEX; i < 10; i++)
-                {
-                    int card1num = Card().returnNumber(computer.getIndexOfCard(i));
-                    double card1 = computer.getIndexOfCard(i);
-                    int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
-                    double card2 = computer.getIndexOfCard(i+1);
-                    int card3num = Card().returnNumber(computer.getIndexOfCard(i+2));
-                    double card3 = computer.getIndexOfCard(i+2);
-                    int card4num = Card().returnNumber(computer.getIndexOfCard(i+3));
-                    double card4 = computer.getIndexOfCard(i+3);
+                int card1num = Card().returnNumber(computer.getIndexOfCard(i));
+                double card1 = computer.getIndexOfCard(i);
+                int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
+                double card2 = computer.getIndexOfCard(i+1);
+                int card3num = Card().returnNumber(computer.getIndexOfCard(i+2));
+                double card3 = computer.getIndexOfCard(i+2);
+                int card4num = Card().returnNumber(computer.getIndexOfCard(i+3));
+                double card4 = computer.getIndexOfCard(i+3);
 
-                    if(card1num != card2num
-                        || (card1num != card3num)
-                        || (card1num != card4num))
+                if(card1num != card2num
+                    || (card1num != card3num)
+                    || (card1num != card4num))
+                {
+                    continue;
+                }
+
+                tiki[0] = card1;
+                tiki[1] = card2;
+                tiki[2] = card3;
+                tiki[3] = card4;
+
+                for(int j = 0; j < 4; j++)
+                {
+                    bufferIndex[j] = i+j;
+                }
+
+                const int BUFFER = card1num;
+
+                for(int j = INDEX; j < 13; j++)
+                {
+                    int cardNum = Card().returnNumber(computer.getIndexOfCard(j));
+                    double card = computer.getIndexOfCard(j);
+                    if(BUFFER == cardNum || cardNum < 3)
                     {
                         continue;
                     }
 
-                    tiki[0] = card1;
-                    tiki[1] = card2;
-                    tiki[2] = card3;
-                    tiki[3] = card4;
+                    tiki[4] = card;
+                    bufferIndex[4] = j;
+                    isSingle = true;
+                    break;
+                }
 
-                    for(int j = 0; j < 4; j++)
-                    {
-                        bufferIndex[j] = i+j;
-                    }
-
-                    const int BUFFER = card1num;
-
+                if(!isSingle)
+                {
                     for(int j = INDEX; j < 13; j++)
                     {
                         int cardNum = Card().returnNumber(computer.getIndexOfCard(j));
                         double card = computer.getIndexOfCard(j);
-                        if(BUFFER == cardNum || cardNum < 3)
+                        if(cardNum > 2)
+                        {
+                            break;
+                        }
+                        
+                        if(BUFFER == cardNum)
                         {
                             continue;
                         }
@@ -1057,40 +1080,19 @@ void OutOfCard::computerOutHand(Computer &computer)
                         isSingle = true;
                         break;
                     }
-
-                    if(!isSingle)
-                    {
-                        for(int j = INDEX; j < 13; j++)
-                        {
-                            int cardNum = Card().returnNumber(computer.getIndexOfCard(j));
-                            double card = computer.getIndexOfCard(j);
-                            if(cardNum > 2)
-                            {
-                                break;
-                            }
-                            
-                            if(BUFFER == cardNum)
-                            {
-                                continue;
-                            }
-
-                            tiki[4] = card;
-                            bufferIndex[4] = j;
-                            isSingle = true;
-                            break;
-                        }
-                    }
                     break;
                 }
-                
-                for(int i = 0; i < 5; i++)
-                {
-                    cout << tiki[i] << " ";
-                }
-                cout << endl;
 
                 if(isSingle)
                 {
+                    if(RUN)
+                    {
+                        for(int i = 0; i < 5; i++)
+                        {
+                            Game().setField(0, i);
+                        }
+                    }
+
                     if(Compare().tikiCompare(tiki))
                     {
                         for(int j = 0; j < 5; j++)
@@ -1104,11 +1106,12 @@ void OutOfCard::computerOutHand(Computer &computer)
                         Tool().arrange(computer.getComputer_arr(), 13);
                         isOutHand = true;
                         computer.addBeginIndex(5);
+                        Table().setCardsType(697);
                     }
                 }
             }
         }
-        if (!isOutHand && type == 698)
+        if (!isOutHand)
         { /* 場上同花順時 判斷有沒有同花順可以出，有的話出同花順 */
         }
     }
