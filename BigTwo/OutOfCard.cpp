@@ -1272,8 +1272,8 @@ void OutOfCard::computerOutHand(Computer &computer)
 
     if (!isOutHand)
     {
-        // Computer pass
-        cout << "Cpmputer" << computer.getNO() << " pass" << endl;
+        cout << "Cpmputer" << computer.getNO() << " pass\n\n"
+            << endl;
     }
 }
 
