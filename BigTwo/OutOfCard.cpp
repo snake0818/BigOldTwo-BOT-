@@ -819,28 +819,188 @@ void OutOfCard::computerOutHand(Computer &computer)
         }
     }
     else if (type == 696)
-    { /* 場上葫蘆時 判斷有沒有葫蘆可以出，有的話出葫蘆 */
-        // double card[5] = {0};
+    {
+        const int INDEX = computer.getBeginIndex();
 
-        // double minValue = Game().getCardsOnField()[0];
+        bool isTriples = false;
+        bool isPairs = false;
+        double fullHouse[5] = {0};
+        int bufferIndex[5] = {0};
 
-        // Tool().arrange(Game().getCardsOnField(), 5);
-        // if (Card().returnNumber(Game().getCardsOnField()[0]) != Card().returnNumber(Game().getCardsOnField()[2]))
-        //     minValue = Game().getCardsOnField()[2];
+        for(int i = INDEX; i < 11; i++)
+        {
+            int card1num = Card().returnNumber(computer.getIndexOfCard(i));
+            double card1 = computer.getIndexOfCard(i);
 
-        // if (Check().checkFullHouse(Computer().getComputer_arr(), card, minValue))
-        // {
-        //     if (Compare().fullHouseCompare(card))
-        //     {
-        //         Tool().arrange(card, 5);
-        //         for (int i = 0; i < 3; i++)
-        //         {
-        //             Game().setField(card, 5);
-        //         }
-        //     }
-        // }
-        // else
-        //     isOutHand = true;
+            if(card1num < 3)
+            {
+                continue;
+            }
+
+            int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
+            double card2 = computer.getIndexOfCard(i+1);
+            int card3num = Card().returnNumber(computer.getIndexOfCard(i+2));
+            double card3 = computer.getIndexOfCard(i+2);
+            int card4num = Card().returnNumber(computer.getIndexOfCard(i+3));
+            double card4 = computer.getIndexOfCard(i+3);
+
+            if(card1num != card2num)
+            {
+                continue;
+            }
+
+            if(card1num == card2num && card1num != card3num)
+            {
+                i++;
+                continue;
+            }
+
+            if(card1num == card2num && card1num == card3num && card1num == card4num)
+            {
+                i += 3;
+                continue;
+            }
+
+            fullHouse[0] = card1;
+            fullHouse[1] = card2;
+            fullHouse[2] = card3;
+
+            for(int j = 0; j < 3; j++)
+            {
+                bufferIndex[j] = i+j;
+            }
+
+            isTriples = true;
+        }
+
+        if(!isTriples)
+        {
+            for(int i = INDEX; i < 11; i++)
+            {
+                int card1num = Card().returnNumber(computer.getIndexOfCard(i));
+                double card1 = computer.getIndexOfCard(i);
+
+                if(card1num > 2)
+                {
+                    break;
+                }
+                
+                int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
+                double card2 = computer.getIndexOfCard(i+1);
+                int card3num = Card().returnNumber(computer.getIndexOfCard(i+2));
+                double card3 = computer.getIndexOfCard(i+2);
+                int card4num = Card().returnNumber(computer.getIndexOfCard(i+3));
+                double card4 = computer.getIndexOfCard(i+3);
+
+                if(card1num != card2num)
+                {
+                    continue;
+                }
+
+                if(card1num == card2num && card1num != card3num)
+                {
+                    i++;
+                    continue;
+                }
+
+                if(card1num == card2num && card1num == card3num && card1num == card4num)
+                {
+                    i += 3;
+                    continue;
+                }
+
+                fullHouse[0] = card1;
+                fullHouse[1] = card2;
+                fullHouse[2] = card3;
+
+                for(int j = 0; j < 3; j++)
+                {
+                    bufferIndex[j] = i+j;
+                }
+
+                isTriples = true;
+            }
+        }
+        
+        const int FIRSTNUM = Card().returnNumber(fullHouse[0]);
+        if(isTriples)
+        {
+            for(int i = INDEX; i < 12; i++)
+            {
+                int card1num = Card().returnNumber(computer.getIndexOfCard(i));
+                double card1 = computer.getIndexOfCard(i);
+                if(card1num < 3 || card1num == FIRSTNUM)
+                {
+                    continue;
+                }
+
+                int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
+                double card2 = computer.getIndexOfCard(i+1);
+                if(card1num == card2num)
+                {
+                    fullHouse[3] = card1;
+                    fullHouse[4] = card2;
+                    isPairs = true;
+                }
+
+                for(int j = 3; j < 5; j++)
+                {
+                    bufferIndex[j] = i+j-3;
+                }
+
+                if(isPairs)
+                {
+                    break;
+                }
+            }
+        }
+        
+        if(isTriples && (!isPairs))
+        {
+            for(int i = INDEX; i < 12; i++)
+            {
+                int card1num = Card().returnNumber(computer.getIndexOfCard(i));
+                double card1 = computer.getIndexOfCard(i);
+                if(card1num > 2 || card1num == FIRSTNUM)
+                {
+                    break;
+                }
+
+                int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
+                double card2 = computer.getIndexOfCard(i+1);
+                if(card1num == card2num)
+                {
+                    fullHouse[3] = card1;
+                    fullHouse[4] = card2;
+                    isPairs = true;
+                }
+
+                for(int j = 3; j < 5; j++)
+                {
+                    bufferIndex[j] = i+j-3;
+                }
+                
+                if(isPairs)
+                {
+                    break;
+                }
+            }
+        }
+
+        if(Compare().fullHouseCompare(fullHouse))
+        {
+            for(int j = 0; j < 5; j++)
+            {
+                Game().setField(fullHouse[j], j);
+            }
+            for(int j = 0; j < 5; j++)
+            {
+                computer.setComputerArr(0, bufferIndex[j]);
+            }
+            Tool().arrange(computer.getComputer_arr(), 13);
+            isOutHand = true;
+            computer.addBeginIndex(5);
+        }
     }
 
     if (!isOutHand)
