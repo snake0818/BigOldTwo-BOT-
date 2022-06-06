@@ -1006,27 +1006,107 @@ void OutOfCard::computerOutHand(Computer &computer)
     if (!isOutHand)
     {
         if (type == 697)
-        { /* 場上鐵支時 判斷有沒有鐵支可以出，有的話出鐵支 */
-            // double card[5] = {0};
+        {
+            const int INDEX = computer.getBeginIndex();
+            double tiki[5] = {0};
+            int bufferIndex[5] = {0};
+            if(computer.getHandCardsSize() > 4)
+            {
+                bool isSingle = false;
+                for(int i = INDEX; i < 10; i++)
+                {
+                    int card1num = Card().returnNumber(computer.getIndexOfCard(i));
+                    double card1 = computer.getIndexOfCard(i);
+                    int card2num = Card().returnNumber(computer.getIndexOfCard(i+1));
+                    double card2 = computer.getIndexOfCard(i+1);
+                    int card3num = Card().returnNumber(computer.getIndexOfCard(i+2));
+                    double card3 = computer.getIndexOfCard(i+2);
+                    int card4num = Card().returnNumber(computer.getIndexOfCard(i+3));
+                    double card4 = computer.getIndexOfCard(i+3);
 
-            // double minValue = Game().getCardsOnField()[0];
-            // Tool().arrange(Game().getCardsOnField(), 5);
-            // if (Card().returnNumber(Game().getCardsOnField()[0]) != Card().returnNumber(Game().getCardsOnField()[1]))
-            //     minValue = Game().getCardsOnField()[4];
+                    if(card1num != card2num
+                        || (card1num != card3num)
+                        || (card1num != card4num))
+                    {
+                        continue;
+                    }
 
-            // if (Check().checkTiki(Computer().getComputer_arr(), card, minValue))
-            // {
-            //     if (Compare().tikiCompare(card))
-            //     {
-            //         Tool().arrange(card, 5);
-            //         for (int i = 0; i < 3; i++)
-            //         {
-            //             Game().setField(card, 5);
-            //         }
-            //     }
-            // }
-            // else
-            //     isOutHand = true;
+                    tiki[0] = card1;
+                    tiki[1] = card2;
+                    tiki[2] = card3;
+                    tiki[3] = card4;
+
+                    for(int j = 0; j < 4; j++)
+                    {
+                        bufferIndex[j] = i+j;
+                    }
+
+                    const int BUFFER = card1num;
+
+                    for(int j = INDEX; j < 13; j++)
+                    {
+                        int cardNum = Card().returnNumber(computer.getIndexOfCard(j));
+                        double card = computer.getIndexOfCard(j);
+                        if(BUFFER == cardNum || cardNum < 3)
+                        {
+                            continue;
+                        }
+
+                        tiki[4] = card;
+                        bufferIndex[4] = j;
+                        isSingle = true;
+                        break;
+                    }
+
+                    if(!isSingle)
+                    {
+                        for(int j = INDEX; j < 13; j++)
+                        {
+                            int cardNum = Card().returnNumber(computer.getIndexOfCard(j));
+                            double card = computer.getIndexOfCard(j);
+                            if(cardNum > 2)
+                            {
+                                break;
+                            }
+                            
+                            if(BUFFER == cardNum)
+                            {
+                                continue;
+                            }
+
+                            tiki[4] = card;
+                            bufferIndex[4] = j;
+                            isSingle = true;
+                            break;
+                        }
+                    }
+                    break;
+                }
+                
+                for(int i = 0; i < 5; i++)
+                {
+                    cout << tiki[i] << " ";
+                }
+                cout << endl;
+
+                if(isSingle)
+                {
+                    if(Compare().tikiCompare(tiki))
+                    {
+                        for(int j = 0; j < 5; j++)
+                        {
+                            Game().setField(tiki[j], j);
+                        }
+                        for(int j = 0; j < 5; j++)
+                        {
+                            computer.setComputerArr(0, bufferIndex[j]);
+                        }
+                        Tool().arrange(computer.getComputer_arr(), 13);
+                        isOutHand = true;
+                        computer.addBeginIndex(5);
+                    }
+                }
+            }
         }
         if (!isOutHand && type == 698)
         { /* 場上同花順時 判斷有沒有同花順可以出，有的話出同花順 */
