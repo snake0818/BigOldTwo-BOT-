@@ -1,3 +1,5 @@
+#include <unistd.h>
+
 #include "Table.h"
 #include "Tool.h"
 #include "OutOfCard.h"
@@ -6,7 +8,12 @@
 int Table::cardsType = 0;
 int Table::passNumber = 0;
 
-Table::Table() {}
+Table::Table()
+{
+    getComputer1().setNO(1);
+    getComputer2().setNO(2);
+    getComputer3().setNO(3);
+}
 
 Player& Table::getPlayer()
 {
@@ -96,15 +103,14 @@ void Table::playerFirst()
 {
     if(getFirstTime())
     {
-        // 第一次出一定要有方塊 3
-        cout << "player 出牌" << endl;
+        cout << "首回合為你出牌" << endl;
         firstTime = false;
         Print().printTable();
     }
     else
     {
         // player 出牌
-        cout << "player 出牌" << endl;
+        cout << "請出牌" << endl;
         Print().printTable();
     }
     
@@ -134,7 +140,7 @@ void Table::computer1First()
 
     OutOfCard().computerOutHand(getComputer2());
     Print().printTable();
-
+    
     OutOfCard().computerOutHand(getComputer3());
     Print().printTable();
 
