@@ -30,7 +30,7 @@ int main()
 
     play.start();
     cout << endl;
-    
+
     print.shuffleCard();
 
     int sequence = play.whoFirst();
@@ -64,6 +64,7 @@ int main()
     Computer c1;
 
     double ca[5] = { 0,0,0,0,0 };
+    double TableCa[5] = { 0,0,0,0,0 };
 
     int caSize = 0;
 
@@ -71,10 +72,14 @@ int main()
         print.printHandCard();
         cout << endl << endl;
 
+        cout << "    ";
+        play.getPlayer().printPlayer_arr();
+        cout << endl << endl;
+
         play.getPlayer().playerOutCard();
         cout << endl;
     }
-    else if(sequence == 2) {
+    else if (sequence == 2) {
         out.computerFirstOutHand(play.getComputer1());
     }
     else if (sequence == 3) {
@@ -98,8 +103,6 @@ int main()
     }
 
     cout << endl << endl;
-
-    double TableCa[5] = { 0,0,0,0,0 };
 
     for (int i = 0;i < 5;i++) {
         TableCa[i] = ca[i];
@@ -133,7 +136,7 @@ int main()
 
 
     while (play.end() == false) {
-    
+
         caSize = 0;
         cout << "S :4是黑桃" << " " << "H :3是紅心" << " " << "C :2是梅花" << " " << "D :1是方塊" << endl << endl;
         cout << "請輸入小數點的方式出牌，Ex:方塊3 = 3.1" << endl << endl;
@@ -152,8 +155,13 @@ int main()
             print.printHandCard();
             cout << endl << endl;
 
+            cout << "    ";
+            play.getPlayer().printPlayer_arr();
+            cout << endl << endl;
+
             play.getPlayer().playerOutCard();
             cout << endl;
+
         }
         else if (sequence == 2) {
             out.computerOutHand(play.getComputer1());
@@ -174,23 +182,21 @@ int main()
             }
         }
 
-        for (int i = 0;i < caSize;i++) {
-                cout << ca[i] << " ";
-        }
-
-        cout << endl << endl;
-        
         /*
         Compare compare;
-
         if (caSize == 1) {
             cout << compare.singleCompare(ca[0]);
             cout << endl;
             cout << "GGWP" << endl;
         }
-
         cout << endl << endl;
         */
+
+        for (int i = 0;i < caSize;i++) {
+            cout << ca[i] << " ";
+        }
+        cout << endl << endl;
+
 
         for (int i = 0;i < 5;i++) {
             TableCa[i] = ca[i];
@@ -198,6 +204,7 @@ int main()
         
         Tool tool;
         
+        /**/
         if (sequence == 1) {
             for (int i = 0;i < 13;i++) {
                 for (int j = 0;j < caSize;j++) {
@@ -227,8 +234,8 @@ int main()
         cout << endl;
 
         cout << "\033[32m現在是第\033[0m\033[31m" << sequence << "\033[0m\033[32m位出牌\033[0m" << endl << endl;
-        
+
     }
-    
+
     return 0;
 }
