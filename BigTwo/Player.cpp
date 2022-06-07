@@ -313,6 +313,46 @@ void Player::playerOutCard(Player &player)
             else if(type == 694 && cardSize == 5)
             {
                 RUN = true;
+                int bufferIndex[5] = {0};
+                int card1Num = Card().returnNumber(card[0]);
+                int card2Num = Card().returnNumber(card[1]);
+                int card3Num = Card().returnNumber(card[2]);
+                int card4Num = Card().returnNumber(card[3]);
+                int card5Num = Card().returnNumber(card[4]);
+
+                if(card1Num+1 == card2Num &&
+                    card1Num+2 == card3Num &&
+                    card1Num+3 == card4Num &&
+                    card1Num+4 == card5Num)
+                {
+                    if(Compare().straightCompare(card))
+                    {
+                        for(int i = INDEX; i < 13; i++)
+                        {
+                            double target = player.getIndexOfCard(i);
+                            for(int j = 0; j < 5; j++)
+                            {
+                                if(target == card[j])
+                                {
+                                    bufferIndex[j] = i;
+                                    break;
+                                }
+                            }
+                        }
+
+                        for(int j = 0; j < 5; j++)
+                        {
+                            Game().setField(card[j], j);
+                        }
+                        for(int j = 0; j < 5; j++)
+                        {
+                            player.setPlayerArr(0, bufferIndex[j]);
+                        }
+                        Tool().arrange(player.getPlayer_arr(), 13);
+                        isOutHand = true;
+                        player.addBeginIndex(5);
+                    }
+                }
             }
             else if(type == 695 && cardSize == 5)
             {
