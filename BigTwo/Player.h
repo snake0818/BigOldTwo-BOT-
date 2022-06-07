@@ -14,8 +14,8 @@ public:
 	int getHandCardsSize() const;
 	double getIndexOfCard(int) const;
 	double *getPlayer_arr();
-	void playerOutCard();
-	void FirstPlayerOutCard();
+	void playerOutCard(Player&);
+	void FirstPlayerOutCard(Player&);
 	void addBeginIndex(int);
 	int getBeginIndex() const;
 
