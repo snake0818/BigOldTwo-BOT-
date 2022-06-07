@@ -23,16 +23,10 @@ int main()
 
     while(!play.end())
     {
-        play.getPlayer().printPlayer_arr();
-
         play.outCardSequence();
-
-        // // test
-        play.getComputer1().print();
-        play.getComputer2().print();
-        play.getComputer3().print();
-        play.getPlayer().printPlayer_arr();
     }
+
+    Print().printWhoWin(play);
 
     return 0;
 }
