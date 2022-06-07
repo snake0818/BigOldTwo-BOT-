@@ -6,6 +6,7 @@ double Player::player_arr[13] = {0};
 bool Player::wasDo = false;
 Player::Player()
 {
+    beginIndex = 0;
 }
 
 void Player::setPlayerArr(double num, int index)
