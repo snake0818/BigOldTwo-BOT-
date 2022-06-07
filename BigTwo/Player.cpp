@@ -2,8 +2,12 @@
 #include "Table.h"
 #include "Check.h"
 #include "Card.h"
+#include "Compare.h"
+
 double Player::player_arr[13] = {0};
+
 bool Player::wasDo = false;
+
 Player::Player()
 {
     beginIndex = 0;
@@ -72,9 +76,10 @@ double *Player::getPlayer_arr()
     return player_arr;
 }
 
-void Player::playerOutCard()
+void Player::playerOutCard(Player &player)
 {
     const int type = Table().getCardsType();
+    const int INDEX = player.getBeginIndex();
 
     bool isPass = false;
     bool isCorrect = true;
@@ -208,7 +213,26 @@ void Player::playerOutCard()
 
             if(type == 691 && cardSize == 1)
             {
+                int bufferIndex[1] = {0};
                 RUN = true;
+                if(Compare().singleCompare(card[0]))
+                {
+                    for(int k = INDEX; k < 13; k++)
+                    {
+                        double target = player.getIndexOfCard(k);
+                        if(target == card[0])
+                        {
+                            bufferIndex[0] = k;
+                        }
+                    }
+
+                    Game().setField(card[0], 0);
+                    player.setPlayerArr(0, bufferIndex[0]);
+                    Tool().arrange(player.getPlayer_arr(), 13);
+                    isOutHand = true;
+                    Table().getPlayer().addBeginIndex(1);
+                }
+
             }
             else if(type == 692 && cardSize == 2)
             {
@@ -230,23 +254,24 @@ void Player::playerOutCard()
             {
                 RUN = true;
             }
-            else
+            
+            if(!isOutHand)
             {
                 cout<<"你輸入的牌型不正確 or 出的牌比場上的牌還要來得小"<<endl;
                 cout<<"請再輸入一遍"<<endl;
-                Player().playerOutCard();
+                Player().playerOutCard(player);
             }
         }
         else
         {
             cout << "The input is error !!" << endl;
             cout << "Please enter again" << endl;
-            Player().playerOutCard();
+            Player().playerOutCard(player);
         }
     }
 }
 
-void Player::FirstPlayerOutCard()
+void Player::FirstPlayerOutCard(Player &player)
 {
     bool isCorrect = true;
     string playerOutCard;
@@ -379,7 +404,7 @@ void Player::FirstPlayerOutCard()
     {
         cout << "The input is error !!" << endl;
         cout << "Please enter again" << endl;
-        Player().playerOutCard();
+        Player().playerOutCard(player);
     }
 }
 
