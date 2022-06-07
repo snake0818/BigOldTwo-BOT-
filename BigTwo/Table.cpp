@@ -104,7 +104,7 @@ void Table::playerFirst()
     if(getFirstTime())
     {
         cout << "首回合為你出牌" << endl;
-        Player().playerOutCard();
+        Player().FirstPlayerOutCard();
         firstTime = false;
         Print().printTable();
     }
