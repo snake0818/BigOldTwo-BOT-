@@ -279,7 +279,7 @@ void Player::playerOutCard(Player &player)
                 int card2Num = Card().returnNumber(card[1]);
                 int card3Num = Card().returnNumber(card[2]);
 
-                if(card1Num == card2Num == card3Num)
+                if(card1Num == card2Num && card1Num == card3Num)
                 {
                     if(Compare().tripleCompare(card))
                     {
@@ -364,7 +364,10 @@ void Player::playerOutCard(Player &player)
                 int card4F = Card().returnFlower(card[3]);
                 int card5F = Card().returnFlower(card[4]);
 
-                if(card1F == card2F == card3F == card4F == card5F)
+                if(card1F == card2F &&
+                    card1F == card3F &&
+                    card1F == card4F &&
+                    card1F == card5F)
                 {
                     if(Compare().flushCompare(card))
                     {
@@ -580,7 +583,7 @@ void Player::playerOutCard(Player &player)
         }
         else
         {
-            cout << "\n你輸入的牌型不正確 !!" << endl;
+            cout << "\n你輸入的牌不正確 !!" << endl;
             cout << "請再輸入一遍\n" << endl;
             Player().playerOutCard(player);
         }
@@ -591,7 +594,7 @@ void Player::FirstPlayerOutCard(Player &player)
 {
     bool isCorrect = true;
     string playerOutCard;
-    cout << "Enter your number : ";
+    cout << "請輸入卡牌（此回合必須出 3.1 並且不行 pass) : ";
     getline(cin, playerOutCard);
     stringstream word(playerOutCard);
 
@@ -607,11 +610,12 @@ void Player::FirstPlayerOutCard(Player &player)
     for (int i = 0; i < numberOfCards; i++)
     {
         string text = cardByCin[i];
-        if (cardByCin[i] == "pass" or cardByCin[i] == "Pass" or cardByCin[i] == "PASS")
+        if (cardByCin[i] == "pass" || cardByCin[i] == "Pass" || cardByCin[i] == "PASS")
         {
             isCorrect = false;
             break;
         }
+
         double num = 0;
         double numPo = 0;
         for (int k = 0; k < text.size(); k++)
@@ -675,7 +679,8 @@ void Player::FirstPlayerOutCard(Player &player)
             }
         }
     }
-    if (isCorrect == true)
+
+    if (isCorrect)
     {
         for (int i = 0; i < numberOfCards; i++)
         {
@@ -690,7 +695,8 @@ void Player::FirstPlayerOutCard(Player &player)
             }
         }
     }
-    if (isCorrect == true)
+
+    if (isCorrect)
     {
         if (numberOfCards > 1)
         {
@@ -707,20 +713,126 @@ void Player::FirstPlayerOutCard(Player &player)
                 }
             }
         }
-        // if(){
-        //     //檢測牌
-        // }
-        // else{
-        //     cout<<"The input is error !!"<<endl;
-        //     cout<<"Please enter again"<<endl;
-        //     Player().playerOutCard();
-        // }
+
+        int cardSize = 0;
+        for(int i = 0; i < 5; i++)
+        {
+            if(card[i] != 0)
+            {
+                cardSize++;
+            }
+        }
+        
+        bool isOutHand = false;
+
+        if(cardSize == 1)
+        {
+            cout << "hi1\n";
+            int bufferIndex[1] = {0};
+            for(int k = 0; k < 13; k++)
+            {
+                double target = player.getIndexOfCard(k);
+                if(target == card[0])
+                {
+                    bufferIndex[0] = k;
+                }
+            }
+
+            Game().setField(card[0], 0);
+            player.setPlayerArr(0, bufferIndex[0]);
+            Tool().arrange(player.getPlayer_arr(), 13);
+            isOutHand = true;
+            Table().getPlayer().addBeginIndex(1);
+            Table().setCardsType(691);
+        }
+        else if(cardSize == 2)
+        {
+            cout << "hi2" << endl;
+            int bufferIndex[2] = {0};
+            int card1Num = Card().returnNumber(card[0]);
+            int card2Num = Card().returnNumber(card[1]);
+            if(card1Num == card2Num)
+            {
+                for(int i = 0; i < 13; i++)
+                {
+                    double target = player.getIndexOfCard(i);
+                    for(int j = 0; j < 2; j++)
+                    {
+                        if(target == card[j])
+                        {
+                            bufferIndex[j] = i;
+                            break;
+                        }
+                    }
+                }
+
+                for(int j = 0; j < 2; j++)
+                {
+                    Game().setField(card[j], j);
+                }
+                for(int j = 0; j < 2; j++)
+                {
+                    player.setPlayerArr(0, bufferIndex[j]);
+                }
+                Tool().arrange(player.getPlayer_arr(), 13);
+                isOutHand = true;
+                player.addBeginIndex(2);
+                Table().setCardsType(692);
+            }
+        }
+        else if(cardSize == 3)
+        {
+            int bufferIndex[3] = {0};
+            int card1Num = Card().returnNumber(card[0]);
+            int card2Num = Card().returnNumber(card[1]);
+            int card3Num = Card().returnNumber(card[2]);
+
+            if(card1Num == card2Num && card1Num == card3Num)
+            {
+                for(int i = 0; i < 13; i++)
+                {
+                    double target = player.getIndexOfCard(i);
+                    for(int j = 0; j < 3; j++)
+                    {
+                        if(target == card[j])
+                        {
+                            bufferIndex[j] = i;
+                            break;
+                        }
+                    }
+                }
+
+                for(int j = 0; j < 3; j++)
+                {
+                    Game().setField(card[j], j);
+                }
+                for(int j = 0; j < 3; j++)
+                {
+                    player.setPlayerArr(0, bufferIndex[j]);
+                }
+                Tool().arrange(player.getPlayer_arr(), 13);
+                isOutHand = true;
+                player.addBeginIndex(3);
+                Table().setCardsType(693);
+            }
+        }
+        else if(cardSize == 5)
+        {
+            
+        }
+        
+        if(!isOutHand)
+        {
+            cout << "\n你輸入的牌型不正確 or 出的牌比場上的牌還要來得小" << endl;
+            cout << "請再輸入一遍\n" << endl;
+            Player().FirstPlayerOutCard(player);
+        }
     }
     else
     {
-        cout << "The input is error !!" << endl;
-        cout << "Please enter again" << endl;
-        Player().playerOutCard(player);
+        cout << "\n你輸入的牌不正確 !!" << endl;
+        cout << "請再輸入一遍\n" << endl;
+        Player().FirstPlayerOutCard(player);
     }
 }
 
