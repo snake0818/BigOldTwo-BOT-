@@ -1300,7 +1300,7 @@ void OutOfCard::computerOutHand(Computer &computer)
 
     if (!isOutHand)
     {
-        cout << "Cpmputer" << computer.getNO() << " pass\n\n"
+        cout << "Cpmputer" << computer.getNO() << " pass\n"
             << endl;
         
         Table().passNumberPlus();
