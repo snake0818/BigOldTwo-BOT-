@@ -154,6 +154,13 @@ int main()
 
         if (play.getPassNumber() >= 3 ) {
             if (sequence == 1) {
+                print.printHandCard();
+                cout << endl << endl;
+
+                cout << "    ";
+                play.getPlayer().printPlayer_arr();
+                cout << endl << endl;
+                
                 p.nLimitPlayerOutCard(play.getPlayer());
             }
 
@@ -233,13 +240,13 @@ int main()
             
         }
 
-        /*
+        /**/
         for (int i = 0;i < caSize;i++) {
             if (test[i] != ca[i]) {
                 play.resetPassNumber();
             }
         }
-        */
+        
 
         /**/
         if (sequence == 1) {
