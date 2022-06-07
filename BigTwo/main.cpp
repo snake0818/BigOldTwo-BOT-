@@ -277,5 +277,6 @@ int main()
         cout << "Game Over" << endl;
     }
 
+    cout << "一場12局的大老二已結束" << endl;
     return 0;
 }
