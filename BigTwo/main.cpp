@@ -149,7 +149,7 @@ int main()
             cout << "請輸入小數點的方式出牌，Ex:方塊3 = 3.1" << endl << endl;
         }
 
-        cout << "Pass Count : " << play.getPassNumber();
+        //cout << "Pass Count : " << play.getPassNumber();
         cout << endl << endl;
 
         if (play.getPassNumber() >= 3 ) {
