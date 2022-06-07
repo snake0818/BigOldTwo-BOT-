@@ -1,4 +1,6 @@
 #include <unistd.h>
+#include <iostream>
+using namespace std;
 
 #include "Table.h"
 #include "Tool.h"
@@ -110,59 +112,23 @@ void Table::playerFirst()
     }
     else
     {
-        cout << "請出牌" << endl;
-
-        if(passNumber == 3)
+        if(!end())
         {
-            Player().nLimitPlayerOutCard(getPlayer());
+            cout << "請出牌" << endl;
+
+            if(passNumber == 3)
+            {
+                Player().nLimitPlayerOutCard(getPlayer());
+            }
+            else
+            {
+                Player().playerOutCard(getPlayer());
+            }
+            Print().printTable();
         }
-        else
-        {
-            Player().playerOutCard(getPlayer());
-        }
-        Print().printTable();
     }
 
-    if(passNumber == 3)
-    {
-        OutOfCard().nLimitComputerOutHand(getComputer1());
-    }
-    else
-    {   
-        OutOfCard().computerOutHand(getComputer1());
-    }
-    Print().printTable();
-
-    if(passNumber == 3)
-    {
-        OutOfCard().nLimitComputerOutHand(getComputer2());
-    }
-    else
-    {   
-        OutOfCard().computerOutHand(getComputer2());
-    }
-    Print().printTable();
-
-    if(passNumber == 3)
-    {
-        OutOfCard().nLimitComputerOutHand(getComputer3());
-    }
-    else
-    {   
-        OutOfCard().computerOutHand(getComputer3());
-    }
-    Print().printTable();
-}
-
-void Table::computer1First()
-{
-    if(getFirstTime())
-    {
-        OutOfCard().computerFirstOutHand(getComputer1());
-        firstTime = false;
-        Print().printTable();
-    }
-    else
+    if(!end())
     {
         if(passNumber == 3)
         {
@@ -174,50 +140,8 @@ void Table::computer1First()
         }
         Print().printTable();
     }
-
-    if(passNumber == 3)
-    {
-        OutOfCard().nLimitComputerOutHand(getComputer2());
-    }
-    else
-    {   
-        OutOfCard().computerOutHand(getComputer2());
-    }
-    Print().printTable();
     
-    if(passNumber == 3)
-    {
-        OutOfCard().nLimitComputerOutHand(getComputer3());
-    }
-    else
-    {   
-        OutOfCard().computerOutHand(getComputer3());
-    }
-    Print().printTable();
-
-    // player 出牌
-    cout << "player 出牌" << endl;
-    
-    if(passNumber == 3)
-    {
-        Player().nLimitPlayerOutCard(getPlayer());
-    }
-    else
-    {
-        Player().playerOutCard(getPlayer());
-    }
-    Print().printTable();
-}
-
-void Table::computer2First()
-{
-    if(getFirstTime())
-    {
-        OutOfCard().computerFirstOutHand(getComputer2());
-        firstTime = false;
-        Print().printTable();
-    }
-    else
+    if(!end())
     {
         if(passNumber == 3)
         {
@@ -230,38 +154,153 @@ void Table::computer2First()
         Print().printTable();
     }
 
-    if(passNumber == 3)
+    if(!end())
     {
-        OutOfCard().nLimitComputerOutHand(getComputer3());
+        if(passNumber == 3)
+        {
+            OutOfCard().nLimitComputerOutHand(getComputer3());
+        }
+        else
+        {   
+            OutOfCard().computerOutHand(getComputer3());
+        }
+        Print().printTable();
+    }
+}
+
+void Table::computer1First()
+{
+    if(getFirstTime())
+    {
+        OutOfCard().computerFirstOutHand(getComputer1());
+        firstTime = false;
+        Print().printTable();
     }
     else
-    {   
-        OutOfCard().computerOutHand(getComputer3());
-    }
-    Print().printTable();
-
-    // player 出牌
-    cout << "player 出牌" << endl;
-
-    if(passNumber == 3)
     {
-        Player().nLimitPlayerOutCard(getPlayer());
+        if(!end())
+        {
+            if(passNumber == 3)
+            {
+                OutOfCard().nLimitComputerOutHand(getComputer1());
+            }
+            else
+            {
+                OutOfCard().computerOutHand(getComputer1());
+            }
+
+            Print().printTable();
+        }
+    }
+
+    if(!end())
+    {
+        if(passNumber == 3)
+        {
+            OutOfCard().nLimitComputerOutHand(getComputer2());
+        }
+        else
+        {   
+            OutOfCard().computerOutHand(getComputer2());
+        }
+        Print().printTable();
+    }
+    
+    if(!end())
+    {
+        if(passNumber == 3)
+        {
+            OutOfCard().nLimitComputerOutHand(getComputer3());
+        }
+        else
+        {   
+            OutOfCard().computerOutHand(getComputer3());
+        }
+        Print().printTable();  
+    }
+
+    if(!end())
+    {
+        // player 出牌
+        cout << "player 出牌" << endl;
+        
+        if(passNumber == 3)
+        {
+            Player().nLimitPlayerOutCard(getPlayer());
+        }
+        else
+        {
+            Player().playerOutCard(getPlayer());
+        }
+        Print().printTable();
+    }
+}
+
+void Table::computer2First()
+{
+    if(getFirstTime())
+    {
+        OutOfCard().computerFirstOutHand(getComputer2());
+        firstTime = false;
+        Print().printTable();
     }
     else
     {
-        Player().playerOutCard(getPlayer());
+        if(!end())
+        {
+            if(passNumber == 3)
+            {
+                OutOfCard().nLimitComputerOutHand(getComputer2());
+            }
+            else
+            {   
+                OutOfCard().computerOutHand(getComputer2());
+            }
+            Print().printTable();
+        }
     }
-    Print().printTable();
 
-    if(passNumber == 3)
+    if(!end())
+    {    
+        if(passNumber == 3)
+        {
+            OutOfCard().nLimitComputerOutHand(getComputer3());
+        }
+        else
+        {   
+            OutOfCard().computerOutHand(getComputer3());
+        }
+        Print().printTable();
+    }
+
+    if(!end())
     {
-        OutOfCard().nLimitComputerOutHand(getComputer1());
+        // player 出牌
+        cout << "player 出牌" << endl;
+
+        if(passNumber == 3)
+        {
+            Player().nLimitPlayerOutCard(getPlayer());
+        }
+        else
+        {
+            Player().playerOutCard(getPlayer());
+        }
+        Print().printTable();
     }
-    else
-    {   
-        OutOfCard().computerOutHand(getComputer1());
+
+    if(!end())
+    {
+        if(passNumber == 3)
+        {
+            OutOfCard().nLimitComputerOutHand(getComputer1());
+        }
+        else
+        {   
+            OutOfCard().computerOutHand(getComputer1());
+        }
+        Print().printTable();
     }
-    Print().printTable();
 }
 
 void Table::computer3First()
@@ -274,49 +313,61 @@ void Table::computer3First()
     }
     else
     {
+        if(!end())
+        {
+            if(passNumber == 3)
+            {
+                OutOfCard().nLimitComputerOutHand(getComputer3());
+            }
+            else
+            {   
+                OutOfCard().computerOutHand(getComputer3());
+            }
+            Print().printTable();
+        }
+    }
+
+    if(!end())
+    {
+        // player 出牌
+        cout << "player 出牌" << endl;
+
         if(passNumber == 3)
         {
-            OutOfCard().nLimitComputerOutHand(getComputer3());
+            Player().nLimitPlayerOutCard(getPlayer());
         }
         else
-        {   
-            OutOfCard().computerOutHand(getComputer3());
+        {
+            Player().playerOutCard(getPlayer());
         }
         Print().printTable();
     }
 
-    // player 出牌
-    cout << "player 出牌" << endl;
+    if(!end())
+    {
+        if(passNumber == 3)
+        {
+            OutOfCard().nLimitComputerOutHand(getComputer1());
+        }
+        else
+        {   
+            OutOfCard().computerOutHand(getComputer1());
+        }
+        Print().printTable();
+    }
 
-    if(passNumber == 3)
+    if(!end())
     {
-        Player().nLimitPlayerOutCard(getPlayer());
+        if(passNumber == 3)
+        {
+            OutOfCard().nLimitComputerOutHand(getComputer2());
+        }
+        else
+        {   
+            OutOfCard().computerOutHand(getComputer2());
+        }
+        Print().printTable();
     }
-    else
-    {
-        Player().playerOutCard(getPlayer());
-    }
-    Print().printTable();
-
-    if(passNumber == 3)
-    {
-        OutOfCard().nLimitComputerOutHand(getComputer1());
-    }
-    else
-    {   
-        OutOfCard().computerOutHand(getComputer1());
-    }
-    Print().printTable();
-
-    if(passNumber == 3)
-    {
-        OutOfCard().nLimitComputerOutHand(getComputer2());
-    }
-    else
-    {   
-        OutOfCard().computerOutHand(getComputer2());
-    }
-    Print().printTable();
 }
 
 void Table::outCardSequence()
