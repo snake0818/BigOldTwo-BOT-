@@ -16,6 +16,7 @@ public:
 	double *getPlayer_arr();
 	void playerOutCard(Player&);
 	void FirstPlayerOutCard(Player&);
+	void nLimitPlayerOutCard(Player&);
 	void addBeginIndex(int);
 	int getBeginIndex() const;
 
