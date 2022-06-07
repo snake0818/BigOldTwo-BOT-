@@ -1274,6 +1274,8 @@ void OutOfCard::computerOutHand(Computer &computer)
     {
         cout << "Cpmputer" << computer.getNO() << " pass\n\n"
             << endl;
+        
+        Table().passNumberPlus();
     }
 }
 
