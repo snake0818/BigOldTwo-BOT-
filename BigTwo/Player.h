@@ -15,6 +15,7 @@ public:
 	double getIndexOfCard(int) const;
 	double *getPlayer_arr();
 	void playerOutCard();
+	void FirstPlayerOutCard();
 
 	void printPlayer_arr();
 	
