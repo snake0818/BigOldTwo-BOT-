@@ -48,6 +48,7 @@ double Player::getIndexOfCard(int index) const
 
 void Player::printPlayer_arr()
 {
+    cout << "\e[07;33m以下為你的手牌：\e[0m\n";
     for (int i = 0; i < 13; i++)
     {
         int Flower = Card().returnFlower(player_arr[i]);
@@ -68,6 +69,7 @@ void Player::printPlayer_arr()
             cout << "\e[35m" << player_arr[i] << "  \e[0m";
         }
     }
+    cout << endl;
     cout << endl;
 }
 
