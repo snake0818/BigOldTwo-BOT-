@@ -176,3 +176,24 @@ void Print::printShape()
     }
     cout << "++" << endl;
 }
+
+void Print::printWhoWin(Table& table)
+{
+    system("clear");
+    if(table.getPlayer().getHandCardsSize() == 0)
+    {
+        cout << "\e[07;33m恭喜你勝利！！！\e[0m" << endl;
+    }
+    else if(table.getComputer1().getHandCardsSize() == 0)
+    {
+        cout << "\e[07;31mComputer1勝利 QQ\e[0m" << endl;
+    }
+    else if(table.getComputer2().getHandCardsSize() == 0)
+    {
+        cout << "\e[07;31mComputer2勝利 QQ\e[0m" << endl;
+    }
+    else if(table.getComputer3().getHandCardsSize() == 0)
+    {
+        cout << "\e[07;31mComputer3勝利 QQ\e[0m" << endl;
+    }
+}

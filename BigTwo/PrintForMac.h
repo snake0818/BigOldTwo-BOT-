@@ -16,6 +16,7 @@ public:
     void OutCard(Table&);
     void printTable();
     void printShape();
+    void printWhoWin(Table&);
 
 private:
     void clear();
