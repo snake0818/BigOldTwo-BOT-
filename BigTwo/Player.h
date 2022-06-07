@@ -16,14 +16,16 @@ public:
 	double *getPlayer_arr();
 	void playerOutCard();
 	void FirstPlayerOutCard();
+	void addBeginIndex(int);
+	int getBeginIndex() const;
 
 	void printPlayer_arr();
 	
 private:
-	
 	Game Gamer;
 	static bool wasDo;
 	static double player_arr[13];
+	int beginIndex;
 };
 
 #endif
