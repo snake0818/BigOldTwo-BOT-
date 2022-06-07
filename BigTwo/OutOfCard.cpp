@@ -1352,4 +1352,6 @@ void OutOfCard::nLimitComputerOutHand(Computer &computer)
             }
         }
     }
+    
+    Table().resetPassNumber();
 }
