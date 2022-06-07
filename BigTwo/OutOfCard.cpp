@@ -1283,3 +1283,73 @@ void OutOfCard::computer_2outHand(Computer &computer)
 {
     // wait for programing.
 }
+
+void OutOfCard::nLimitComputerOutHand(Computer &computer)
+{
+    const int INDEX = computer.getBeginIndex();
+    
+    int singleSum = 0;
+    int pairsSum = 0;
+
+    for(int i = INDEX; i < 13; i++)
+    {
+        int card1 = Card().returnNumber(computer.getIndexOfCard(i));
+        int card2 = Card().returnNumber(computer.getIndexOfCard(i+1));
+
+        if(card1 == card2)
+        {
+            pairsSum++;
+            i++;
+        }
+        else
+        {
+            singleSum++;
+        }
+    }
+
+    if(singleSum >= pairsSum)
+    {
+        for(int i = INDEX; i < 13; i++)
+        {
+            int card1 = Card().returnNumber(computer.getIndexOfCard(i));
+            int card2 = Card().returnNumber(computer.getIndexOfCard(i+1));
+            
+            if(card1 != card2)
+            {
+                double card = computer.getIndexOfCard(i);
+                Game().setField(card, 0);
+                computer.setComputerArr(0, i);
+                Tool().arrange(computer.getComputer_arr(), 13);
+                computer.addBeginIndex(1);
+                Table().setCardsType(691);
+                break;
+            }
+            else
+            {
+                i++;
+            }
+        }
+    }
+    else
+    {
+        for(int i = INDEX; i < 12; i++)
+        {
+            int card1 = Card().returnNumber(computer.getIndexOfCard(i));
+            int card2 = Card().returnNumber(computer.getIndexOfCard(i+1));
+            
+            if(card1 == card2)
+            {
+                double card = computer.getIndexOfCard(i);
+                double cardx = computer.getIndexOfCard(i+1);
+                Game().setField(card, 0);
+                Game().setField(cardx, 1);
+                computer.setComputerArr(0, i);
+                computer.setComputerArr(0, i+1);
+                Tool().arrange(computer.getComputer_arr(), 13);
+                computer.addBeginIndex(2);
+                Table().setCardsType(692);
+                break;
+            }
+        }
+    }
+}

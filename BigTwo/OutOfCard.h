@@ -11,6 +11,7 @@ public:
     void computerFirstOutHand(Computer&);
     void computerOutHand(Computer&);
     void computer_2outHand(Computer&);
+    void nLimitComputerOutHand(Computer&);
 };
 
 #endif
