@@ -1522,6 +1522,7 @@ void Player::nLimitPlayerOutCard(Player &player)
                     player.addBeginIndex(5);
                     Table().setCardsType(697);
                 }
+                Table().resetPassNumber();
             }
         }
         
