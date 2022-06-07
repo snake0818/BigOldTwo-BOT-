@@ -398,6 +398,130 @@ void Player::playerOutCard(Player &player)
             else if(type == 696 && cardSize == 5)
             {
                 RUN = true;
+                int bufferIndex[5] = {0};
+                int card1Number = Card().returnNumber(card[0]);
+                int card2Number = Card().returnNumber(card[4]);
+
+                int sumF1 = 0;
+                int sumF2 = 0;
+
+                bool isFullHouse = false;
+                for(int i = 0; i < 5; i++)
+                {
+                    int cardNumber = Card().returnNumber(card[i]);
+                    if(cardNumber == card1Number)
+                    {
+                        sumF1++;
+                    }
+                    else if(cardNumber == card2Number)
+                    {
+                        sumF2++;
+                    }
+                }
+
+                if(sumF1 == 3 && sumF2 == 2 || sumF1 == 2 && sumF2 == 3)
+                {
+                    isFullHouse = true;
+                }
+
+                if(isFullHouse)
+                {
+                    if(Compare().fullHouseCompare(card))
+                    {
+                        for(int i = INDEX; i < 13; i++)
+                        {
+                            double target = player.getIndexOfCard(i);
+                            for(int j = 0; j < 5; j++)
+                            {
+                                if(target == card[j])
+                                {
+                                    bufferIndex[j] = i;
+                                    break;
+                                }
+                            }
+                        }
+
+                        for(int j = 0; j < 5; j++)
+                        {
+                            Game().setField(card[j], j);
+                        }
+                        for(int j = 0; j < 5; j++)
+                        {
+                            player.setPlayerArr(0, bufferIndex[j]);
+                        }
+                        Tool().arrange(player.getPlayer_arr(), 13);
+                        isOutHand = true;
+                        player.addBeginIndex(5);
+                    }
+                }
+            }
+
+            if (!isOutHand && type != 698)
+            {
+                int bufferIndex[5] = {0};
+                int card1Number = Card().returnNumber(card[0]);
+                int card2Number = Card().returnNumber(card[4]);
+
+                int sumF1 = 0;
+                int sumF2 = 0;
+
+                bool isTiki = false;
+                for(int i = 0; i < 5; i++)
+                {
+                    int cardNumber = Card().returnNumber(card[i]);
+                    if(cardNumber == card1Number)
+                    {
+                        sumF1++;
+                    }
+                    else if(cardNumber == card2Number)
+                    {
+                        sumF2++;
+                    }
+                }
+
+                if(sumF1 == 1 && sumF2 == 4 || sumF1 == 4 && sumF2 == 1)
+                {
+                    isTiki = true;
+                }
+
+                if(isTiki)
+                {
+                    if(RUN)
+                    {
+                        for(int i = 0; i < 5; i++)
+                        {
+                            Game().setField(0, i);
+                        }
+                    }
+                    
+                    if(Compare().tikiCompare(card))
+                    {
+                        for(int i = INDEX; i < 13; i++)
+                        {
+                            double target = player.getIndexOfCard(i);
+                            for(int j = 0; j < 5; j++)
+                            {
+                                if(target == card[j])
+                                {
+                                    bufferIndex[j] = i;
+                                    break;
+                                }
+                            }
+                        }
+
+                        for(int j = 0; j < 5; j++)
+                        {
+                            Game().setField(card[j], j);
+                        }
+                        for(int j = 0; j < 5; j++)
+                        {
+                            player.setPlayerArr(0, bufferIndex[j]);
+                        }
+                        Tool().arrange(player.getPlayer_arr(), 13);
+                        isOutHand = true;
+                        player.addBeginIndex(5);
+                    }
+                }
             }
             
             if(!isOutHand)
