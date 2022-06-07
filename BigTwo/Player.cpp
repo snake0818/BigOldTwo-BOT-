@@ -92,12 +92,12 @@ void Player::playerOutCard()
     for(int i=0;i<numberOfCards;i++){
         string text=cardByCin[i];
         if(((cardByCin[i]=="pass" or cardByCin[i]=="Pass" or cardByCin[i]=="PASS") and 
-           (cardByCin[0]!="pass" or cardByCin[0]!="Pass" or cardByCin[0]!="PASS") and i!=0) or isCorrect==false){
+          (cardByCin[0]!="pass" or cardByCin[0]!="Pass" or cardByCin[0]!="PASS") and i!=0) or isCorrect==false){
             isCorrect=false;
             break;
         }
         if((cardByCin[0]=="pass" or cardByCin[0]=="Pass" or cardByCin[0]=="PASS") and
-           (cardByCin[i]!="pass" or cardByCin[i]!="Pass" or cardByCin[i]!="PASS") and i!=0){
+          (cardByCin[i]!="pass" or cardByCin[i]!="Pass" or cardByCin[i]!="PASS") and i!=0){
             isPass=true;
         }
         double num=0;
@@ -134,48 +134,46 @@ void Player::playerOutCard()
                     break;
                 }
             }
+            for(int t=0;t<i;t++){
+                if(num==card[t]){
+                    isCorrect=false;
+                    break;
+                }
+            }
+            if(isCorrect==true){
+                card[i]=num;
+            }
+            else{
+                break;
+            }
         }
-        
     }
     if(isPass==true){
-        //將出排設為PASS
+        Table().passNumberPlus();
     }
     else{
         if(isCorrect==true){
-            for(int i=0;i<numberOfCards;i++){
-                for(int k=0;k<numberOfCards;k++){
-                    if(card[i]==card[k] and i!=k){
-                        isCorrect=false;
-                        break;
-                    }
-                    else{
-                        isCorrect=true;
-                    }
-                }
-            }
-            if(numberOfCards>1 and isCorrect!=false){
+            if(numberOfCards>1){
                 for(int i=0;i<numberOfCards;i++){
                     for(int k=0;k<numberOfCards;k++){
-                        if(i<k){
-                           if(card[i]>card[k]){
-                               double t=card[i];
-                               card[i]=card[k];
-                               card[k]=t;
-                           } 
+                        if(i<k and card[i]>card[k]){
+                            double t=card[i];
+                            card[i]=card[k];
+                            card[k]=t;
                         }
                     }
                 }
             }
-            else{
-                cout<<"The input is error !! first"<<endl;
-                cout<<"Please enter again 😂"<<endl;
-                Player().playerOutCard();
+            /*if(){
+                //檢測牌
             }
-            
+            else{
+                
+            }*/
         }
         else{
             cout<<"The input is error !!"<<endl;
-            cout<<"Please enter again 😂"<<endl;
+            cout<<"Please enter again"<<endl;
             Player().playerOutCard();
         }
     }
