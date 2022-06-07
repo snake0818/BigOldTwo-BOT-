@@ -64,6 +64,8 @@ int main()
     int caSize = 0;
 
     if (sequence == 1) {
+        print.printTable();
+        cout << endl;
         print.printHandCard();
         cout << endl << endl;
 
@@ -151,14 +153,21 @@ int main()
         cout << endl << endl;
 
         if (play.getPassNumber() >= 3 ) {
-            print.fieldCard();
-            cout << endl;
-            cout << "Pass = 3" << endl;
-            cout << "隨便出" << endl;
-            for (int i = 0;i < 5;i++) {
-                TableCa[i] = 0;
+            if (sequence == 1) {
+                p.nLimitPlayerOutCard(play.getPlayer());
             }
-            play.setPassNumber();
+
+            else if (sequence == 2) {
+                out.nLimitComputerOutHand(play.getComputer1());
+            }
+
+            else if (sequence == 3) {
+                out.nLimitComputerOutHand(play.getComputer2());
+            }
+
+            else {
+                out.nLimitComputerOutHand(play.getComputer3());
+            }
         }
 
         else {
@@ -224,11 +233,13 @@ int main()
             
         }
 
+        /*
         for (int i = 0;i < caSize;i++) {
             if (test[i] != ca[i]) {
-                play.setPassNumber();
+                play.resetPassNumber();
             }
         }
+        */
 
         /**/
         if (sequence == 1) {
