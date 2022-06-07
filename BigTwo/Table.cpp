@@ -110,8 +110,9 @@ void Table::playerFirst()
     }
     else
     {
-        // player 出牌
         cout << "請出牌" << endl;
+
+        // if(passNumber == 3)
         Player().playerOutCard(getPlayer());
         Print().printTable();
     }
@@ -238,4 +239,9 @@ void Table::passNumberPlus(){
 }
 int Table::getPassNumber(){
     return passNumber;
+}
+
+void Table::resetPassNumber()
+{
+    this->passNumber = 0;
 }

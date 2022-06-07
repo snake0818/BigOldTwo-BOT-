@@ -23,6 +23,7 @@ public:
     int getCardsType() const;
     void passNumberPlus();
     int getPassNumber();
+    void resetPassNumber();
 
     // Out of card sequence.
     void outCardSequence();
