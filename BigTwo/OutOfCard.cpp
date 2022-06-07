@@ -71,6 +71,7 @@ void OutOfCard::computerFirstOutHand(Computer &computer)
         Tool().arrange(computer.getComputer_arr(), 13);
         computer.addBeginIndex(5);
         Table().resetPassNumber();
+        system("clear");
 
         Table().setCardsType(697);
     }
@@ -108,6 +109,7 @@ void OutOfCard::computerFirstOutHand(Computer &computer)
             Tool().arrange(computer.getComputer_arr(), 13);
             computer.addBeginIndex(5);
             Table().resetPassNumber();
+            system("clear");
 
             Table().setCardsType(696);
         }
@@ -121,6 +123,7 @@ void OutOfCard::computerFirstOutHand(Computer &computer)
             Tool().arrange(computer.getComputer_arr(), 13);
             computer.addBeginIndex(3);
             Table().resetPassNumber();
+            system("clear");
 
             Table().setCardsType(693);
         }
@@ -137,6 +140,7 @@ void OutOfCard::computerFirstOutHand(Computer &computer)
         Tool().arrange(computer.getComputer_arr(), 13);
         computer.addBeginIndex(2);
         Table().resetPassNumber();
+        system("clear");
 
         Table().setCardsType(692);
     }
@@ -148,6 +152,7 @@ void OutOfCard::computerFirstOutHand(Computer &computer)
         Tool().arrange(computer.getComputer_arr(), 13);
         computer.addBeginIndex(1);
         Table().resetPassNumber();
+        system("clear");
 
         Table().setCardsType(691);
     }
@@ -192,6 +197,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     isOutHand = true;
                     computer.addBeginIndex(1);
                     Table().resetPassNumber();
+                    system("clear");
                     break;
                 }
             }
@@ -222,6 +228,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                         isOutHand = true;
                         computer.addBeginIndex(1);
                         Table().resetPassNumber();
+                        system("clear");
                         break;
                     }
                 }
@@ -252,6 +259,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     isOutHand = true;
                     computer.addBeginIndex(1);
                     Table().resetPassNumber();
+                    system("clear");
                 }
                 
                 if(!isOutHand)
@@ -279,6 +287,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                             isOutHand = true;
                             computer.addBeginIndex(1);
                             Table().resetPassNumber();
+                            system("clear");
                         }
                     }
                     else if(sameOfNum == 2)
@@ -292,6 +301,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                             isOutHand = true;
                             computer.addBeginIndex(1);
                             Table().resetPassNumber();
+                            system("clear");
                         }
                     }
                     else if(sameOfNum == 3)
@@ -307,6 +317,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                                 isOutHand = true;
                                 computer.addBeginIndex(1);
                                 Table().resetPassNumber();
+                                system("clear");
                                 break;
                             }
                         }
@@ -337,6 +348,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                             isOutHand = true;
                             computer.addBeginIndex(1);
                             Table().resetPassNumber();
+                            system("clear");
                             break;
                         }
                     }
@@ -355,6 +367,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                         isOutHand = true;
                         computer.addBeginIndex(1);
                         Table().resetPassNumber();
+                        system("clear");
                         break;
                     }
                 }
@@ -385,6 +398,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     isOutHand = true;
                     computer.addBeginIndex(1);
                     Table().resetPassNumber();
+                    system("clear");
                 }
                 
                 if(!isOutHand)
@@ -400,6 +414,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                             isOutHand = true;
                             computer.addBeginIndex(1);
                             Table().resetPassNumber();
+                            system("clear");
                             break;
                         }
                     }
@@ -416,6 +431,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     isOutHand = true;
                     computer.addBeginIndex(1);
                     Table().resetPassNumber();
+                    system("clear");
                 }
             }
             else if(sameOfNum == 3)
@@ -431,6 +447,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                         isOutHand = true;
                         computer.addBeginIndex(1);
                         Table().resetPassNumber();
+                        system("clear");
                         break;
                     }
                 }
@@ -449,6 +466,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     isOutHand = true;
                     computer.addBeginIndex(1);
                     Table().resetPassNumber();
+                    system("clear");
                     break;
                 }
             }
@@ -463,6 +481,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                 isOutHand = true;
                 computer.addBeginIndex(1);
                 Table().resetPassNumber();
+                system("clear");
             }
         }
     }
@@ -495,6 +514,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     isOutHand = true;
                     computer.addBeginIndex(2);
                     Table().resetPassNumber();
+                    system("clear");
                     break;
                 }
             }
@@ -526,6 +546,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                         isOutHand = true;
                         computer.addBeginIndex(2);
                         Table().resetPassNumber();
+                        system("clear");
                         break;
                     }
                 }
@@ -587,6 +608,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                 isOutHand = true;
                 computer.addBeginIndex(3);
                 Table().resetPassNumber();
+                system("clear");
                 break;
             }
         }
@@ -641,6 +663,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     isOutHand = true;
                     computer.addBeginIndex(3);
                     Table().resetPassNumber();
+                    system("clear");
                     break;
                 }
             }
@@ -777,6 +800,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     isOutHand = true;
                     computer.addBeginIndex(5);
                     Table().resetPassNumber();
+                    system("clear");
                     break;
                 }
             }
@@ -845,6 +869,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     isOutHand = true;
                     computer.addBeginIndex(5);
                     Table().resetPassNumber();
+                    system("clear");
                     break;
                 }
             }
@@ -1036,6 +1061,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                 isOutHand = true;
                 computer.addBeginIndex(5);
                 Table().resetPassNumber();
+                system("clear");
             }
         }
     }
@@ -1143,6 +1169,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                         computer.addBeginIndex(5);
                         Table().setCardsType(697);
                         Table().resetPassNumber();
+                        system("clear");
                         break;
                     }
                 }
@@ -1288,6 +1315,7 @@ void OutOfCard::computerOutHand(Computer &computer)
                     computer.addBeginIndex(5);
                     Table().setCardsType(697);
                     Table().resetPassNumber();
+                    system("clear");
                     break;
                 }
             }
@@ -1386,6 +1414,6 @@ void OutOfCard::nLimitComputerOutHand(Computer &computer)
             }
         }
     }
-
+    system("clear");
     Table().resetPassNumber();
 }

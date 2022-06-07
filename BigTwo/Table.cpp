@@ -103,11 +103,13 @@ bool Table::getFirstTime() const
 
 void Table::playerFirst()
 {
+    getPlayer().printPlayer_arr();
     if(getFirstTime())
     {
         cout << "首回合為你出牌" << endl;
         Player().FirstPlayerOutCard(getPlayer());
         firstTime = false;
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
     else
@@ -124,6 +126,7 @@ void Table::playerFirst()
             {
                 Player().playerOutCard(getPlayer());
             }
+            getPlayer().printPlayer_arr();
             Print().printTable();
         }
     }
@@ -140,6 +143,7 @@ void Table::playerFirst()
         {   
             OutOfCard().computerOutHand(getComputer1());
         }
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
     
@@ -155,6 +159,7 @@ void Table::playerFirst()
         {   
             OutOfCard().computerOutHand(getComputer2());
         }
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
 
@@ -170,18 +175,21 @@ void Table::playerFirst()
         {   
             OutOfCard().computerOutHand(getComputer3());
         }
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
 }
 
 void Table::computer1First()
 {
+    getPlayer().printPlayer_arr();
     if(getFirstTime())
     {
         cout << "等待 computer1 出牌，請稍候" << endl;
         sleep(2);
         OutOfCard().computerFirstOutHand(getComputer1());
         firstTime = false;
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
     else
@@ -199,6 +207,7 @@ void Table::computer1First()
                 OutOfCard().computerOutHand(getComputer1());
             }
 
+            getPlayer().printPlayer_arr();
             Print().printTable();
         }
     }
@@ -215,6 +224,7 @@ void Table::computer1First()
         {   
             OutOfCard().computerOutHand(getComputer2());
         }
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
     
@@ -230,6 +240,7 @@ void Table::computer1First()
         {   
             OutOfCard().computerOutHand(getComputer3());
         }
+        getPlayer().printPlayer_arr();
         Print().printTable();  
     }
 
@@ -246,18 +257,21 @@ void Table::computer1First()
         {
             Player().playerOutCard(getPlayer());
         }
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
 }
 
 void Table::computer2First()
 {
+    getPlayer().printPlayer_arr();
     if(getFirstTime())
     {
         cout << "等待 computer2 出牌，請稍候" << endl;
         sleep(2);
         OutOfCard().computerFirstOutHand(getComputer2());
         firstTime = false;
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
     else
@@ -274,6 +288,7 @@ void Table::computer2First()
             {   
                 OutOfCard().computerOutHand(getComputer2());
             }
+            getPlayer().printPlayer_arr();
             Print().printTable();
         }
     }
@@ -290,6 +305,7 @@ void Table::computer2First()
         { 
             OutOfCard().computerOutHand(getComputer3());
         }
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
 
@@ -306,6 +322,7 @@ void Table::computer2First()
         {
             Player().playerOutCard(getPlayer());
         }
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
 
@@ -321,18 +338,21 @@ void Table::computer2First()
         {   
             OutOfCard().computerOutHand(getComputer1());
         }
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
 }
 
 void Table::computer3First()
 {
+    getPlayer().printPlayer_arr();
     if(getFirstTime())
     {
         cout << "等待 computer3 出牌，請稍候" << endl;
         sleep(2);
         OutOfCard().computerFirstOutHand(getComputer3());
         firstTime = false;
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
     else
@@ -349,6 +369,7 @@ void Table::computer3First()
             {   
                 OutOfCard().computerOutHand(getComputer3());
             }
+            getPlayer().printPlayer_arr();
             Print().printTable();
         }
     }
@@ -366,6 +387,7 @@ void Table::computer3First()
         {
             Player().playerOutCard(getPlayer());
         }
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
 
@@ -381,6 +403,7 @@ void Table::computer3First()
         {   
             OutOfCard().computerOutHand(getComputer1());
         }
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
 
@@ -396,6 +419,7 @@ void Table::computer3First()
         {   
             OutOfCard().computerOutHand(getComputer2());
         }
+        getPlayer().printPlayer_arr();
         Print().printTable();
     }
 }

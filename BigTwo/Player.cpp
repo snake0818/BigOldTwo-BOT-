@@ -86,7 +86,7 @@ void Player::playerOutCard(Player &player)
     bool isPass = false;
     bool isCorrect = true;
     string playerOutCard;
-    cout << "Enter your number : ";
+    cout << "請輸入卡牌 : ";
     getline(cin, playerOutCard);
     stringstream word(playerOutCard);
 
@@ -234,6 +234,7 @@ void Player::playerOutCard(Player &player)
                     isOutHand = true;
                     player.addBeginIndex(1);
                     Table().resetPassNumber();
+                    system("clear");
                 }
 
             }
@@ -272,6 +273,7 @@ void Player::playerOutCard(Player &player)
                         isOutHand = true;
                         player.addBeginIndex(2);
                         Table().resetPassNumber();
+                        system("clear");
                     }
                 }
             }
@@ -312,6 +314,7 @@ void Player::playerOutCard(Player &player)
                         isOutHand = true;
                         player.addBeginIndex(3);
                         Table().resetPassNumber();
+                        system("clear");
                     }
                 }
             }
@@ -357,6 +360,7 @@ void Player::playerOutCard(Player &player)
                         isOutHand = true;
                         player.addBeginIndex(5);
                         Table().resetPassNumber();
+                        system("clear");
                     }
                 }
             }
@@ -402,6 +406,7 @@ void Player::playerOutCard(Player &player)
                         isOutHand = true;
                         player.addBeginIndex(5);
                         Table().resetPassNumber();
+                        system("clear");
                     }
                 }
             }
@@ -463,6 +468,7 @@ void Player::playerOutCard(Player &player)
                         isOutHand = true;
                         player.addBeginIndex(5);
                         Table().resetPassNumber();
+                        system("clear");
                     }
                 }
             }
@@ -532,6 +538,7 @@ void Player::playerOutCard(Player &player)
                         isOutHand = true;
                         player.addBeginIndex(5);
                         Table().resetPassNumber();
+                        system("clear");
                     }
                 }
             }
@@ -580,6 +587,7 @@ void Player::playerOutCard(Player &player)
                         isOutHand = true;
                         player.addBeginIndex(5);
                         Table().resetPassNumber();
+                        system("clear");
                     }
                 }
             }
@@ -790,6 +798,7 @@ void Player::FirstPlayerOutCard(Player &player)
                 player.addBeginIndex(2);
                 Table().setCardsType(692);
                 Table().resetPassNumber();
+                system("clear");
             }
         }
         else if(cardSize == 3)
@@ -827,6 +836,7 @@ void Player::FirstPlayerOutCard(Player &player)
                 player.addBeginIndex(3);
                 Table().setCardsType(693);
                 Table().resetPassNumber();
+                system("clear");
             }
         }
         else if(cardSize == 5)
@@ -885,6 +895,7 @@ void Player::FirstPlayerOutCard(Player &player)
                 player.addBeginIndex(5);
                 Table().setCardsType(696);
                 Table().resetPassNumber();
+                system("clear");
             }
             
             if (!isOutHand)
@@ -922,6 +933,7 @@ void Player::FirstPlayerOutCard(Player &player)
                     player.addBeginIndex(5);
                     Table().setCardsType(698);
                     Table().resetPassNumber();
+                    system("clear");
                 }
             }
 
@@ -965,6 +977,7 @@ void Player::FirstPlayerOutCard(Player &player)
                     player.addBeginIndex(5);
                     Table().setCardsType(694);
                     Table().resetPassNumber();
+                    system("clear");
                 }
             }
 
@@ -1008,6 +1021,7 @@ void Player::FirstPlayerOutCard(Player &player)
                     player.addBeginIndex(5);
                     Table().setCardsType(695);
                     Table().resetPassNumber();
+                    system("clear");
                 }
             }
 
@@ -1067,6 +1081,7 @@ void Player::FirstPlayerOutCard(Player &player)
                     player.addBeginIndex(5);
                     Table().setCardsType(697);
                     Table().resetPassNumber();
+                    system("clear");
                 }
             }
         }
@@ -1241,6 +1256,7 @@ void Player::nLimitPlayerOutCard(Player &player)
             Table().getPlayer().addBeginIndex(1);
             Table().setCardsType(691);
             Table().resetPassNumber();
+            system("clear");
         }
         else if(cardSize == 2)
         {
@@ -1276,6 +1292,7 @@ void Player::nLimitPlayerOutCard(Player &player)
                 player.addBeginIndex(2);
                 Table().setCardsType(692);
                 Table().resetPassNumber();
+                system("clear");
             }
         }
         else if(cardSize == 3)
@@ -1313,6 +1330,7 @@ void Player::nLimitPlayerOutCard(Player &player)
                 player.addBeginIndex(3);
                 Table().setCardsType(693);
                 Table().resetPassNumber();
+                system("clear");
             }
         }
         else if(cardSize == 5)
@@ -1371,6 +1389,7 @@ void Player::nLimitPlayerOutCard(Player &player)
                 player.addBeginIndex(5);
                 Table().setCardsType(696);
                 Table().resetPassNumber();
+                system("clear");
             }
             
             if (!isOutHand)
@@ -1408,6 +1427,7 @@ void Player::nLimitPlayerOutCard(Player &player)
                     player.addBeginIndex(5);
                     Table().setCardsType(698);
                     Table().resetPassNumber();
+                    system("clear");
                 }
             }
 
@@ -1451,6 +1471,7 @@ void Player::nLimitPlayerOutCard(Player &player)
                     player.addBeginIndex(5);
                     Table().setCardsType(694);
                     Table().resetPassNumber();
+                    system("clear");
                 }
             }
 
@@ -1494,6 +1515,7 @@ void Player::nLimitPlayerOutCard(Player &player)
                     player.addBeginIndex(5);
                     Table().setCardsType(695);
                     Table().resetPassNumber();
+                    system("clear");
                 }
             }
 
@@ -1553,6 +1575,7 @@ void Player::nLimitPlayerOutCard(Player &player)
                     player.addBeginIndex(5);
                     Table().setCardsType(697);
                     Table().resetPassNumber();
+                    system("clear");
                 }
             }
         }
