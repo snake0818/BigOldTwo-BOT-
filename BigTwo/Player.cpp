@@ -493,8 +493,55 @@ void Player::playerOutCard(Player &player)
                             Game().setField(0, i);
                         }
                     }
-                    
+
                     if(Compare().tikiCompare(card))
+                    {
+                        for(int i = INDEX; i < 13; i++)
+                        {
+                            double target = player.getIndexOfCard(i);
+                            for(int j = 0; j < 5; j++)
+                            {
+                                if(target == card[j])
+                                {
+                                    bufferIndex[j] = i;
+                                    break;
+                                }
+                            }
+                        }
+
+                        for(int j = 0; j < 5; j++)
+                        {
+                            Game().setField(card[j], j);
+                        }
+                        for(int j = 0; j < 5; j++)
+                        {
+                            player.setPlayerArr(0, bufferIndex[j]);
+                        }
+                        Tool().arrange(player.getPlayer_arr(), 13);
+                        isOutHand = true;
+                        player.addBeginIndex(5);
+                    }
+                }
+            }
+
+            if (!isOutHand)
+            {
+                int bufferIndex[5] = {0};
+
+                if(card[0]+1 == card[1] &&
+                    card[0]+2 == card[2] &&
+                    card[0]+3 == card[3] &&
+                    card[0]+4 == card[4])
+                {
+                    if(type != 698)
+                    {
+                        for(int i = 0; i < 5; i++)
+                        {
+                            Game().setField(0, i);
+                        }
+                    }
+
+                    if(Compare().straightFlushCompare(card))
                     {
                         for(int i = INDEX; i < 13; i++)
                         {
@@ -526,15 +573,15 @@ void Player::playerOutCard(Player &player)
             
             if(!isOutHand)
             {
-                cout<<"你輸入的牌型不正確 or 出的牌比場上的牌還要來得小"<<endl;
-                cout<<"請再輸入一遍"<<endl;
+                cout << "\n你輸入的牌型不正確 or 出的牌比場上的牌還要來得小" << endl;
+                cout << "請再輸入一遍\n" << endl;
                 Player().playerOutCard(player);
             }
         }
         else
         {
-            cout << "The input is error !!" << endl;
-            cout << "Please enter again" << endl;
+            cout << "\n你輸入的牌型不正確 !!" << endl;
+            cout << "請再輸入一遍\n" << endl;
             Player().playerOutCard(player);
         }
     }
