@@ -1314,6 +1314,12 @@ void OutOfCard::computer_2outHand(Computer &computer)
 
 void OutOfCard::nLimitComputerOutHand(Computer &computer)
 {
+    // clear field
+    for(int i = 0; i < 5; i++)
+    {
+        Game().setField(0, i);
+    }
+
     const int INDEX = computer.getBeginIndex();
     
     int singleSum = 0;
