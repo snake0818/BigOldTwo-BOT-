@@ -133,7 +133,7 @@ int main()
 
     cout << "\033[32m現在是第\033[0m\033[31m" << sequence << "\033[0m\033[32m位出牌\033[0m" << endl << endl;
 
-    caSize = 0;
+
 
 
 
@@ -222,6 +222,12 @@ int main()
         for (int i = 0;i < 5;i++) {
             TableCa[i] = ca[i];
             
+        }
+
+        for (int i = 0;i < caSize;i++) {
+            if (test[i] != ca[i]) {
+                play.setPassNumber();
+            }
         }
 
         /**/
