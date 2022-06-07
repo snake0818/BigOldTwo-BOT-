@@ -104,6 +104,7 @@ void Table::playerFirst()
     if(getFirstTime())
     {
         cout << "首回合為你出牌" << endl;
+        Player().playerOutCard();
         firstTime = false;
         Print().printTable();
     }
@@ -111,6 +112,7 @@ void Table::playerFirst()
     {
         // player 出牌
         cout << "請出牌" << endl;
+        Player().playerOutCard();
         Print().printTable();
     }
     
@@ -146,6 +148,8 @@ void Table::computer1First()
 
     // player 出牌
     cout << "player 出牌" << endl;
+    Player().playerOutCard();
+    Print().printTable();
 }
 
 void Table::computer2First()
@@ -167,6 +171,7 @@ void Table::computer2First()
 
     // player 出牌
     cout << "player 出牌" << endl;
+    Player().playerOutCard();
     Print().printTable();
 
     OutOfCard().computerOutHand(getComputer1());
@@ -189,6 +194,7 @@ void Table::computer3First()
 
     // player 出牌
     cout << "player 出牌" << endl;
+    Player().playerOutCard();
     Print().printTable();
 
     OutOfCard().computerOutHand(getComputer1());
