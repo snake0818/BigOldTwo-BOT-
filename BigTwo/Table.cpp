@@ -103,9 +103,9 @@ bool Table::getFirstTime() const
 
 void Table::playerFirst()
 {
-    getPlayer().printPlayer_arr();
     if(getFirstTime())
     {
+        getPlayer().printPlayer_arr();
         cout << "首回合為你出牌" << endl;
         Player().FirstPlayerOutCard(getPlayer());
         firstTime = false;
@@ -134,7 +134,7 @@ void Table::playerFirst()
     if(!end())
     {
         cout << "等待 computer1 出牌，請稍候" << endl;
-        sleep(2);
+        sleep(1);
         if(passNumber == 3)
         {
             OutOfCard().nLimitComputerOutHand(getComputer1());
@@ -150,7 +150,7 @@ void Table::playerFirst()
     if(!end())
     {
         cout << "等待 computer2 出牌，請稍候" << endl;
-        sleep(2);
+        sleep(1);
         if(passNumber == 3)
         {
             OutOfCard().nLimitComputerOutHand(getComputer2());
@@ -166,7 +166,7 @@ void Table::playerFirst()
     if(!end())
     {
         cout << "等待 computer3 出牌，請稍候" << endl;
-        sleep(2);
+        sleep(1);
         if(passNumber == 3)
         {
             OutOfCard().nLimitComputerOutHand(getComputer3());
@@ -182,11 +182,11 @@ void Table::playerFirst()
 
 void Table::computer1First()
 {
-    getPlayer().printPlayer_arr();
     if(getFirstTime())
     {
+        getPlayer().printPlayer_arr();
         cout << "等待 computer1 出牌，請稍候" << endl;
-        sleep(2);
+        sleep(1);
         OutOfCard().computerFirstOutHand(getComputer1());
         firstTime = false;
         getPlayer().printPlayer_arr();
@@ -197,7 +197,7 @@ void Table::computer1First()
         if(!end())
         {
             cout << "等待 computer1 出牌，請稍候" << endl;
-            sleep(2);
+            sleep(1);
             if(passNumber == 3)
             {
                 OutOfCard().nLimitComputerOutHand(getComputer1());
@@ -215,7 +215,7 @@ void Table::computer1First()
     if(!end())
     {
         cout << "等待 computer2 出牌，請稍候" << endl;
-        sleep(2);
+        sleep(1);
         if(passNumber == 3)
         {
             OutOfCard().nLimitComputerOutHand(getComputer2());
@@ -231,7 +231,7 @@ void Table::computer1First()
     if(!end())
     {
         cout << "等待 computer3 出牌，請稍候" << endl;
-        sleep(2);
+        sleep(1);
         if(passNumber == 3)
         {
             OutOfCard().nLimitComputerOutHand(getComputer3());
@@ -264,11 +264,11 @@ void Table::computer1First()
 
 void Table::computer2First()
 {
-    getPlayer().printPlayer_arr();
     if(getFirstTime())
     {
+        getPlayer().printPlayer_arr();
         cout << "等待 computer2 出牌，請稍候" << endl;
-        sleep(2);
+        sleep(1);
         OutOfCard().computerFirstOutHand(getComputer2());
         firstTime = false;
         getPlayer().printPlayer_arr();
@@ -279,7 +279,7 @@ void Table::computer2First()
         if(!end())
         {
             cout << "等待 computer2 出牌，請稍候" << endl;
-            sleep(2);
+            sleep(1);
             if(passNumber == 3)
             {
                 OutOfCard().nLimitComputerOutHand(getComputer2());
@@ -296,7 +296,7 @@ void Table::computer2First()
     if(!end())
     {    
         cout << "等待 computer3 出牌，請稍候" << endl;
-        sleep(2);
+        sleep(1);
         if(passNumber == 3)
         {
             OutOfCard().nLimitComputerOutHand(getComputer3());
@@ -329,7 +329,7 @@ void Table::computer2First()
     if(!end())
     {
         cout << "等待 computer1 出牌，請稍候" << endl;
-        sleep(2);
+        sleep(1);
         if(passNumber == 3)
         {
             OutOfCard().nLimitComputerOutHand(getComputer1());
@@ -345,11 +345,11 @@ void Table::computer2First()
 
 void Table::computer3First()
 {
-    getPlayer().printPlayer_arr();
     if(getFirstTime())
     {
+        getPlayer().printPlayer_arr();
         cout << "等待 computer3 出牌，請稍候" << endl;
-        sleep(2);
+        sleep(1);
         OutOfCard().computerFirstOutHand(getComputer3());
         firstTime = false;
         getPlayer().printPlayer_arr();
@@ -360,7 +360,7 @@ void Table::computer3First()
         if(!end())
         {
             cout << "等待 computer3 出牌，請稍候" << endl;
-            sleep(2);
+            sleep(1);
             if(passNumber == 3)
             {
                 OutOfCard().nLimitComputerOutHand(getComputer3());
@@ -394,7 +394,7 @@ void Table::computer3First()
     if(!end())
     {
         cout << "等待 computer1 出牌，請稍候" << endl;
-        sleep(2);
+        sleep(1);
         if(passNumber == 3)
         {
             OutOfCard().nLimitComputerOutHand(getComputer1());
@@ -410,7 +410,7 @@ void Table::computer3First()
     if(!end())
     {
         cout << "等待 computer2 出牌，請稍候" << endl;
-        sleep(2);
+        sleep(1);
         if(passNumber == 3)
         {
             OutOfCard().nLimitComputerOutHand(getComputer2());
