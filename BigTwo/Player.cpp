@@ -745,7 +745,6 @@ void Player::FirstPlayerOutCard(Player &player)
 
         if(cardSize == 1)
         {
-            cout << "hi1\n";
             int bufferIndex[1] = {0};
             for(int k = 0; k < 13; k++)
             {
@@ -766,7 +765,6 @@ void Player::FirstPlayerOutCard(Player &player)
         }
         else if(cardSize == 2)
         {
-            cout << "hi2" << endl;
             int bufferIndex[2] = {0};
             int card1Num = Card().returnNumber(card[0]);
             int card2Num = Card().returnNumber(card[1]);
@@ -1238,7 +1236,6 @@ void Player::nLimitPlayerOutCard(Player &player)
 
         if(cardSize == 1)
         {
-            cout << "hi1\n";
             int bufferIndex[1] = {0};
             for(int k = 0; k < 13; k++)
             {
@@ -1260,7 +1257,6 @@ void Player::nLimitPlayerOutCard(Player &player)
         }
         else if(cardSize == 2)
         {
-            cout << "hi2" << endl;
             int bufferIndex[2] = {0};
             int card1Num = Card().returnNumber(card[0]);
             int card2Num = Card().returnNumber(card[1]);
